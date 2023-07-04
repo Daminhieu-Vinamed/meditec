@@ -1,0 +1,70 @@
+tbody > tr > td {
+  min-width: 130px;
+}
+
+.submit-update, .submit-update:hover{
+  background-color: #0d6efd;
+}
+.submit-update:focus{
+  background-color: #0d6efd;
+  border: none;
+}
+
+.submit-edit, .submit-edit:hover{
+  background-color: #198754;
+  color: white;
+}
+.submit-edit:focus{
+  background-color: #198754;
+  border: none;
+  color: white;
+}
+
+
+/*======================
+    404 page
+=======================*/
+
+
+.page_404{ 
+  padding:40px 0; 
+  background:#fff; 
+  font-family: 'Arvo', serif;
+}
+
+.page_404  img{ 
+  width:100%;
+}
+
+.four_zero_four_bg{
+
+  background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+  height: 400px;
+  background-position: center;
+}
+
+
+.four_zero_four_bg h1{
+  font-size:50px;
+}
+
+.four_zero_four_bg h3{
+  font-size:80px;
+}
+      
+.contant_box_404{ 
+  margin-top:-50px;
+}
+
+.form-select:focus{
+  border-color: none;
+  outline: none; 
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.card-title{
+  margin-bottom: 0 !important;
+}
+
+  
