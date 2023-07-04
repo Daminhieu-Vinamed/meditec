@@ -26,8 +26,7 @@ class B20EmployeeController extends Controller
 
     public function logout(Request $request)
     {
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        $request->session()->flush();
         return redirect()->route('form.getLogin');
     }
 }
