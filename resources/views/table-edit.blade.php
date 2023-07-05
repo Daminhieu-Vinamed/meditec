@@ -67,7 +67,7 @@
                                                 <select name="MachineCode[]" class="form-select" id="{{$item->Id}}">
                                                     @foreach ($arrayMachineCode as $itemCode)
                                                         @if ($itemCode->IsGroup == 0 && $itemCode->IsActive == 1)
-                                                            <option value="{{ $itemCode->Code }}">{{$itemCode->Code}}</option>
+                                                            <option value="{{ $itemCode->Code }}">{{$itemCode->Code}} - {{$itemCode->Name}}</option>
                                                         @endif
                                                     @endforeach
                                                 </select>
