@@ -37,6 +37,7 @@ class vB20ProductionorderQuanWebController extends Controller
                     $quantityFail = $request->QuantityFail[$item];
                     $machineCode = $request->MachineCode[$item];
                     settype($quantitySx, "integer");
+                    settype($quantityFail, "integer");
                     settype($id, "integer");
                     DB::update('EXEC usp_UpdateB20ProductionorderQuan_JobQuantityTT ?, ?, ?, ?, ?, ?, ?', [$id, $quantitySx, $itemLotCode, $productCode, $workDay, $chantCode, session()->get('user')->Code]);
                     DB::insert('EXEC usp_Create_B30JobRecord ?, ?, ?, ?, ?, ?, ?, ?, ?', [session()->get('user')->Code, $quantitySx, $itemLotCode, $productCode, $id, $chantCode, $workDay, $quantityFail, $machineCode]);
