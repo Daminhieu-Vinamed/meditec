@@ -72,9 +72,9 @@
                                                     @endforeach
                                                 </select>
                                             </td>
-                                            <td>{{$item->JobQuantity}}</td>
-                                            <td>{{$item->JobQuantityTT}}</td>
-                                            <td>{{$item->QuantityCL}}</td>
+                                            <td>{{number_format($item->JobQuantity,2,",",".")}}</td>
+                                            <td>{{number_format($item->JobQuantityTT,2,",",".")}}</td>
+                                            <td>{{number_format($item->QuantityCL,2,",",".")}}</td>
                                             <th scope="row">{{$item->DocNo}}</th>
                                             <td>{{$item->ItemLotCode}}</td>
                                         </tr>
