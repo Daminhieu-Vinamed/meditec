@@ -52,7 +52,7 @@ class vB20ProductionorderQuanWebController extends Controller
                 }
             }
         }elseif(isset($request->type) && $request->type === 'edit'){
-            return response()->json(['error_correct' => 'Chỉnh sửa thành công !']);
+            return response()->json(['error_correct' => 'Chức năng chỉnh sửa hiện tại đang trong quá trình phát triển !']);
         }
     }
     
