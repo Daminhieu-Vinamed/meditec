@@ -52,7 +52,7 @@
                                                 <select name="ChantCode[]" class="form-select" id="{{$item->Id}}">
                                                     @foreach ($arrayChantCode as $itemCode)
                                                         @if ($itemCode->IsGroup == 0 && $itemCode->IsActive == 1)
-                                                            <option value="{{ $itemCode->Code }}">{{$itemCode->Code}}</option>
+                                                            <option value="{{ $itemCode->Code }}">{{$itemCode->Code}} - {{$itemCode->Name}}</option>
                                                         @endif
                                                     @endforeach
                                                 </select>
