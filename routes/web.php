@@ -38,3 +38,4 @@ Route::middleware('checkSession')->prefix('/')->name('form.')->group(function ()
     Route::post('/login', [B20EmployeeController::class,'postLogin'])->name('postLogin');
 });
 Route::get('/logout', [B20EmployeeController::class, 'logout'])->name('logout');
+Route::get('/back', [B20EmployeeController::class,'back'])->name('back');
