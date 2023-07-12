@@ -47,7 +47,7 @@
                 <!-- ============================================================== -->
                 <!-- Search -->
                 <!-- ============================================================== -->
-                <li class="nav-item search-box">
+                {{-- <li class="nav-item search-box">
                     <a class="nav-link waves-effect waves-dark" href="javascript:void(0)">
                         <div class="d-flex align-items-center">
                             <i class="mdi mdi-magnify font-20 me-1"></i>
@@ -62,7 +62,7 @@
                             <i class="ti-close"></i>
                         </a>
                     </form>
-                </li>
+                </li> --}}
             </ul>
             <!-- ============================================================== -->
             <!-- Right side toggle and nav items -->
@@ -73,6 +73,7 @@
                 <!-- ============================================================== -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="full-name-user-header">{{session()->get('user')->Name}}</span>
                         <img src="../../assets/images/users/avatar.png" alt="user" class="rounded-circle" width="31">
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
