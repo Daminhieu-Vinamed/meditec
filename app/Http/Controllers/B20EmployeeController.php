@@ -17,8 +17,9 @@ class B20EmployeeController extends Controller
         if (Auth::attempt(['Code' => $request->Code, 'password' => $request->password])) {
             session(['user' => Auth::user()]);
             return response()->json(['fullName' => Auth::user()->Name, 'Code' => Auth::user()->Code, 'id' => $request->id]);
+        }else{
+            return response()->json(['errorLogin' => 'Sai tài khoản hoặc mật khẩu !', 'id' => $request->id]);
         }
-        return redirect()->route('form.getLogin')->with('error_incorrect', 'Sai tài khoản hoặc mật khẩu !');
     }
 
     public function logout(Request $request)
