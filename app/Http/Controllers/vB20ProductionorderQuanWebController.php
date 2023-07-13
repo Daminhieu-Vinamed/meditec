@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Validate;
 use App\Models\B20HrmShift;
 use App\Models\B20Machine;
+use App\Models\vB20Item_Web;
 use App\Models\vB20ProductionorderQuanWeb;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -24,6 +25,26 @@ class vB20ProductionorderQuanWebController extends Controller
         return response()->json(['hour' => $shift->WorkDay, 'idSelect' => $request->idSelect]);
     }
 
+    // public function getChantCode (){
+    //     $dataChantCode = B20HrmShift::orderBy('Code', 'ASC')->get();
+    //     $arrayChantCode = $dataChantCode->map(function ($chantCode) {
+    //         return collect($chantCode->toArray())
+    //             ->only(['Code', 'Name', 'IsGroup', 'IsActive'])
+    //             ->all();
+    //     });
+    //     return response()->json(['arrayChantCode' => $arrayChantCode]);
+    // }
+
+    public function getProductCode (){
+        $dataProductCode = vB20Item_Web::orderBy('ProductCode', 'ASC')->get();
+        $arrayProductCode = $dataProductCode->map(function ($productCode) {
+            return collect($productCode->toArray())
+                ->only(['ProductCode', 'Name'])
+                ->all();
+        });
+        return response()->json(['arrayProductCode' => $arrayProductCode]);
+    }
+
     public function update(Validate $request)
     {
         if (isset($request->type) && $request->type === 'update') {
@@ -36,8 +57,6 @@ class vB20ProductionorderQuanWebController extends Controller
                     $workDay = $request->WorkDay[$item];
                     $quantityFail = $request->QuantityFail[$item];
                     $machineCode = $request->MachineCode[$item];
-                    // settype($quantitySx, "integer");
-                    // settype($quantityFail, "integer");
                     settype($id, "integer");
                     DB::update('EXEC usp_UpdateB20ProductionorderQuan_JobQuantityTT ?, ?, ?, ?, ?, ?, ?', [$id, $quantitySx, $itemLotCode, $productCode, $workDay, $chantCode, session()->get('user')->Code]);
                     DB::insert('EXEC usp_Create_B30JobRecord ?, ?, ?, ?, ?, ?, ?, ?, ?', [session()->get('user')->Code, $quantitySx, $itemLotCode, $productCode, $id, $chantCode, $workDay, $quantityFail, $machineCode]);

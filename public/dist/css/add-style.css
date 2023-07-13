@@ -20,6 +20,20 @@ tbody > tr > td {
   color: white;
 }
 
+.add-row, .add-row:hover{
+  background-color: #17a2b8;
+  color: white;
+}
+.add-row:focus{
+  background-color: #17a2b8;
+  border: none;
+  color: white;
+}
+
+.delete-row, .delete-row:focus, .delete-row:hover{
+  color: white;
+}
+
 
 /*======================
     404 page
@@ -69,6 +83,10 @@ tbody > tr > td {
 
 .full-name-user-header{
   font-size: 20px;
+}
+
+.string-data-product-code{
+  display: none;
 }
 
   
