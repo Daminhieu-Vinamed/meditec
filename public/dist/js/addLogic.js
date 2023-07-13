@@ -12,7 +12,7 @@ $(function() {
         });
     });
 
-    $('.submit-update').click(function(){ 
+    $('.submit-update, .submit-edit').click(function(){ 
         var QuantitySX = $("input[name='QuantitySX[]']")
               .map(function(){return $(this).val();}).get();
         var WorkDay = $("input[name='WorkDay[]']")
