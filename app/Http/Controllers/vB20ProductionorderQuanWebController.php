@@ -25,16 +25,6 @@ class vB20ProductionorderQuanWebController extends Controller
         return response()->json(['hour' => $shift->WorkDay, 'idSelect' => $request->idSelect]);
     }
 
-    // public function getChantCode (){
-    //     $dataChantCode = B20HrmShift::orderBy('Code', 'ASC')->get();
-    //     $arrayChantCode = $dataChantCode->map(function ($chantCode) {
-    //         return collect($chantCode->toArray())
-    //             ->only(['Code', 'Name', 'IsGroup', 'IsActive'])
-    //             ->all();
-    //     });
-    //     return response()->json(['arrayChantCode' => $arrayChantCode]);
-    // }
-
     public function getProductCode (){
         $dataProductCode = vB20Item_Web::orderBy('ProductCode', 'ASC')->get();
         $arrayProductCode = $dataProductCode->map(function ($productCode) {

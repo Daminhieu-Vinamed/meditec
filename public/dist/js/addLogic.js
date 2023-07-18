@@ -75,7 +75,7 @@ $(document).ready(function () {
     });
 
     function appendOptionSelect(arrayData, location) {
-        var selectProductCode = $('.select-add');
+        var selectProductCode = $('.select-add-productCode');
         if (location !== null) {
             selectProductCode = $('.product-code-select-' + location);
         }
@@ -92,25 +92,30 @@ $(document).ready(function () {
             `<tr class="location-delete-row-tr-`+ numberDeleteRow +`">
                 <input type="hidden" class="location-validate-workday-quantity" value="`+$locationValidateWorkdayQuantity+`">
                 <input type="hidden" class="location-validate-product-code" value="`+$locationValidateProductCode+`">
-                <td colspan="2">
-                    <select name="ProductCode[]" class="form-select select-add product-code-select-`+ numberDeleteRow +`" number-location-select="`+ numberDeleteRow +`">
+                <td>
+                    <select name="ProductCode[]" class="form-select select-add-productCode product-code-select-`+ numberDeleteRow +`" number-location-select="`+ numberDeleteRow +`">
                         <option value="">Chọn mã sản phẩm</option>
                     </select>
                     <span class="text-danger error-product-code-`+$locationValidateProductCode+`"></span>
                 </td>
-                <td colspan="5" class="td-name-product-`+numberDeleteRow+`">Tên sản phẩm</td>
-                <td colspan="2">
+                <td class="td-name-product-`+numberDeleteRow+`">Tên sản phẩm</td>
+                <td>
                     <div class="form-group">
                         <input class="form-control quantity-sx-`+$locationValidateWorkdayQuantity+`" name="QuantitySX[]" type="text" placeholder="Số lượng">
                         <span class="text-danger error-quantity-`+$locationValidateWorkdayQuantity+`"></span>
                     </div>
                 </td>
-                <td colspan="2">
+                <td></td>
+                <td>
+                    <select name="ChantCode[]" class="form-select select-add-chantCode"></select>
+                </td>
+                <td>
                     <div class="form-group">
                         <input class="form-control" name="WorkDay[]" type="text" placeholder="Nhập số giờ">
                         <span class="text-danger error-workday-`+$locationValidateWorkdayQuantity+`"></span>
                     </div>
                 </td>
+                <td colspan="5"></td>
                 <td>
                     <button type="button" class="btn btn-danger delete-row" location-delete-row-button="`+ numberDeleteRow +`">Xóa dòng</button>
                 </td>
@@ -137,9 +142,13 @@ $(document).ready(function () {
             const MyJSON = JSON.parse($('.string-data-product-code').text());
             appendOptionSelect(MyJSON, numberDeleteRow);
         }
+        
+        $("select[name='ChantCode[]'] option").each(function(){
+            $('.select-add-chantCode').append('<option value="'+ $(this).val() +'">' + $(this).text() + '</option>');
+        });
     });
 
-    $(document).on('change', '.select-add', function () {
+    $(document).on('change', '.select-add-productCode', function () {
         const MyJSON = JSON.parse($('.string-data-product-code').text());
         var objectProduct = MyJSON.find(element => element.ProductCode  === $(this).val());
         const numerLocationSelect = $(this).attr('number-location-select');
@@ -151,50 +160,5 @@ $(document).ready(function () {
         var deleteRow = $(".location-delete-row-tr-"+ locationDeleteButton);
         deleteRow.remove()
     });
-
-    // $('.add-row').click(function(){ 
-    //     $('.products').append(
-    //         `<tr>
-    //             <input type="hidden" name="ItemLotCode[]" value="{{$item->ItemLotCode}}">
-    //             <input type="hidden" name="ProductCode[]" value="{{$item->ProductCode}}">
-    //             <input type="hidden" name="Id[]" value="{{$item->Id}}">
-    //             <td>
-    //                 <select class="form-select">
-    //                     <option>Chọn mã sản phẩm</option>
-    //                 </select>
-    //             </td>
-    //             <td></td>
-    //             <td>
-    //                 <div class="form-group">
-    //                     <input class="form-control quantity-sx-{{$location}}" name="QuantitySX[]" type="text" placeholder="Số lượng">
-    //                     <span class="text-danger error-quantity-{{$location}}"></span>
-    //                 </div>
-    //             </td>
-    //             <td>
-    //                 <div class="form-group">
-    //                     <input class="form-control quantity-fail-{{$location}}" name="QuantityFail[]" type="text" placeholder="Phế phẩm">
-    //                     <span class="text-danger error-quantity-fail-{{$location}}"></span>
-    //                 </div>
-    //             </td>
-    //             <td>
-    //                 <select name="ChantCode[]" class="form-select chantCodeAdd"></select>
-    //             </td>
-    //         </tr>`
-    //     );
-    //     $.ajax({
-    //         url: "/get-chant-code" ,
-    //         type:'GET',
-    //         headers: {
-    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    //         },
-    //         success: function(dataSuccess) {
-    //             var selectChantCode = $('.chantCodeAdd').attr('id', Math.random());
-    //             for (let index = 0; index < dataSuccess.arrayChantCode.length; index++) {
-    //                 if (dataSuccess.arrayChantCode[index].IsGroup == 0 && dataSuccess.arrayChantCode[index].IsActive == 1) {
-    //                     selectChantCode.append('<option value="'+ dataSuccess.arrayChantCode[index].Code +'">' + dataSuccess.arrayChantCode[index].Code + '-' + dataSuccess.arrayChantCode[index].Code + '</option>')
-    //                 }
-    //             }
-    //         },
-    //     });
-    // });
+    
 })
