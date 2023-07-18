@@ -107,7 +107,7 @@ $(document).ready(function () {
                 </td>
                 <td></td>
                 <td>
-                    <select name="ChantCode[]" class="form-select select-add-chantCode"></select>
+                    <select name="ChantCode[]" class="form-select select-add-chantCode-`+$locationValidateProductCode+`"></select>
                 </td>
                 <td>
                     <div class="form-group">
@@ -143,8 +143,8 @@ $(document).ready(function () {
             appendOptionSelect(MyJSON, numberDeleteRow);
         }
         
-        $("select[name='ChantCode[]'] option").each(function(){
-            $('.select-add-chantCode').append('<option value="'+ $(this).val() +'">' + $(this).text() + '</option>');
+        $(".select-chantCode option").each(function(){
+            $('.select-add-chantCode-'+$locationValidateProductCode).append('<option value="'+ $(this).val() +'">' + $(this).text() + '</option>');
         });
     });
 
