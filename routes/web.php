@@ -30,8 +30,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('checkRole')->prefix('/')->name('list.')->group(function (){
     Route::get('/edit/{id}', [vB20ProductionorderQuanWebController::class,'getListEdit'])->name('edit');
     Route::get('/get-time/{code}', [vB20ProductionorderQuanWebController::class,'getTime'])->name('get-time');
-    // Route::get('/get-chant-code', [vB20ProductionorderQuanWebController::class,'getChantCode'])->name('get-chant-code');
-     Route::get('/get-product-code', [vB20ProductionorderQuanWebController::class,'getProductCode'])->name('get-product-code');
+    Route::get('/get-product-code', [vB20ProductionorderQuanWebController::class,'getProductCode'])->name('get-product-code');
     Route::post('/update', [vB20ProductionorderQuanWebController::class,'update'])->name('update');
     Route::get('/notification', [vB20ProductionorderQuanWebController::class,'notification'])->name('notification');
 });
