@@ -50,7 +50,7 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <select name="ChantCode[]" class="form-select" id="{{$item->Id}}">
+                                                <select name="ChantCode[]" class="form-select select-chantCode" id="{{$item->Id}}">
                                                     @foreach ($arrayChantCode as $itemCode)
                                                         @if ($itemCode->IsGroup == 0 && $itemCode->IsActive == 1)
                                                             <option value="{{ $itemCode->Code }}">{{$itemCode->Code}} - {{$itemCode->Name}}</option>
