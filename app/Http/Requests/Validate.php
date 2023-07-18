@@ -24,6 +24,8 @@ class Validate extends FormRequest
     public function rules(): array
     {
         return [
+            "ProductCode" => "array",
+            "ProductCode.*"  => "required",
             "QuantitySX" => "array",
             "QuantitySX.*"  => "nullable|numeric",
             "QuantityFail" => "array",
@@ -40,6 +42,7 @@ class Validate extends FormRequest
             'QuantityFail.*.numeric' => 'Phế phẩm nhập vào phải là chữ số',
             'WorkDay.*.numeric' => 'Số giờ nhập vào phải là chữ số',
             'WorkDay.*.required' => 'Số giờ không được để trống',
+            'ProductCode.*.required' => 'Chưa chọn mã sản phẩm',
         ];
     }
 }

@@ -28,9 +28,10 @@
                                         <th scope="col">Lô</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="products">
                                     @foreach ($data as $location => $item)
                                         <tr>
+                                            <input type="hidden" class="location-validate-workday-quantity" value="{{$location}}">
                                             <input type="hidden" name="ItemLotCode[]" value="{{$item->ItemLotCode}}">
                                             <input type="hidden" name="ProductCode[]" value="{{$item->ProductCode}}">
                                             <input type="hidden" name="Id[]" value="{{$item->Id}}">
@@ -84,6 +85,7 @@
                         </div>
                         <button type="button" class="btn btn-primary submit-update" value="update">Cập nhật</button>
                         <button type="button" class="btn btn-success submit-edit" value="edit">Chỉnh sửa</button>
+                        <button type="button" class="btn btn-info add-row">Thêm</button>
                     </form>
                 </div>
             </div>
