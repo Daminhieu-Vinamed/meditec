@@ -15,7 +15,7 @@ $(document).ready(function () {
             });
         } else {
             const MyJSON = JSON.parse(sessionStorage.getItem('string-all-shift'));
-            var objectShift = MyJSON.find(element => element.Code  === $(this).val());
+            var objectShift = MyJSON.find(element => element.Code  === valueSelect);
             $('#WorkDay-'+idSelect+'').val(objectShift.WorkDay);
         }
     });
