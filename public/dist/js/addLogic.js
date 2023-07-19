@@ -25,7 +25,7 @@ $(document).ready(function () {
               .map(function(){return $(this).val();}).get();
         var ChantCode = $("select[name='ChantCode[]']")
               .map(function(){return $(this).val();}).get();
-        var MachineCode = $("select[name='MachineCode[]']")
+        var MachineCode = $("[name='MachineCode[]']")
               .map(function(){return $(this).val();}).get();
         var QuantityFail = $("input[name='QuantityFail[]']")
               .map(function(){return $(this).val();}).get();
@@ -92,6 +92,10 @@ $(document).ready(function () {
             `<tr class="location-delete-row-tr-`+ numberDeleteRow +`">
                 <input type="hidden" class="location-validate-workday-quantity" value="`+$locationValidateWorkdayQuantity+`">
                 <input type="hidden" class="location-validate-product-code" value="`+$locationValidateProductCode+`">
+                <input type="hidden" name="ItemLotCode[]">
+                <input type="hidden" name="Id[]">
+                <input type="hidden" name="QuantityFail[]">
+                <input type="hidden" name="MachineCode[]">
                 <td>
                     <select name="ProductCode[]" class="form-select select-add-productCode product-code-select-`+ numberDeleteRow +`" number-location-select="`+ numberDeleteRow +`">
                         <option value="">Chọn mã sản phẩm</option>
