@@ -1,15 +1,23 @@
 $(document).ready(function () {
-    $('.form-select').change(function(){ 
-        $.ajax({
-            url: "/get-time/" + $(this).val(),
-            type:'GET',
-            data: {
-                idSelect: $(this).attr('id')
-            },
-            success: function(data) {
-                $('#WorkDay-'+data.idSelect+'').val(data.hour);
-            }
-        });
+    $('.form-select').change(function(){
+        const valueSelect = $(this).val();
+        const idSelect = $(this).attr('id');
+        if (sessionStorage.getItem('string-all-shift') === null) {
+            $.ajax({
+                url: "/get-time",
+                type:'GET',
+                success: function(data) {
+                    var objectShift =data.shiftAll.find(element => element.Code === valueSelect);
+                    $('#WorkDay-'+idSelect+'').val(objectShift.WorkDay);
+                    const myJSON = JSON.stringify(data.shiftAll);
+                    sessionStorage.setItem('string-all-shift', myJSON)
+                }
+            });
+        } else {
+            const MyJSON = JSON.parse(sessionStorage.getItem('string-all-shift'));
+            var objectShift = MyJSON.find(element => element.Code  === $(this).val());
+            $('#WorkDay-'+idSelect+'').val(objectShift.WorkDay);
+        }
     });
 
     $(document).on('click', '.submit-update, .submit-edit', function () {
@@ -58,6 +66,7 @@ $(document).ready(function () {
                     alert(dataSuccess.error_incorrect);
                 }else{
                     alert(dataSuccess.error_correct);
+                    sessionStorage.clear();
                     location.href = window.location.origin + '/logout';
                 }
             },
@@ -125,11 +134,9 @@ $(document).ready(function () {
                 </td>
             </tr>`
         );
+        
 
-        if ($('.string-data-product-code').length === 0) {
-            var stringDataProductCode = document.createElement("p");
-            stringDataProductCode.setAttribute('class', 'string-data-product-code');
-            $('.table-responsive').append(stringDataProductCode);
+        if (sessionStorage.getItem("string-data-product-code") === null) {
             $.ajax({
                 url: "/get-product-code" ,
                 type:'GET',
@@ -138,12 +145,12 @@ $(document).ready(function () {
                 },
                 success: function(dataSuccess) {
                     appendOptionSelect(dataSuccess.arrayProductCode, null);
-                    const myJSON = JSON.stringify(dataSuccess.arrayProductCode);                  
-                    $('.string-data-product-code').append(myJSON);
+                    const myJSON = JSON.stringify(dataSuccess.arrayProductCode);
+                    sessionStorage.setItem("string-data-product-code", myJSON);
                 },
             });
         }else{
-            const MyJSON = JSON.parse($('.string-data-product-code').text());
+            const MyJSON = JSON.parse(sessionStorage.getItem("string-data-product-code"));
             appendOptionSelect(MyJSON, numberDeleteRow);
         }
         
@@ -153,7 +160,7 @@ $(document).ready(function () {
     });
 
     $(document).on('change', '.select-add-productCode', function () {
-        const MyJSON = JSON.parse($('.string-data-product-code').text());
+        const MyJSON = JSON.parse(sessionStorage.getItem("string-data-product-code"));
         var objectProduct = MyJSON.find(element => element.ProductCode  === $(this).val());
         const numerLocationSelect = $(this).attr('number-location-select');
         $('.td-name-product-'+numerLocationSelect).text(objectProduct.Name);

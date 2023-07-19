@@ -20,9 +20,14 @@ class vB20ProductionorderQuanWebController extends Controller
         return view('table-edit',['data' => $data, 'arrayChantCode' => $arrayChantCode, 'arrayMachineCode' => $arrayMachineCode]);
     }
 
-    public function getTime (Request $request){
-        $shift = B20HrmShift::where('Code', $request->code)->first();
-        return response()->json(['hour' => $shift->WorkDay, 'idSelect' => $request->idSelect]);
+    public function getTime (){
+        $shiftAll = B20HrmShift::orderBy('Code', 'ASC')->get();
+        $arrayShift = $shiftAll->map(function ($shift) {
+            return collect($shift->toArray())
+                ->only(['Code', 'Name', 'WorkDay'])
+                ->all();
+        });
+        return response()->json(['shiftAll' => $arrayShift]);
     }
 
     public function getProductCode (){
