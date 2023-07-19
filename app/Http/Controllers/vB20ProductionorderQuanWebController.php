@@ -66,7 +66,6 @@ class vB20ProductionorderQuanWebController extends Controller
                 return response()->json(['error_correct' => 'Cập nhật thành công !']);
             } catch (\Exception $e) {
                 $message = $e->getMessage();
-                dd($message);
                 $contains = str_contains($message, 'Sai giờ làm việc');
                 if ($contains) {
                     return response()->json(['error_incorrect' => 'Thời gian làm việc không được vượt quá quy định !']);
