@@ -114,7 +114,7 @@ $(document).ready(function () {
                 <td class="td-name-product-`+numberDeleteRow+`">Tên sản phẩm</td>
                 <td>
                     <div class="form-group">
-                        <input class="form-control quantity-sx-`+$locationValidateWorkdayQuantity+`" name="QuantitySX[]" type="text" placeholder="Số lượng">
+                        <input class="form-control quantity-sx-`+$locationValidateWorkdayQuantity+`" id="quantity-sx-`+numberDeleteRow+`" name="QuantitySX[]" type="text" placeholder="Số lượng">
                         <span class="text-danger error-quantity-`+$locationValidateWorkdayQuantity+`"></span>
                     </div>
                 </td>
@@ -124,7 +124,7 @@ $(document).ready(function () {
                 </td>
                 <td>
                     <div class="form-group">
-                        <input class="form-control" name="WorkDay[]" type="text" placeholder="Nhập số giờ">
+                        <input class="form-control input-work-day" id="`+numberDeleteRow+`" name="WorkDay[]" type="text" placeholder="Nhập số giờ">
                         <span class="text-danger error-workday-`+$locationValidateWorkdayQuantity+`"></span>
                     </div>
                 </td>
@@ -134,7 +134,11 @@ $(document).ready(function () {
                 </td>
             </tr>`
         );
-        
+
+        $('.input-work-day').change(function(){
+            $location = $(this).attr('id');
+            $('#quantity-sx-' + $location).val($(this).val());
+        });
 
         if (sessionStorage.getItem("string-data-product-code") === null) {
             $.ajax({
