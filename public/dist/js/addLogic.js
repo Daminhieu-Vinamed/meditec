@@ -89,7 +89,7 @@ $(document).ready(function () {
             selectProductCode = $('.product-code-select-' + location);
         }
         for (let index = 0; index < arrayData.length; index++) {
-            selectProductCode.append('<option value="'+ arrayData[index].ProductCode +'">' + arrayData[index].ProductCode + '-' + arrayData[index].Name + '</option>');
+            selectProductCode.append('<option value="'+ arrayData[index].ProductCode +'">' + arrayData[index].ProductCode + ' - ' + arrayData[index].Name + '</option>');
         }
     }
 
