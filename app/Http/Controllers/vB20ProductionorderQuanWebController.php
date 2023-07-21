@@ -40,7 +40,7 @@ class vB20ProductionorderQuanWebController extends Controller
         return response()->json(['arrayProductCode' => $arrayProductCode]);
     }
 
-    public function update(Request $request)
+    public function update(Validate $request)
     {
         if (isset($request->type) && $request->type === 'update') {
             try {
@@ -70,7 +70,7 @@ class vB20ProductionorderQuanWebController extends Controller
                 if ($contains) {
                     return response()->json(['error_incorrect' => 'Thời gian làm việc không được vượt quá quy định !']);
                 }else{
-                    return response()->json(['error_incorrect' => 'Lỗi hệ thống !']);
+                    return response()->json(['error_incorrect' => $message]);
                 }
             }
         }elseif(isset($request->type) && $request->type === 'edit'){
