@@ -158,7 +158,7 @@ $(document).ready(function () {
             appendOptionSelect(MyJSON, numberDeleteRow);
         }
         
-        $(".select-chantCode option").each(function(){
+        $(".products > tr:first > td > .select-chantCode option").each(function(){
             $('.select-add-chantCode-'+$locationValidateProductCode).append('<option value="'+ $(this).val() +'">' + $(this).text() + '</option>');
         });
     });
