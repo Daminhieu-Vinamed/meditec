@@ -21,6 +21,7 @@
                                         <th scope="col">Ca sản xuất</th>
                                         <th scope="col">Số giờ</th>
                                         <th scope="col">Mã máy</th>
+                                        <th scope="col">Công đoạn</th>
                                         <th scope="col">Số lượng ban đầu</th>
                                         <th scope="col">Số lượng đã sản xuất</th>
                                         <th scope="col">Số lượng còn lại phải sản xuất</th>
@@ -66,7 +67,18 @@
                                             </td>
                                             <td>
                                                 <select name="MachineCode[]" class="form-select" id="{{$item->Id}}">
+                                                    <option>-----</option>
                                                     @foreach ($arrayMachineCode as $itemCode)
+                                                        @if ($itemCode->IsGroup == 0 && $itemCode->IsActive == 1)
+                                                            <option value="{{ $itemCode->Code }}">{{$itemCode->Code}} - {{$itemCode->Name}}</option>
+                                                        @endif
+                                                    @endforeach
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select name="StageNo[]" class="form-select" id="{{$item->Id}}">
+                                                    <option>-----</option>
+                                                    @foreach ($arrayStage as $itemCode)
                                                         @if ($itemCode->IsGroup == 0 && $itemCode->IsActive == 1)
                                                             <option value="{{ $itemCode->Code }}">{{$itemCode->Code}} - {{$itemCode->Name}}</option>
                                                         @endif
