@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Validate;
 use App\Models\B20HrmShift;
 use App\Models\B20Machine;
+use App\Models\B20Stage;
 use App\Models\vB20Item_Web;
 use App\Models\vB20ProductionorderQuanWeb;
 use Illuminate\Http\Request;
@@ -17,7 +18,8 @@ class vB20ProductionorderQuanWebController extends Controller
         $data = vB20ProductionorderQuanWeb::where('ParentId', $request->id)->get();
         $arrayChantCode = B20HrmShift::orderBy('Code', 'ASC')->get();
         $arrayMachineCode = B20Machine::orderBy('Code', 'ASC')->get();
-        return view('table-edit',['data' => $data, 'arrayChantCode' => $arrayChantCode, 'arrayMachineCode' => $arrayMachineCode]);
+        $arrayStage = B20Stage::orderBy('Code', 'ASC')->get();
+        return view('table-edit',['data' => $data, 'arrayChantCode' => $arrayChantCode, 'arrayMachineCode' => $arrayMachineCode, 'arrayStage' => $arrayStage]);
     }
 
     public function getTime (){
