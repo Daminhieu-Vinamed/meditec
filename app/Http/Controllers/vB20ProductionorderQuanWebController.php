@@ -58,7 +58,7 @@ class vB20ProductionorderQuanWebController extends Controller
                         $itemLotCode = "";
                     }else{
                         $quantityFail = $request->QuantityFail[$item];
-                        $machineCode = $request->MachineCode[$item] == null ? "" : $request->MachineCode[$item];
+                        $machineCode = $request->MachineCode[$item] === null ? "" : $request->MachineCode[$item];
                         $itemLotCode = $request->ItemLotCode[$item];
                     }
                     settype($Id, "integer");
