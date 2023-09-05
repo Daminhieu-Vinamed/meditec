@@ -67,7 +67,7 @@
                                             </td>
                                             <td>
                                                 <select name="MachineCode[]" class="form-select" id="{{$item->Id}}">
-                                                    <option>-----</option>
+                                                    <option value="">-----</option>
                                                     @foreach ($arrayMachineCode as $itemCode)
                                                         @if ($itemCode->IsGroup == 0 && $itemCode->IsActive == 1)
                                                             <option value="{{ $itemCode->Code }}">{{$itemCode->Code}} - {{$itemCode->Name}}</option>
@@ -77,7 +77,7 @@
                                             </td>
                                             <td>
                                                 <select name="StageNo[]" class="form-select" id="{{$item->Id}}">
-                                                    <option>-----</option>
+                                                    <option value="">-----</option>
                                                     @foreach ($arrayStage as $itemCode)
                                                         @if ($itemCode->IsGroup == 0 && $itemCode->IsActive == 1)
                                                             <option value="{{ $itemCode->Code }}">{{$itemCode->Code}} - {{$itemCode->Name}}</option>
