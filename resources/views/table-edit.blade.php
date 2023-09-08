@@ -12,7 +12,7 @@
                     <form action="{{ route('list.update') }}" method="post">
                         @csrf
                         <div class="table-responsive text-nowrap">
-                            <table class="table table-bordered table-responsive-lg table-striped">
+                            <table class="table table-bordered table-responsive-lg table-striped table-hover">
                                 <thead>
                                     <tr>
                                         <th scope="col">Mã sản phẩm</th>
