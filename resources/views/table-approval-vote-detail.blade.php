@@ -9,7 +9,7 @@
                         <h4 class="card-title">Chi tiết phiếu cần duyệt</h4>
                     </div>
                     <div class="table-responsive text-nowrap">
-                        <table class="table table-bordered table-responsive-lg table-striped">
+                        <table class="table table-bordered table-responsive-lg table-striped table-hover">
                             <thead>
                                 <tr>
                                     <th scope="col">Mã máy</th>
