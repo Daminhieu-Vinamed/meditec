@@ -5,8 +5,9 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-body d-flex">
+                    <div class="card-body d-flex justify-content-between">
                         <h4 class="card-title">Cập nhật số lượng</h4>
+                        <a href="{{ route('list.get-approval-vote') }}" class="btn btn-warning">Danh sách phiếu cần duyệt</a>
                     </div>
                     <form action="{{ route('list.update') }}" method="post">
                         @csrf
