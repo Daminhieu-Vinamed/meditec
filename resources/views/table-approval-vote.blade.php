@@ -8,8 +8,8 @@
                     <div class="card-body d-flex">
                         <h4 class="card-title">Danh sách các phiếu cần duyệt</h4>
                     </div>
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-responsive-lg">
+                    <div class="table-responsive text-nowrap">
+                        <table class="table table-bordered table-responsive-lg table-striped">
                             <thead>
                                 <tr>
                                     <th scope="col">Tên</th>
@@ -31,8 +31,8 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <div class="d-flex justify-content-center">{{ $allApprovalVote->links() }}</div>
                     </div>
+                    <div class="d-flex justify-content-center">{{ $allApprovalVote->links() }}</div>
                 </div>
             </div>
         </div>

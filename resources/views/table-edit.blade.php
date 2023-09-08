@@ -11,8 +11,8 @@
                     </div>
                     <form action="{{ route('list.update') }}" method="post">
                         @csrf
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-responsive-lg">
+                        <div class="table-responsive text-nowrap">
+                            <table class="table table-bordered table-responsive-lg table-striped">
                                 <thead>
                                     <tr>
                                         <th scope="col">Mã sản phẩm</th>
