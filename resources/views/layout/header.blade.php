@@ -77,12 +77,9 @@
                         <img src="../../assets/images/users/avatar.png" alt="user" class="rounded-circle" width="31">
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user me-1 ms-1"></i>
-                            My Profile</a>
-                        <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email me-1 ms-1"></i>
-                            Inbox</a>
-                        <a class="dropdown-item" href="{{ route('logout') }}"><i class="ti-wallet me-1 ms-1"></i>
-                            Logout</a>
+                        {{-- <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user me-1 ms-1"></i>My Profile</a>
+                        <a class="dropdown-item" href="{{ route('list.get-approval-vote') }}"><i class="ti-list me-1 ms-1"></i>Xem danh sách các phiếu cần duyệt</a> --}}
+                        <a class="dropdown-item" href="{{ route('logout') }}"><i class="ti-wallet me-1 ms-1"></i>Đăng xuất</a>
                     </ul>
                 </li>
                 <!-- ============================================================== -->
