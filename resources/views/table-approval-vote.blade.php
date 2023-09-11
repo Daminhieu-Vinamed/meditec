@@ -29,7 +29,7 @@
                                         <td>{{date('d-m-Y', strtotime($item->DocDate))}}</td>
                                         <td>{{$item->Description}}</td>
                                         <td>{{$item->DocStatusName}}</td>
-                                        <td><button type="button" class="btn btn-primary submit-update" id="{{$item->Id}}">Duyệt phiếu</button></td>
+                                        <td><button type="button" class="btn btn-primary submit-update update-status-approval-vote" id="{{$item->Id}}">Duyệt phiếu</button></td>
                                     </tr>
                                 @endforeach
                             </tbody>
