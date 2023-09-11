@@ -35,8 +35,9 @@ Route::middleware('checkRole')->prefix('/')->name('list.')->group(function (){
     Route::get('get-product-code', [vB20ProductionorderQuanWebController::class,'getProductCode'])->name('get-product-code');
     Route::post('update', [vB20ProductionorderQuanWebController::class,'update'])->name('update');
     Route::get('notification', [vB20ProductionorderQuanWebController::class,'notification'])->name('notification');
-    Route::get('list-approval-vote', [vB30JobRecord_ExploeruWebController::class,'getApprovalVote'])->name('get-approval-vote');
-    Route::get('edit-detail-approval-vote/{id}', [vB30JobRecordDetailWebController::class,'getApprovalVoteDetail'])->name('edit-detail-approval-vote');
+    Route::get('list-approval-vote/{parentId}', [vB30JobRecord_ExploeruWebController::class,'getApprovalVote'])->name('get-approval-vote');
+    Route::get('edit-detail-approval-vote/{grandparentId}/{parentId}', [vB30JobRecordDetailWebController::class,'getApprovalVoteDetail'])->name('edit-detail-approval-vote');
+    Route::post('update-status-detail-approval-vote', [vB30JobRecordDetailWebController::class,'updateStatusApprovalVoteDetail']);
 });
 Route::middleware('checkSession')->prefix('/')->name('form.')->group(function (){
     Route::get('login', [B20EmployeeController::class,'getLogin'])->name('getLogin');
