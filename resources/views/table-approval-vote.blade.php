@@ -5,8 +5,9 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-body d-flex">
-                        <h4 class="card-title">Danh sách các phiếu cần duyệt</h4>
+                    <div class="card-body d-flex justify-content-between">
+                        <h4 class="card-title">Danh sách chi tiết phiếu cần duyệt</h4>
+                        <a href="{{ route('list.edit', ['id' =>  $parentId]) }}" class="btn btn-danger text-white">Quay trở lại</a>
                     </div>
                     <div class="table-responsive text-nowrap">
                         <table class="table table-bordered table-responsive-lg table-striped table-hover">
@@ -17,16 +18,18 @@
                                     <th scope="col">Thời gian</th>
                                     <th scope="col">Mô tả</th>
                                     <th scope="col">Trạng thái</th>
+                                    <th scope="col">Thao tác</th>
                                 </tr>
                             </thead>
                             <tbody class="products">
                                 @foreach ($allApprovalVote as $item)
                                     <tr>
-                                        <td><a href="{{ route('list.edit-detail-approval-vote', ['id' => $item->Id]) }}">{{$item->DeptName}}</a></td>
-                                        <td><a href="{{ route('list.edit-detail-approval-vote', ['id' => $item->Id]) }}">{{$item->DocNo}}</a></td>
+                                        <td><a href="{{ route('list.edit-detail-approval-vote', ['parentId' => $item->Id, 'grandparentId' => $parentId]) }}">{{$item->DeptName}}</a></td>
+                                        <td><a href="{{ route('list.edit-detail-approval-vote', ['parentId' => $item->Id, 'grandparentId' => $parentId]) }}">{{$item->DocNo}}</a></td>
                                         <td>{{date('d-m-Y', strtotime($item->DocDate))}}</td>
                                         <td>{{$item->Description}}</td>
                                         <td>{{$item->DocStatusName}}</td>
+                                        <td><button type="button" class="btn btn-primary submit-update" id="{{$item->Id}}">Duyệt phiếu</button></td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -38,3 +41,6 @@
         </div>
     </div>
 @endsection
+@push('js')
+    <script src="{{asset('dist/js/addLogic2.js')}}"></script>
+@endpush
