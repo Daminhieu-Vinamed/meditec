@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-body d-flex justify-content-between">
                         <h4 class="card-title">Chi tiết phiếu cần duyệt</h4>
-                        <button type="button" class="btn btn-primary submit-update" id="{{$parentId}}">Lưu và duyệt phiếu</button>
+                        <button type="button" class="btn btn-primary submit-update update-status-approval-vote-detail" id="{{$parentId}}">Lưu và duyệt phiếu</button>
                         <a href="{{ route('list.get-approval-vote', ['parentId'=> $grandparentId]) }}" class="btn btn-danger text-white">Quay trở lại</a>
                     </div>
                     <div class="table-responsive text-nowrap">
@@ -32,27 +32,43 @@
                             </thead>
                             <tbody class="products">
                                 @foreach ($detailApprovalVote as $item)
+                                <input type="hidden" name="Id[]" value="{{$item->Id}}">
                                     <tr>
-                                        <td>{{$item->MachineCode}}</td>
+                                        <td>
+                                            <select name="MachineCode[]" class="form-select">
+                                                @foreach ($arrayMachineCode as $itemCode)
+                                                    @if ($itemCode->IsGroup == 0 && $itemCode->IsActive == 1)
+                                                        <option {{ $item->MachineCode === $itemCode->Code ? 'selected' : '' }} value="{{ $itemCode->Code }}">{{$itemCode->Code}} - {{$itemCode->Name}}</option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
+                                        </td>
                                         <td>{{$item->MachineName}}</td>
-                                        <td>{{$item->ChantCode}}</td>
+                                        <td>
+                                            <select name="ChantCode[]" class="form-select">
+                                                @foreach ($arrayChantCode as $itemCode)
+                                                    @if ($itemCode->IsGroup == 0 && $itemCode->IsActive == 1)
+                                                        <option {{ $item->ChantCode === $itemCode->Code ? 'selected' : '' }} value="{{ $itemCode->Code }}">{{$itemCode->Code}} - {{$itemCode->Name}}</option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
+                                        </td>
                                         <td>{{$item->EmployeeCode}}</td>
                                         <td>{{$item->EmployeeName}}</td>
                                         <td>{{$item->ProductCode}}</td>
                                         <td>{{$item->Name}}</td>
                                         <td>{{$item->Unit}}</td>
-                                        <td>{{number_format($item->TimeExcute,2,",",".")}}</td>
+                                        <td><input class="form-control" type="text" name="TimeExcute[]" value="{{number_format($item->TimeExcute,2,".",".")}}"></td>
                                         <td>{{$item->ItemLotCode}}</td>
-                                        <td>{{$item->Quantity9}}</td>
-                                        <td>{{$item->ConvertRate9}}</td>
-                                        <td>{{$item->Quantity}}</td>
-                                        <td>{{$item->QuantityFail}}</td>
+                                        <td><input class="form-control" type="text" name="Quantity9[]" value="{{number_format($item->Quantity9,2,".",".")}}"></td>
+                                        <td>{{number_format($item->ConvertRate9,2,",",".")}}</td>
+                                        <td>{{number_format($item->Quantity,2,",",".")}}</td>
+                                        <td>{{number_format($item->QuantityFail,2,",",".")}}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
-                    <div class="d-flex justify-content-center">{{ $detailApprovalVote->links() }}</div>
                 </div>
             </div>
         </div>

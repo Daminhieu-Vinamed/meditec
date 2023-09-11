@@ -37,6 +37,7 @@ Route::middleware('checkRole')->prefix('/')->name('list.')->group(function (){
     Route::get('notification', [vB20ProductionorderQuanWebController::class,'notification'])->name('notification');
     Route::get('list-approval-vote/{parentId}', [vB30JobRecord_ExploeruWebController::class,'getApprovalVote'])->name('get-approval-vote');
     Route::get('edit-detail-approval-vote/{grandparentId}/{parentId}', [vB30JobRecordDetailWebController::class,'getApprovalVoteDetail'])->name('edit-detail-approval-vote');
+    Route::post('update-status-approval-vote', [vB30JobRecord_ExploeruWebController::class,'updateStatusApprovalVote']);
     Route::post('update-status-detail-approval-vote', [vB30JobRecordDetailWebController::class,'updateStatusApprovalVoteDetail']);
 });
 Route::middleware('checkSession')->prefix('/')->name('form.')->group(function (){
