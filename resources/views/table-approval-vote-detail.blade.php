@@ -35,7 +35,7 @@
                                 <input type="hidden" name="Id[]" value="{{$item->Id}}">
                                     <tr>
                                         <td>
-                                            <select name="MachineCode[]" class="form-select">
+                                            <select name="MachineCode[]" class="form-control">
                                                 @foreach ($arrayMachineCode as $itemCode)
                                                     @if ($itemCode->IsGroup == 0 && $itemCode->IsActive == 1)
                                                         <option {{ $item->MachineCode === $itemCode->Code ? 'selected' : '' }} value="{{ $itemCode->Code }}">{{$itemCode->Code}} - {{$itemCode->Name}}</option>
@@ -45,7 +45,7 @@
                                         </td>
                                         <td>{{$item->MachineName}}</td>
                                         <td>
-                                            <select name="ChantCode[]" class="form-select">
+                                            <select name="ChantCode[]" class="form-control">
                                                 @foreach ($arrayChantCode as $itemCode)
                                                     @if ($itemCode->IsGroup == 0 && $itemCode->IsActive == 1)
                                                         <option {{ $item->ChantCode === $itemCode->Code ? 'selected' : '' }} value="{{ $itemCode->Code }}">{{$itemCode->Code}} - {{$itemCode->Name}}</option>

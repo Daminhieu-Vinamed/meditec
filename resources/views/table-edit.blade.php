@@ -1,5 +1,9 @@
 @extends('layout.master')
 @section('title', 'Edit')
+@section('css')
+{{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
+<link rel="stylesheet" href="{{ asset('dist/css/select2.min.css') }}">
+@endsection
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -52,7 +56,7 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <select name="ChantCode[]" class="form-select select-chantCode" id="{{$item->Id}}">
+                                                <select name="ChantCode[]" class="form-control select-chantCode" id="{{$item->Id}}">
                                                     @foreach ($arrayChantCode as $itemCode)
                                                         @if ($itemCode->IsGroup == 0 && $itemCode->IsActive == 1)
                                                             <option value="{{ $itemCode->Code }}">{{$itemCode->Code}} - {{$itemCode->Name}}</option>
@@ -67,7 +71,7 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <select name="MachineCode[]" class="form-select" id="{{$item->Id}}">
+                                                <select name="MachineCode[]" id="{{$item->Id}}">
                                                     <option value="">-----</option>
                                                     @foreach ($arrayMachineCode as $itemCode)
                                                         @if ($itemCode->IsGroup == 0 && $itemCode->IsActive == 1)
@@ -77,7 +81,7 @@
                                                 </select>
                                             </td>
                                             <td>
-                                                <select name="StageNo[]" class="form-select" id="{{$item->Id}}">
+                                                <select name="StageNo[]" class="stageNo" id="{{$item->Id}}">
                                                     <option value="">-----</option>
                                                     @foreach ($arrayStage as $itemCode)
                                                         @if ($itemCode->IsGroup == 0 && $itemCode->IsActive == 1)
@@ -96,9 +100,11 @@
                                 </tbody>
                             </table>
                         </div>
-                        <button type="button" class="btn btn-primary submit-update" value="update">Cập nhật</button>
-                        <button type="button" class="btn btn-success submit-edit" value="edit">Chỉnh sửa</button>
-                        <button type="button" class="btn btn-info add-row">Thêm</button>
+                        <div class="mt-2">
+                            <button type="button" class="btn btn-primary submit-update" value="update">Cập nhật</button>
+                            <button type="button" class="btn btn-success text-white submit-edit" value="edit">Chỉnh sửa</button>
+                            <button type="button" class="btn btn-info text-white add-row">Thêm</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -106,5 +112,6 @@
     </div>
 @endsection
 @push('js')
+    <script src="{{ asset('dist/js/select2.min.js') }}"></script>
     <script src="{{asset('dist/js/addLogic.js')}}"></script>
 @endpush

@@ -107,7 +107,7 @@
                         </div>
                         <div class="form-group">
                             <label>Input Select</label>
-                            <select class="form-select shadow-none col-12" id="inlineFormCustomSelect">
+                            <select class="form-control shadow-none col-12" id="inlineFormCustomSelect">
                                 <option selected>Choose...</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
