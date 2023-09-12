@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    $('[name="MachineCode[]"]').select2();
+    $('[name="StageNo[]"]').select2();
     $('.form-select').change(function(){
         const valueSelect = $(this).val();
         const idSelect = $(this).attr('id');
@@ -106,7 +108,7 @@ $(document).ready(function () {
                 <input type="hidden" name="QuantityFail[]">
                 <input type="hidden" name="MachineCode[]">
                 <td>
-                    <select name="ProductCode[]" class="form-select select-add-productCode product-code-select-`+ numberDeleteRow +`" number-location-select="`+ numberDeleteRow +`">
+                    <select name="ProductCode[]" class="form-control select-add-productCode product-code-select-`+ numberDeleteRow +`" number-location-select="`+ numberDeleteRow +`">
                         <option value="">Chọn mã sản phẩm</option>
                     </select>
                     <span class="text-danger error-product-code-`+$locationValidateProductCode+`"></span>
@@ -120,7 +122,7 @@ $(document).ready(function () {
                 </td>
                 <td></td>
                 <td>
-                    <select name="ChantCode[]" class="form-select select-add-chantCode-`+$locationValidateProductCode+`"></select>
+                    <select name="ChantCode[]" class="form-control select-add-chantCode-`+$locationValidateProductCode+`"></select>
                 </td>
                 <td>
                     <div class="form-group">
@@ -128,10 +130,10 @@ $(document).ready(function () {
                         <span class="text-danger error-workday-`+$locationValidateWorkdayQuantity+`"></span>
                     </div>
                 </td>
-                <td colspan="5"></td>
                 <td>
-                    <button type="button" class="btn btn-danger delete-row" location-delete-row-button="`+ numberDeleteRow +`">Xóa dòng</button>
+                    <button type="button" class="btn btn-danger text-white delete-row" location-delete-row-button="`+ numberDeleteRow +`">Xóa dòng</button>
                 </td>
+                <td colspan="5"></td>
             </tr>`
         );
 
