@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $('[name="MachineCode[]"]').select2();
     $('[name="StageNo[]"]').select2();
-    $('.form-select').change(function(){
+    $('.form-control').change(function(){
         const valueSelect = $(this).val();
         const idSelect = $(this).attr('id');
         if (sessionStorage.getItem('string-all-shift') === null) {
