@@ -1,7 +1,8 @@
 $(document).ready(function () {
     $('[name="MachineCode[]"]').select2();
     $('[name="StageNo[]"]').select2();
-    $('.form-control').change(function(){
+    $('[name="ChantCode[]"]').select2({ minimumResultsForSearch: -1 });
+    $('.select-chantCode').change(function(){
         const valueSelect = $(this).val();
         const idSelect = $(this).attr('id');
         if (sessionStorage.getItem('string-all-shift') === null) {
