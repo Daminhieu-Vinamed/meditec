@@ -21,7 +21,6 @@
     <div id="main-wrapper" data-navbarbg="skin6" data-theme="light" data-layout="vertical" data-sidebartype="full" data-boxed-layout="full">
         @include('layout.header')
         @yield('content')
-        @include('layout.footer')
     </div>
     <script src="{{asset('dist/js/jquery.min.js')}}"></script>
     <script src="{{asset('dist/js/custom.min.js')}}"></script>

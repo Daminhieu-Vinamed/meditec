@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class vB30JobRecord_ExploeruWebController extends Controller
 {
     public function getApprovalVote($parentId) {
-        $allApprovalVote = vB30JobRecord_ExploeruWeb::orderBy('DocDate', 'desc')->paginate(7);
+        $allApprovalVote = vB30JobRecord_ExploeruWeb::orderBy('DocDate', 'desc')->paginate(6);
         return view('table-approval-vote', compact('allApprovalVote', 'parentId'));
     }
 
