@@ -12,7 +12,11 @@ $(document).ready(function () {
                     parentId: parentId
                 },
                 success: function(notification) {
-                    alert(notification.error_correct);
+                    if (notification.error_correct  === undefined) {
+                        alert('Duyệt phiếu thành công !')
+                    } else {
+                        alert(notification.error_correct);   
+                    }
                     window.location.reload();
                 },
                 error: function (notification) {
@@ -49,7 +53,11 @@ $(document).ready(function () {
                     Quantity9: Quantity9,
                 },
                 success: function(notification) {
-                    alert(notification.error_correct);
+                    if (notification.error_correct  === undefined) {
+                        alert('Duyệt phiếu thành công !')
+                    } else {
+                        alert(notification.error_correct);   
+                    }
                     window.location.reload();
                 },
                 error: function (notification) {
