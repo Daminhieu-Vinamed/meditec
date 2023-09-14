@@ -29,7 +29,7 @@
                                         <td>{{date('d-m-Y', strtotime($item->DocDate))}}</td>
                                         <td>{{$item->Description}}</td>
                                         <td>{{$item->DocStatusName}}</td>
-                                        <td><button type="button" class="btn btn-primary submit-update update-status-approval-vote" id="{{$item->Id}}">Duyệt phiếu</button></td>
+                                        <td><button type="button" class="btn btn-primary update-status-approval-vote" id="{{$item->Id}}">Duyệt phiếu</button></td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -42,5 +42,5 @@
     </div>
 @endsection
 @push('js')
-    <script src="{{asset('dist/js/addLogic2.js')}}"></script>
+    <script src="{{asset('dist/js/approval-vote.js')}}"></script>
 @endpush

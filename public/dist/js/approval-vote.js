@@ -25,6 +25,8 @@ $(document).ready(function () {
             });
         });
     } else {
+        $('[name="MachineCode[]"]').select2();
+        $('[name="ChantCode[]"]').select2({ minimumResultsForSearch: -1 });
         $(document).on('click', '.update-status-approval-vote-detail', function () {
             const parentId = $(this).attr('id');
             const Id = $("input[name='Id[]']").map(function(){return $(this).val();}).get();

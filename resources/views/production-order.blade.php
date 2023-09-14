@@ -80,7 +80,7 @@
                                                 </select>
                                             </td>
                                             <td>
-                                                <select name="StageNo[]" class="stageNo" id="{{$item->Id}}">
+                                                <select name="StageNo[]" id="{{$item->Id}}">
                                                     <option value="">-----</option>
                                                     @foreach ($arrayStage as $itemCode)
                                                         @if ($itemCode->IsGroup == 0 && $itemCode->IsActive == 1)
@@ -112,5 +112,5 @@
 @endsection
 @push('js')
     <script src="{{ asset('dist/js/select2.min.js') }}"></script>
-    <script src="{{asset('dist/js/addLogic.js')}}"></script>
+    <script src="{{asset('dist/js/production-order.js')}}"></script>
 @endpush

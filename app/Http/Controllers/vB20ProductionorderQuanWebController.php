@@ -19,7 +19,7 @@ class vB20ProductionorderQuanWebController extends Controller
         $arrayChantCode = B20HrmShift::orderBy('Code', 'ASC')->get();
         $arrayMachineCode = B20Machine::orderBy('Code', 'ASC')->get();
         $arrayStage = B20Stage::orderBy('Code', 'ASC')->get();
-        return view('table-edit',['data' => $data, 'arrayChantCode' => $arrayChantCode, 'arrayMachineCode' => $arrayMachineCode, 'arrayStage' => $arrayStage, 'id' => $request->id]);
+        return view('production-order',['data' => $data, 'arrayChantCode' => $arrayChantCode, 'arrayMachineCode' => $arrayMachineCode, 'arrayStage' => $arrayStage, 'id' => $request->id]);
     }
 
     public function getTime (){

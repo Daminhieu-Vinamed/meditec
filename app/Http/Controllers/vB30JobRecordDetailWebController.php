@@ -16,7 +16,7 @@ class vB30JobRecordDetailWebController extends Controller
         $arrayChantCode = B20HrmShift::orderBy('Code', 'ASC')->get();
         $arrayMachineCode = B20Machine::orderBy('Code', 'ASC')->get();
         $detailApprovalVote = vB30JobRecordDetailWeb::where('ParentId',$parentId)->get();
-        return view('table-approval-vote-detail', compact('detailApprovalVote', 'parentId', 'grandparentId', 'arrayMachineCode', 'arrayChantCode'));
+        return view('approval-vote-detail', compact('detailApprovalVote', 'parentId', 'grandparentId', 'arrayMachineCode', 'arrayChantCode'));
     }
 
     public function updateStatusApprovalVoteDetail(Request $request) {
