@@ -1,5 +1,8 @@
 @extends('layout.master')
 @section('title', 'Approval Vote Detail')
+@section('css')
+<link rel="stylesheet" href="{{ asset('dist/css/select2.min.css') }}">
+@endsection
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -7,7 +10,7 @@
                 <div class="card">
                     <div class="card-body d-flex justify-content-between">
                         <h4 class="card-title">Chi tiết phiếu cần duyệt</h4>
-                        <button type="button" class="btn btn-primary submit-update update-status-approval-vote-detail" id="{{$parentId}}">Lưu và duyệt phiếu</button>
+                        <button type="button" class="btn btn-primary update-status-approval-vote-detail" id="{{$parentId}}">Lưu và duyệt phiếu</button>
                         <a href="{{ route('list.get-approval-vote', ['parentId'=> $grandparentId]) }}" class="btn btn-danger text-white">Quay trở lại</a>
                     </div>
                     <div class="table-responsive text-nowrap">
@@ -35,7 +38,7 @@
                                 <input type="hidden" name="Id[]" value="{{$item->Id}}">
                                     <tr>
                                         <td>
-                                            <select name="MachineCode[]" class="form-control">
+                                            <select name="MachineCode[]">
                                                 @foreach ($arrayMachineCode as $itemCode)
                                                     @if ($itemCode->IsGroup == 0 && $itemCode->IsActive == 1)
                                                         <option {{ $item->MachineCode === $itemCode->Code ? 'selected' : '' }} value="{{ $itemCode->Code }}">{{$itemCode->Code}} - {{$itemCode->Name}}</option>
@@ -45,7 +48,7 @@
                                         </td>
                                         <td>{{$item->MachineName}}</td>
                                         <td>
-                                            <select name="ChantCode[]" class="form-control">
+                                            <select name="ChantCode[]">
                                                 @foreach ($arrayChantCode as $itemCode)
                                                     @if ($itemCode->IsGroup == 0 && $itemCode->IsActive == 1)
                                                         <option {{ $item->ChantCode === $itemCode->Code ? 'selected' : '' }} value="{{ $itemCode->Code }}">{{$itemCode->Code}} - {{$itemCode->Name}}</option>
@@ -75,5 +78,6 @@
     </div>
 @endsection
 @push('js')
-    <script src="{{asset('dist/js/addLogic2.js')}}"></script>
+    <script src="{{ asset('dist/js/select2.min.js') }}"></script>
+    <script src="{{asset('dist/js/approval-vote.js')}}"></script>
 @endpush

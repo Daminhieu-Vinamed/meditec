@@ -123,7 +123,7 @@ $(document).ready(function () {
                 </td>
                 <td></td>
                 <td>
-                    <select name="ChantCode[]" class="form-control select-add-chantCode-`+$locationValidateProductCode+`"></select>
+                    <select name="ChantCode[]" class="select-add-chantCode-`+$locationValidateProductCode+`"></select>
                 </td>
                 <td>
                     <div class="form-group">
@@ -164,6 +164,8 @@ $(document).ready(function () {
         $(".products > tr:first > td > .select-chantCode option").each(function(){
             $('.select-add-chantCode-'+$locationValidateProductCode).append('<option value="'+ $(this).val() +'">' + $(this).text() + '</option>');
         });
+
+        $('[name="ChantCode[]"]').select2({ minimumResultsForSearch: -1 });
     });
 
     $(document).on('change', '.select-add-productCode', function () {
