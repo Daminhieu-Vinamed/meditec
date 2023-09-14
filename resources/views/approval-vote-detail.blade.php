@@ -39,6 +39,7 @@
                                     <tr>
                                         <td>
                                             <select name="MachineCode[]">
+                                                <option value="">-----</option>
                                                 @foreach ($arrayMachineCode as $itemCode)
                                                     @if ($itemCode->IsGroup == 0 && $itemCode->IsActive == 1)
                                                         <option {{ $item->MachineCode === $itemCode->Code ? 'selected' : '' }} value="{{ $itemCode->Code }}">{{$itemCode->Code}} - {{$itemCode->Name}}</option>
