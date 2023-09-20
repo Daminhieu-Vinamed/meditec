@@ -101,8 +101,8 @@
                         </div>
                         <div class="mt-2">
                             <button type="button" class="btn btn-primary submit-update" value="update">Cập nhật</button>
-                            <button type="button" class="btn btn-success text-white submit-edit" value="edit">Chỉnh sửa</button>
-                            <button type="button" class="btn btn-info text-white add-row">Thêm</button>
+                            {{-- <button type="button" class="btn btn-success text-white submit-edit" value="edit">Chỉnh sửa</button> --}}
+                            {{-- <button type="button" class="btn btn-info text-white add-row">Thêm</button> --}}
                         </div>
                     </form>
                 </div>
