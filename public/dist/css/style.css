@@ -13,7 +13,7 @@ tbody > tr > td,th {
 .page_404{ 
   padding:40px 0; 
   background:#fff; 
-  font-family: 'Arvo', serif;
+  font-family: "texturina", sans-serif;
 }
 
 .page_404  img{ 
@@ -21,7 +21,7 @@ tbody > tr > td,th {
 }
 
 .four_zero_four_bg {
-  background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+  background-image: url('../images/notification.gif');
   height: 400px;
   background-position: center;
 }
