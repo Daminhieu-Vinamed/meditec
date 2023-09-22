@@ -100,7 +100,7 @@
                             </table>
                         </div>
                         <div class="mt-2">
-                            <button type="button" class="btn btn-info text-white submit-update" value="update">Cập nhật</button>
+                            <button type="button" class="btn btn-info submit-update" value="update">Cập nhật</button>
                             {{-- <button type="button" class="btn btn-success text-white submit-edit" value="edit">Chỉnh sửa</button> --}}
                             {{-- <button type="button" class="btn btn-info text-white add-row">Thêm</button> --}}
                         </div>
@@ -112,5 +112,6 @@
 @endsection
 @push('js')
     <script src="{{ asset('dist/js/select2.min.js') }}"></script>
+    <script src="{{ asset('dist/js/swalalert2@11.js') }}"></script>
     <script src="{{asset('dist/js/production-order.js')}}"></script>
 @endpush
