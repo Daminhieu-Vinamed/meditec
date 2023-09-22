@@ -10,7 +10,7 @@
                 <div class="card">
                     <div class="card-body d-flex justify-content-between">
                         <h4 class="card-title">Chi tiết phiếu cần duyệt</h4>
-                        <button type="button" class="btn btn-primary update-status-approval-vote-detail" id="{{$parentId}}">Lưu và duyệt phiếu</button>
+                        <button type="button" class="btn btn-info text-white update-status-approval-vote-detail" id="{{$parentId}}">Lưu và duyệt phiếu</button>
                         <a href="{{ route('list.get-approval-vote', ['parentId'=> $grandparentId]) }}" class="btn btn-danger text-white">Quay trở lại</a>
                     </div>
                     <div class="table-responsive text-nowrap">

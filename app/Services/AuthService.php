@@ -1,18 +1,11 @@
 <?php
+namespace App\Services;
 
-namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class B20EmployeeController extends Controller
+class AuthService 
 {
-    public function getLogin()
-    {
-        return view('login');
-    }
-    
-    public function postLogin(Request $request)
+    public function postLogin($request)
     {
         if (Auth::attempt(['Code' => $request->Code, 'password' => $request->password])) {
             session(['user' => Auth::user()]);
@@ -22,7 +15,7 @@ class B20EmployeeController extends Controller
         }
     }
 
-    public function logout(Request $request)
+    public function logout($request)
     {
         $request->session()->flush();
         $request->session()->invalidate();
@@ -31,10 +24,5 @@ class B20EmployeeController extends Controller
             session()->flash('idParent', $request->id);
         }
         return redirect()->route('form.getLogin');
-    }
-    
-    public function back(Request $request)
-    {
-        return redirect()->route('logout', ['id' => $request->id]);
     }
 }
