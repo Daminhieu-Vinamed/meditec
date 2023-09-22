@@ -10,7 +10,7 @@
                 <div class="card">
                     <div class="card-body d-flex justify-content-between">
                         <h4 class="card-title">Cập nhật số lượng</h4>
-                        <a href="{{ route('list.get-approval-vote', ['parentId' => $id]) }}" class="btn btn-warning">Danh sách phiếu cần duyệt</a>
+                        <a href="{{ route('list.get-approval-vote', ['parentId' => $id]) }}" class="btn btn-primary">Danh sách phiếu cần duyệt</a>
                     </div>
                     <form action="{{ route('list.update') }}" method="post">
                         @csrf
@@ -100,7 +100,7 @@
                             </table>
                         </div>
                         <div class="mt-2">
-                            <button type="button" class="btn btn-primary submit-update" value="update">Cập nhật</button>
+                            <button type="button" class="btn btn-info text-white submit-update" value="update">Cập nhật</button>
                             {{-- <button type="button" class="btn btn-success text-white submit-edit" value="edit">Chỉnh sửa</button> --}}
                             {{-- <button type="button" class="btn btn-info text-white add-row">Thêm</button> --}}
                         </div>
