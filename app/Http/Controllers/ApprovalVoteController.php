@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Services\ApprovalVoteService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class ApprovalVoteController extends Controller
 {
