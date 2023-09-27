@@ -24,16 +24,13 @@
 						<input class="input100" type="password" name="password" placeholder="Mật khẩu">
 						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
 					</div>
-					@if (Session::has('idParent'))
-						<input class="input100" type="hidden" name="id" value="{{ Session::get('idParent') }}">
-					@endif
 					@if (Session::has('error_incorrect'))
 						<div class="validate-input">
 							<span class="focus-input100 text-center text-danger">{{ Session::get('error_incorrect') }}</span>
 						</div>
 					@endif
 					<div class="container-login100-form-btn m-t-32">
-						<button class="login100-form-btn login-user" type="button">Login</button>
+						<button class="login100-form-btn login-user" type="button">Đăng nhập</button>
 					</div>
 				</div>
 			</div>

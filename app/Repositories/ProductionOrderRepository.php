@@ -15,9 +15,9 @@ class ProductionOrderRepository extends AbstractRepository
         return vB20ProductionorderQuanWeb::class;
     }
 
-    public function getListEdit($request)
+    public function getProductionOrder($ParentId)
     {
-        $data = vB20ProductionorderQuanWeb::where('ParentId', $request->id)->get();
+        $data = vB20ProductionorderQuanWeb::where('ParentId', $ParentId)->get();
         $arrayChantCode = B20HrmShift::orderBy('Code', 'ASC')->get();
         $arrayMachineCode = B20Machine::orderBy('Code', 'ASC')->get();
         $arrayStage = B20Stage::orderBy('Code', 'ASC')->get();
