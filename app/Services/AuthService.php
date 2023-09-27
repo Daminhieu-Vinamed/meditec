@@ -9,9 +9,9 @@ class AuthService
     {
         if (Auth::attempt(['Code' => $request->Code, 'password' => $request->password])) {
             session(['user' => Auth::user()]);
-            return response()->json(['fullName' => Auth::user()->Name, 'Code' => Auth::user()->Code, 'id' => $request->id]);
+            return response()->json(['fullName' => Auth::user()->Name, 'Code' => Auth::user()->Code, 'id' => session()->get('idScanQr')]);
         }else{
-            return response()->json(['errorLogin' => 'Sai tài khoản hoặc mật khẩu !', 'id' => $request->id]);
+            return response()->json(['errorLogin' => 'Sai tài khoản hoặc mật khẩu !', 'id' => session()->get('idScanQr')]);
         }
     }
 
@@ -20,9 +20,11 @@ class AuthService
         $request->session()->flush();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        if (isset($request->id) && !empty($request->id)) {
-            session()->flash('idParent', $request->id);
-        }
+        return redirect()->route('form.getLogin');
+    }
+    
+    public function deleteSessionUser($request) {
+        $request->session()->forget('user');
         return redirect()->route('form.getLogin');
     }
 }

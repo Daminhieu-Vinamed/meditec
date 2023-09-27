@@ -26,11 +26,7 @@ $(function() {
                             location.href = link + '/notification';
                         }
                     }else{
-                        if (dataSuccess.id !== null) {
-                            location.href = link + '/back?id=' + dataSuccess.id;
-                        }else{
-                            location.href = link + '/back' 
-                        }
+                        location.href = link + '/back';
                     }
                 }else{
                     alert(dataSuccess.errorLogin);

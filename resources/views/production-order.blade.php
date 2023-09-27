@@ -10,7 +10,7 @@
                 <div class="card">
                     <div class="card-body d-flex justify-content-between">
                         <h4 class="card-title">Cập nhật số lượng</h4>
-                        <a href="{{ route('list.get-approval-vote', ['parentId' => $id]) }}" class="btn btn-primary">Danh sách phiếu cần duyệt</a>
+                        <a href="{{ route('list.approval-vote') }}" class="btn btn-primary">Danh sách phiếu cần duyệt</a>
                     </div>
                     <form action="{{ route('list.update') }}" method="post">
                         @csrf

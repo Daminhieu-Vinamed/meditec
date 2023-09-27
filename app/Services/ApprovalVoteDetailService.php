@@ -15,9 +15,8 @@ class ApprovalVoteDetailService extends ApprovalVoteDetailRepository
 
     public function getApprovalVoteDetail($request)
     {
-        $data = $this->approvalVoteDetailRepository->getApprovalVoteDetail($request->parentId);
-        $data['grandparentId'] = $request->grandparentId;
-        $data['parentId'] = $request->parentId;
+        $data = $this->approvalVoteDetailRepository->getApprovalVoteDetail($request->id);
+        $data['parentId'] = $request->id;
         return $data;
     }
 

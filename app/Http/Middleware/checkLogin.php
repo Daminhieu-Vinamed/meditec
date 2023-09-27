@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class checkLogin
+class CheckLogin
 {
     /**
      * Handle an incoming request.
@@ -19,12 +19,13 @@ class checkLogin
             if ($request->session()->get('user')->IsGroup == 0 && $request->session()->get('user')->IsActive == 1) {
                 return $next($request);
             } else {
-                $request->session()->invalidate();
-                $request->session()->regenerateToken();
+                $request->session()->forget('user');
                 return redirect()->route('form.getLogin')->with('error_incorrect','Tài khoản này không đủ quyền !');
             }
         }else{
-            session()->flash('idParent', $request->id);
+            if (isset($request->id) && $request->id !== null) {
+                session(['idScanQr' => $request->id]);
+            }
             return redirect()->route('form.getLogin')->with('error_incorrect','Đăng nhập thất bại !');
         }
     }

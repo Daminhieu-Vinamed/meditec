@@ -13,10 +13,12 @@ class ProductionOrderService extends ProductionOrderRepository
         $this->productionOrderRepository = $productionOrderRepository;
     }
 
-    public function getListEdit($request) 
+    public function getProductionOrder($request) 
     {
-        $dataList = $this->productionOrderRepository->getListEdit($request);
-        $dataList['id'] = $request->id;
+        if (session()->get('idScanQr') !== $request->id) {
+            session(['idScanQr' => $request->id]);
+        }
+        $dataList = $this->productionOrderRepository->getProductionOrder($request->id);
         return $dataList;
     }
 

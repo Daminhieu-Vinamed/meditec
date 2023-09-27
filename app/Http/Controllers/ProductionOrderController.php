@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Validate;
 use App\Services\ProductionOrderService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class ProductionOrderController extends Controller
 {
@@ -16,9 +15,9 @@ class ProductionOrderController extends Controller
         $this->productionOrderService = $productionOrderService;
     }
 
-    public function getListEdit(Request $request)
+    public function getProductionOrder(Request $request)
     {
-        $data = $this->productionOrderService->getListEdit($request);
+        $data = $this->productionOrderService->getProductionOrder($request);
         return view('production-order', $data);
     }
 

@@ -14,9 +14,9 @@ class ApprovalVoteController extends Controller
         $this->approvalVoteService = $approvalVoteService;
     }
 
-    public function getApprovalVote($parentId) {
+    public function getApprovalVote() {
         $allApprovalVote = $this->approvalVoteService->getApprovalVote();
-        return view('approval-vote', compact('allApprovalVote', 'parentId'));
+        return view('approval-vote', compact('allApprovalVote'));
     }
 
     public function updateStatusApprovalVote(Request $request) {
