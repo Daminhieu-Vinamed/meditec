@@ -112,6 +112,5 @@
 @endsection
 @push('js')
     <script src="{{ asset('dist/js/select2.min.js') }}"></script>
-    <script src="{{ asset('dist/js/swalalert2@11.js') }}"></script>
     <script src="{{asset('dist/js/production-order.js')}}"></script>
 @endpush

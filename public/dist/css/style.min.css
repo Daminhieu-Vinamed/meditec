@@ -63,7 +63,13 @@ body {
     color: #6a7a8c;
     background-color: #f2f4f5;
     -webkit-text-size-adjust: 100%;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
