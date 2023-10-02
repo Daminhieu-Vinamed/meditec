@@ -7,7 +7,7 @@
 	<meta name="csrf-token" content="{{ csrf_token() }}" />
 	<link rel="icon" type="image/png" sizes="16x16" href="{{asset('dist/images/favicon.png')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('dist/css/bootstrap/css/bootstrap.min.css')}}">
-	<link rel="stylesheet" type="text/css" href="{{asset('dist/font/login/icon-font.min.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('dist/font/icon-font.min.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('dist/css/login.css')}}">
 </head>
 <body>

@@ -80,5 +80,5 @@
 @endsection
 @push('js')
     <script src="{{ asset('dist/js/select2.min.js') }}"></script>
-    <script src="{{asset('dist/js/approval-vote.js')}}"></script>
+    <script src="{{asset('dist/js/approval-vote-detail.js')}}"></script>
 @endpush

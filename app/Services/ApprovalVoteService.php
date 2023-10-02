@@ -12,9 +12,9 @@ class ApprovalVoteService extends ApprovalVoteRepository{
         $this->approvalVoteRepository = $approvalVoteRepository;
     }
 
-    public function getApprovalVote()
+    public function getDataApprovalVote()
     {
-        return $this->approvalVoteRepository->getApprovalVote();
+        return $this->approvalVoteRepository->getDataApprovalVote();
     }
 
     public function updateStatusApprovalVote($request) {

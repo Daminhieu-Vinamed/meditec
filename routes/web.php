@@ -22,7 +22,8 @@ Route::middleware('checkRole')->prefix('/')->name('list.')->group(function (){
     Route::get('get-product-code', [ProductionOrderController::class,'getProductCode']);
     Route::post('update', [ProductionOrderController::class,'update'])->name('update');
     Route::get('notification', [ProductionOrderController::class,'notification'])->name('notification');
-    Route::get('approval-vote', [ApprovalVoteController::class,'getApprovalVote'])->name('approval-vote');
+    Route::get('approval-vote', [ApprovalVoteController::class,'getViewApprovalVote'])->name('approval-vote');
+    Route::get('get-data', [ApprovalVoteController::class,'getDataApprovalVote']);
     Route::get('detail-approval-vote/{id}', [ApprovalVoteDetailController::class,'getApprovalVoteDetail'])->name('detail-approval-vote');
     Route::post('update-status-approval-vote', [ApprovalVoteController::class,'updateStatusApprovalVote']);
     Route::post('update-status-detail-approval-vote', [ApprovalVoteDetailController::class,'updateStatusApprovalVoteDetail']);

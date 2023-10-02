@@ -3,7 +3,7 @@ namespace App\Repositories;
 
 use App\Repositories\AbstractRepository;
 use App\Models\vB30JobRecord_ExploeruWeb;
-use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\Facades\DataTables;
 
 class ApprovalVoteRepository extends AbstractRepository 
 {
@@ -12,7 +12,16 @@ class ApprovalVoteRepository extends AbstractRepository
         return vB30JobRecord_ExploeruWeb::class;
     }
 
-    public function getApprovalVote() {
-        return vB30JobRecord_ExploeruWeb::orderBy('DocDate', 'desc')->paginate(6);
+    public function getDataApprovalVote() {
+        $data = $this->builder()->orderBy('DocDate', 'desc')->get();
+        return DataTables::of($data)
+        ->editColumn('DocNo', function($approvalVote){
+            return '<a href="'.route('list.detail-approval-vote', ['id' => $approvalVote['Id']]).'">'.$approvalVote['DocNo'].'</a>';
+         })
+        ->addColumn('action', function($approvalVote){
+           return '<button type="button" class="btn btn-info update-status-approval-vote" id="'. $approvalVote['Id'].'">Duyệt phiếu</button>';
+        })
+        ->rawColumns(['DocNo', 'action'])
+        ->make(true);
     }
 }
