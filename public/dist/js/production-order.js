@@ -1,8 +1,6 @@
 $(document).ready(function () {
-    $('[name="MachineCode[]"]').select2();
-    $('[name="StageNo[]"]').select2();
+    $('[name="MachineCode[]"], [name="ChantCode[]"], [name="StageNo[]"], [name="ChildStageNo[]"]').select2();
     $('[name="ChantCode[]"]').select2({ minimumResultsForSearch: -1 });
-    $('[name="ChildStageNo[]"]').select2({ minimumResultsForSearch: -1 });
     $('.select-chantCode').change(function(){
         const valueSelect = $(this).val();
         const idSelect = $(this).attr('id');
