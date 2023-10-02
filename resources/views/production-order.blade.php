@@ -26,6 +26,9 @@
                                         <th scope="col">Số giờ</th>
                                         <th scope="col">Mã máy</th>
                                         <th scope="col">Công đoạn</th>
+                                        @if ($arrayChildStage->isNotEmpty())
+                                            <th scope="col">Công đoạn con</th>
+                                        @endif
                                         <th scope="col">Số lượng ban đầu</th>
                                         <th scope="col">Số lượng đã sản xuất</th>
                                         <th scope="col">Số lượng còn lại phải sản xuất</th>
@@ -89,6 +92,18 @@
                                                     @endforeach
                                                 </select>
                                             </td>
+                                            @if ($arrayChildStage->isNotEmpty())
+                                                <td>
+                                                    <select name="ChildStageNo[]" id="{{$item->Id}}">
+                                                        <option value="">-----</option>
+                                                        @foreach ($arrayChildStage as $itemCode)
+                                                            @if ($itemCode->IsGroup == 0 && $itemCode->IsActive == 1)
+                                                                <option value="{{ $itemCode->ChildCode }}">{{$itemCode->ChildCode}} - {{$itemCode->ChildName}}</option>
+                                                            @endif
+                                                        @endforeach
+                                                    </select>
+                                                </td>
+                                            @endif
                                             <td>{{number_format($item->JobQuantity,2,",",".")}}</td>
                                             <td>{{number_format($item->JobQuantityTT,2,",",".")}}</td>
                                             <td>{{number_format($item->QuantityCL,2,",",".")}}</td>
