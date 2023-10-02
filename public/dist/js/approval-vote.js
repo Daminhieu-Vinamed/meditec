@@ -17,7 +17,7 @@ $(document).ready(function () {
         scrollX: true,
         language: {
             emptyTable: 'Danh sách hiện tại đang trống',
-            info: "Đang hiển thị trang _PAGE_ trên tổng _PAGES_ trang, _PAGES_ trang có tổng _TOTAL_ bản ghi",
+            info: "Đang hiển thị trang _PAGE_ trên tổng _PAGES_ trang, _PAGES_ trang này có tổng _TOTAL_ phiếu",
             lengthMenu: 'Hiển thị <select>'+
                         '<option value="10">10</option>'+
                         '<option value="20">20</option>'+
@@ -25,8 +25,8 @@ $(document).ready(function () {
                         '<option value="40">40</option>'+
                         '<option value="50">50</option>'+
                         '<option value="-1">Tất cả</option>'+
-                        '</select> bản ghi trên trang',
-            search: "Tìm kiếm bản ghi có dữ liệu _INPUT_",
+                        '</select> phiếu trên trang',
+            search: "Tìm kiếm phiếu có dữ liệu _INPUT_",
             paginate: {
                 previous: '<i class="fa-solid fa-caret-left"></i>',
                 next: '<i class="fa-solid fa-caret-right"></i>',
