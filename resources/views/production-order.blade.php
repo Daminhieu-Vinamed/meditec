@@ -1,8 +1,5 @@
 @extends('layout.master')
 @section('title', 'Edit')
-@section('css')
-<link rel="stylesheet" href="{{ asset('dist/css/select2.min.css') }}">
-@endsection
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -126,6 +123,5 @@
     </div>
 @endsection
 @push('js')
-    <script src="{{ asset('dist/js/select2.min.js') }}"></script>
     <script src="{{asset('dist/js/production-order.js')}}"></script>
 @endpush
