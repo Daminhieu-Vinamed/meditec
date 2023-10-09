@@ -19,13 +19,13 @@ $(document).ready(function () {
             emptyTable: 'Danh sách hiện tại đang trống',
             info: "Đang hiển thị trang _PAGE_ trên tổng _PAGES_ trang, _PAGES_ trang này có tổng _TOTAL_ phiếu",
             lengthMenu: 'Hiển thị <select>'+
-                        '<option value="10">10</option>'+
-                        '<option value="20">20</option>'+
-                        '<option value="30">30</option>'+
-                        '<option value="40">40</option>'+
-                        '<option value="50">50</option>'+
-                        '<option value="-1">Tất cả</option>'+
-                        '</select> phiếu trên trang',
+                        '<option value="10">10 phiếu trên trang</option>'+
+                        '<option value="20">20 phiếu trên trang</option>'+
+                        '<option value="30">30 phiếu trên trang</option>'+
+                        '<option value="40">40 phiếu trên trang</option>'+
+                        '<option value="50">50 phiếu trên trang</option>'+
+                        '<option value="-1">tất cả phiếu trên trang</option>'+
+                        '</select>',
             search: "Tìm kiếm phiếu có dữ liệu _INPUT_",
             paginate: {
                 previous: '<i class="fa-solid fa-caret-left"></i>',
@@ -33,6 +33,8 @@ $(document).ready(function () {
             },
         }
     });
+
+    $('select').select2({ minimumResultsForSearch: -1 });
 
     $(document).on('click', '.update-status-approval-vote', function () {
         const parentId = $(this).attr('id');
