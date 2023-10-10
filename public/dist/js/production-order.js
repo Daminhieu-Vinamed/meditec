@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $('[name="MachineCode[]"], [name="ChantCode[]"], [name="StageNo[]"], [name="ChildStageNo[]"]').select2();
-    $('[name="ChantCode[]"]').select2({ minimumResultsForSearch: -1 });
+    $('[name="ChantCode[]"], [name="DeptCodetmp[]"]').select2({ minimumResultsForSearch: -1 });
     $('.select-chantCode').change(function(){
         const valueSelect = $(this).val();
         const idSelect = $(this).attr('id');
@@ -39,6 +39,8 @@ $(document).ready(function () {
               .map(function(){return $(this).val();}).get();
         var QuantityFail = $("input[name='QuantityFail[]']")
               .map(function(){return $(this).val();}).get();
+        var DeptCodetmp = $("select[name='DeptCodetmp[]']")
+              .map(function(){return $(this).val();}).get();
         var type = $(this).val();
         $.ajax({
             url: "/update" ,
@@ -56,6 +58,7 @@ $(document).ready(function () {
                 type: type,
                 QuantityFail: QuantityFail,
                 MachineCode: MachineCode,
+                DeptCodetmp: DeptCodetmp,
             },
             success: function(dataSuccess) {
                 for (let i = 0; i < QuantitySX.length; i++) {
