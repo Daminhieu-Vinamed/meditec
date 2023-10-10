@@ -1,6 +1,7 @@
 <?php
 namespace App\Repositories;
 
+use App\Models\B20Dept;
 use App\Models\B20HrmShift;
 use App\Models\B20ItemWeb;
 use App\Models\B20Machine;
@@ -23,7 +24,8 @@ class ProductionOrderRepository extends AbstractRepository
         $arrayMachineCode = B20Machine::orderBy('Code', 'ASC')->get();
         $arrayStage = B20Stage::orderBy('Code', 'ASC')->get();
         $arrayChildStage = B20ItemWeb::where('ParentCode', $data[0]->ProductCode)->get();
-        return array('data' => $data, 'arrayChantCode' => $arrayChantCode, 'arrayMachineCode' => $arrayMachineCode, 'arrayStage' => $arrayStage, 'arrayChildStage' => $arrayChildStage);
+        $arrayDept = $arrayChildStage->isNotEmpty() ?  B20Dept::orderBy('Code', 'ASC')->get() : $arrayDept = null;
+        return array('data' => $data, 'arrayChantCode' => $arrayChantCode, 'arrayMachineCode' => $arrayMachineCode, 'arrayStage' => $arrayStage, 'arrayChildStage' => $arrayChildStage, 'arrayDept' => $arrayDept);
     }
 
     public function getTime()

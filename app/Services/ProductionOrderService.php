@@ -42,6 +42,7 @@ class ProductionOrderService extends ProductionOrderRepository
                     $chantCode = $request->ChantCode[$item];
                     $workDay = $request->WorkDay[$item];
                     $Id = $request->Id[$item];
+                    $DeptCodetmp = $request->DeptCodetmp[$item];
                     if ($Id === null) {
                         $Id = "";
                         $quantityFail = 0;
@@ -54,7 +55,7 @@ class ProductionOrderService extends ProductionOrderRepository
                     }
                     settype($Id, "integer");
                     DB::update('EXEC usp_UpdateB20ProductionorderQuan_JobQuantityTT ?, ?, ?, ?, ?, ?, ?', [$Id, $quantitySx, $itemLotCode, $productCode, $workDay, $chantCode, session()->get('user')->Code]);
-                    DB::insert('EXEC usp_Create_B30JobRecord ?, ?, ?, ?, ?, ?, ?, ?, ?', [session()->get('user')->Code, $quantitySx, $itemLotCode, $productCode, $Id, $chantCode, $workDay, $quantityFail, $machineCode]);
+                    DB::insert('EXEC usp_Create_B30JobRecord ?, ?, ?, ?, ?, ?, ?, ?, ?, ?', [session()->get('user')->Code, $quantitySx, $itemLotCode, $productCode, $Id, $chantCode, $workDay, $quantityFail, $machineCode, $DeptCodetmp]);
                 }
                 DB::commit();
                 return response()->json(['error_correct' => 'Cập nhật thành công !']);

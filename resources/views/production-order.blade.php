@@ -19,6 +19,9 @@
                                         <th scope="col">Tên sản phẩm</th>
                                         <th scope="col">Số lượng sản xuất hôm nay</th>
                                         <th scope="col">Phế phẩm</th>
+                                        @if (!empty($arrayDept))
+                                            <th scope="col">Phân xưởng</th>
+                                        @endif
                                         <th scope="col">Ca sản xuất</th>
                                         <th scope="col">Số giờ</th>
                                         <th scope="col">Mã máy</th>
@@ -54,6 +57,17 @@
                                                     <span class="text-danger error-quantity-fail-{{$location}}"></span>
                                                 </div>
                                             </td>
+                                            @if (!empty($arrayDept))
+                                                <td>
+                                                    <select name="DeptCodetmp[]" class="select-chantCode" id="{{$item->Id}}">
+                                                        @foreach ($arrayDept as $itemCode)
+                                                            @if ($itemCode->IsGroup == 0 && $itemCode->IsActive == 1 && $itemCode->Loai_Ps !== null)
+                                                                <option value="{{ $itemCode->Code }}">{{$itemCode->Code}} - {{$itemCode->Name}}</option>
+                                                            @endif
+                                                        @endforeach
+                                                    </select>
+                                                </td>
+                                            @endif
                                             <td>
                                                 <select name="ChantCode[]" class="select-chantCode" id="{{$item->Id}}">
                                                     @foreach ($arrayChantCode as $itemCode)
