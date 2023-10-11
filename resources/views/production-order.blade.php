@@ -39,7 +39,6 @@
                                 <tbody class="products">
                                     @foreach ($data as $location => $item)
                                         <tr>
-                                            <input type="hidden" class="location-validate-workday-quantity" value="{{$location}}">
                                             <input type="hidden" name="ItemLotCode[]" value="{{$item->ItemLotCode}}">
                                             <input type="hidden" name="ProductCode[]" value="{{$item->ProductCode}}">
                                             <input type="hidden" name="Id[]" value="{{$item->Id}}">
@@ -59,7 +58,7 @@
                                             </td>
                                             @if (!empty($arrayDept))
                                                 <td>
-                                                    <select name="DeptCodetmp[]" class="select-chantCode" id="{{$item->Id}}">
+                                                    <select name="DeptCodetmp[]">
                                                         @foreach ($arrayDept as $itemCode)
                                                             @if ($itemCode->IsGroup == 0 && $itemCode->IsActive == 1 && $itemCode->Loai_Ps !== null)
                                                                 <option value="{{ $itemCode->Code }}">{{$itemCode->Code}} - {{$itemCode->Name}}</option>
@@ -84,7 +83,7 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <select name="MachineCode[]" id="{{$item->Id}}">
+                                                <select name="MachineCode[]">
                                                     <option value="">-----</option>
                                                     @foreach ($arrayMachineCode as $itemCode)
                                                         @if ($itemCode->IsGroup == 0 && $itemCode->IsActive == 1)
@@ -94,7 +93,7 @@
                                                 </select>
                                             </td>
                                             <td>
-                                                <select name="StageNo[]" id="{{$item->Id}}">
+                                                <select name="StageNo[]">
                                                     <option value="">-----</option>
                                                     @foreach ($arrayStage as $itemCode)
                                                         @if ($itemCode->IsGroup == 0 && $itemCode->IsActive == 1)
@@ -105,7 +104,7 @@
                                             </td>
                                             @if ($arrayChildStage->isNotEmpty())
                                                 <td>
-                                                    <select name="ChildStageNo[]" id="{{$item->Id}}">
+                                                    <select name="ChildStageNo[]">
                                                         <option value="">-----</option>
                                                         @foreach ($arrayChildStage as $itemCode)
                                                             @if ($itemCode->IsGroup == 0 && $itemCode->IsActive == 1)
@@ -128,7 +127,6 @@
                         <div class="mt-2">
                             <button type="button" class="btn btn-info submit-update" value="update">Cập nhật</button>
                             {{-- <button type="button" class="btn btn-success text-white submit-edit" value="edit">Chỉnh sửa</button> --}}
-                            {{-- <button type="button" class="btn btn-info text-white add-row">Thêm</button> --}}
                         </div>
                     </form>
                 </div>
