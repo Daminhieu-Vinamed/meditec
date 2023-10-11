@@ -25,6 +25,7 @@
         @yield('content')
     </div>
     <script src="{{ asset('dist/js/swalalert2@11.js') }}"></script>
+    <script src="{{ asset('dist/js/notification.js') }}"></script>
     <script src="{{asset('dist/js/jquery.min.js')}}"></script>
     <script src="{{asset('dist/js/custom.min.js')}}"></script>
     <script src="{{asset('dist/js/waves.js')}}"></script>

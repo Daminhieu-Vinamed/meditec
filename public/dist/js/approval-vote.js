@@ -48,20 +48,6 @@ $(document).ready(function () {
                 parentId: parentId
             },
             success: function(notification) {
-                var Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-right',
-                    customClass: {
-                      popup: 'colored-toast'
-                    },
-                    showConfirmButton: false,
-                    timer: 1500,
-                    timerProgressBar: true,
-                    didOpen: function didOpen(toast) {
-                      toast.addEventListener('mouseenter', Swal.stopTimer);
-                      toast.addEventListener('mouseleave', Swal.resumeTimer);
-                    }
-                  });
                 if (notification.error_correct  === undefined) {
                     Toast.fire({
                         icon: 'success',
@@ -77,9 +63,13 @@ $(document).ready(function () {
             },
             error: function (notification) {
                 if (notification.error_incorrect !== undefined) {
-                    alert(notification.error_incorrect);
+                    ToastErrorCenter.fire({
+                        text: notification.error_incorrect,
+                    })
                 } else {
-                    alert('Lỗi hệ thống !');
+                    ToastErrorCenter.fire({
+                        text: 'Lỗi hệ thống !',
+                    })
                 }
             }
         });
