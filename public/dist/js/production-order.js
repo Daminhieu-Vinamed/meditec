@@ -68,39 +68,18 @@ $(document).ready(function () {
                     $('.quantity-fail-' + i).val('')
                 }
                 if (dataSuccess.error_incorrect) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'THÔNG BÁO !',
+                    ToastErrorCenter.fire({
                         text: dataSuccess.error_incorrect,
-                        confirmButtonColor: '#137eff',
-                        customClass: {
-                            confirmButton: 'btn btn-info',
-                        }
                     })
                 }else{
-                    let timerInterval
-                    Swal.fire({
-                    icon: 'success',
-                    title: dataSuccess.error_correct,
-                    html: 'Hệ thống sẽ tự động đăng xuất sau khi thời gian kết thúc.\n Thời gian còn <b></b> milli giây',
-                    timer: 5000,
-                    timerProgressBar: true,
-                    didOpen: () => {
-                        Swal.showLoading()
-                        const b = Swal.getHtmlContainer().querySelector('b')
-                        timerInterval = setInterval(() => {
-                        b.textContent = Swal.getTimerLeft()
-                        }, 100)
-                    },
-                    willClose: () => {
-                        clearInterval(timerInterval)
-                    }
+                    ToastSuccessCenterTime.fire({
+                        title: dataSuccess.error_correct,
                     }).then((result) => {
                         if (result.dismiss === Swal.DismissReason.timer) {
                             sessionStorage.clear();
                             location.href = window.location.origin + '/logout';
                         }
-                    })
+                    });
                 }
             },
             error: function (dataError) {
@@ -111,7 +90,10 @@ $(document).ready(function () {
                     errors['WorkDay.'+ i] ? $('.error-workday-' + i).html(errors['WorkDay.'+ i][0]) : $('.error-workday-' + i).html('')
                     errors['ProductCode.'+ i] ? $('.error-product-code-' + i).html(errors['ProductCode.'+ i][0]) : $('.error-product-code-' + i).html('')
                 }
-                alert('Thao tác không thành công !')
+                Toast.fire({
+                    icon: 'error',
+                    title: 'Thao tác không thành công !'
+                })
             }
         });
     });
