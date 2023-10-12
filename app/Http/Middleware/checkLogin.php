@@ -16,17 +16,17 @@ class CheckLogin
     public function handle(Request $request, Closure $next): Response
     {
         if (session()->has('user')) {
-            if ($request->session()->get('user')->IsGroup == 0 && $request->session()->get('user')->IsActive == 1) {
+            if ($request->session()->get('user')->IsGroup == config('constants.number.zero') && $request->session()->get('user')->IsActive == config('constants.number.one')) {
                 return $next($request);
             } else {
                 $request->session()->forget('user');
-                return redirect()->route('form.getLogin')->with('error_incorrect','Tài khoản này không đủ quyền !');
+                return redirect()->route('form.getLogin')->with('error_incorrect', __('messages.auth.not_enough_rights'));
             }
         }else{
-            if (isset($request->id) && $request->id !== null) {
+            if (isset($request->id) && $request->id !== config('constants.null')) {
                 session(['idScanQr' => $request->id]);
             }
-            return redirect()->route('form.getLogin')->with('error_incorrect','Đăng nhập thất bại !');
+            return redirect()->route('form.getLogin')->with('error_incorrect', __('messages.auth.failure'));
         }
     }
 }

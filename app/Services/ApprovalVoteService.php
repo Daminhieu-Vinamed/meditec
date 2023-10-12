@@ -22,7 +22,7 @@ class ApprovalVoteService extends ApprovalVoteRepository{
         try{
             DB::update('EXEC usp_Update_B30JobRecord ?', [$request->parentId]);
             DB::commit();
-            return response()->json(['error_correct' => 'Duyệt phiếu thành công !']);
+            return response()->json(['error_correct' => __('messages.approval_vote.success')]);
         }catch(\Exception $e){
             DB::rollBack();
             $message = $e->getMessage();

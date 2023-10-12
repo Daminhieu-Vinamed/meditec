@@ -11,7 +11,7 @@ class AuthService
             session(['user' => Auth::user()]);
             return response()->json(['fullName' => Auth::user()->Name, 'Code' => Auth::user()->Code, 'id' => session()->get('idScanQr')]);
         }else{
-            return response()->json(['errorLogin' => 'Sai tài khoản hoặc mật khẩu !', 'id' => session()->get('idScanQr')]);
+            return response()->json(['errorLogin' => __('messages.auth.wrong'), 'id' => session()->get('idScanQr')]);
         }
     }
 

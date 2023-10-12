@@ -38,7 +38,7 @@
                                             <select name="MachineCode[]">
                                                 <option value="">-----</option>
                                                 @foreach ($arrayMachineCode as $itemCode)
-                                                    @if ($itemCode->IsGroup == 0 && $itemCode->IsActive == 1)
+                                                    @if ($itemCode->IsGroup == config('constants.number.zero') && $itemCode->IsActive == config('constants.number.one'))
                                                         <option {{ $item->MachineCode === $itemCode->Code ? 'selected' : '' }} value="{{ $itemCode->Code }}">{{$itemCode->Code}} - {{$itemCode->Name}}</option>
                                                     @endif
                                                 @endforeach
@@ -48,23 +48,23 @@
                                         <td>
                                             <select name="ChantCode[]">
                                                 @foreach ($arrayChantCode as $itemCode)
-                                                    @if ($itemCode->IsGroup == 0 && $itemCode->IsActive == 1)
+                                                    @if ($itemCode->IsGroup == config('constants.number.zero') && $itemCode->IsActive == config('constants.number.one'))
                                                         <option {{ $item->ChantCode === $itemCode->Code ? 'selected' : '' }} value="{{ $itemCode->Code }}">{{$itemCode->Code}} - {{$itemCode->Name}}</option>
                                                     @endif
                                                 @endforeach
                                             </select>
                                         </td>
-                                        <td><input class="form-control" type="text" name="TimeExcute[]" value="{{number_format($item->TimeExcute,2,".",".")}}"></td>
+                                        <td><input class="form-control" type="text" name="TimeExcute[]" value="{{number_format($item->TimeExcute,config('constants.number.two'),".",".")}}"></td>
                                         <td>{{$item->EmployeeCode}}</td>
                                         <td>{{$item->EmployeeName}}</td>
                                         <td>{{$item->ProductCode}}</td>
                                         <td>{{$item->Name}}</td>
-                                        <td><input class="form-control" type="text" name="Quantity9[]" value="{{number_format($item->Quantity9,2,".",".")}}"></td>
+                                        <td><input class="form-control" type="text" name="Quantity9[]" value="{{number_format($item->Quantity9,config('constants.number.two'),".",".")}}"></td>
                                         <td>{{$item->Unit}}</td>
                                         <td>{{$item->ItemLotCode}}</td>
-                                        <td>{{number_format($item->ConvertRate9,2,",",".")}}</td>
-                                        <td>{{number_format($item->Quantity,2,",",".")}}</td>
-                                        <td>{{number_format($item->QuantityFail,2,",",".")}}</td>
+                                        <td>{{number_format($item->ConvertRate9,config('constants.number.two'),",",".")}}</td>
+                                        <td>{{number_format($item->Quantity,config('constants.number.two'),",",".")}}</td>
+                                        <td>{{number_format($item->QuantityFail,config('constants.number.two'),",",".")}}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

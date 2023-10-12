@@ -38,11 +38,11 @@ class Validate extends FormRequest
     public function messages()
     {
         return [
-            'QuantitySX.*.numeric' => 'Số lượng nhập vào phải là chữ số',
-            'QuantityFail.*.numeric' => 'Phế phẩm nhập vào phải là chữ số',
-            'WorkDay.*.numeric' => 'Số giờ nhập vào phải là chữ số',
-            'WorkDay.*.required' => 'Số giờ không được để trống',
-            'ProductCode.*.required' => 'Chưa chọn mã sản phẩm',
+            'QuantitySX.*.numeric' => __('validation.product_order.is_number_quantity'),
+            'QuantityFail.*.numeric' => __('validation.product_order.is_number_waste'),
+            'WorkDay.*.numeric' => __('validation.product_order.is_number_time'),
+            'WorkDay.*.required' => __('validation.product_order.required'),
+            'ProductCode.*.required' => __('validation.product_order.select_code'),
         ];
     }
 }
