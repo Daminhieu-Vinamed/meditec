@@ -19,22 +19,31 @@ $(function() {
             success: function(dataSuccess) {
                 var link = window.location.origin;
                 if (dataSuccess.errorLogin === undefined) {
-                    if(confirm("KIỂM TRA LẠI THÔNG TIN\n" + "Họ và tên: " + dataSuccess.fullName + "\n" + "Mã nhân viên: "+ dataSuccess.Code + "\n" + "Thông tin đúng nhấn nút OK\nThông tin sai nhấn Hủy")){
+                    ToastSuccessCenterLogin.fire({
+                        title: 'KIỂM TRA LẠI THÔNG TIN',
+                        html: "Họ và tên: <b>" + dataSuccess.fullName + "</b><br>Mã nhân viên: <b>"+ dataSuccess.Code + "</b><br>Thông tin đúng nhấn nút <b>OK</b><br>Thông tin sai nhấn <b>HỦY</b>",
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            if (dataSuccess.id !== null) {
+                                location.href = link + '/edit/' + dataSuccess.id;
+                            }else{
+                                location.href = link + '/notification';
+                            }
+                        } else if (result.isDenied) {
+                            location.href = link + '/back';
+                        }
+                    });
+                }else{
+                    Toast.fire({
+                        icon: 'error',
+                        title: dataSuccess.errorLogin
+                    }).then(() => {
                         if (dataSuccess.id !== null) {
                             location.href = link + '/edit/' + dataSuccess.id;
                         }else{
                             location.href = link + '/notification';
                         }
-                    }else{
-                        location.href = link + '/back';
-                    }
-                }else{
-                    alert(dataSuccess.errorLogin);
-                    if (dataSuccess.id !== null) {
-                        location.href = link + '/edit/' + dataSuccess.id;
-                    }else{
-                        location.href = link + '/notification';
-                    }
+                    });
                 }
             },
         });

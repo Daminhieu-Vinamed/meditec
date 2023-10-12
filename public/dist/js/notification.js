@@ -39,3 +39,14 @@ var ToastSuccessCenterTime = Swal.mixin({
         clearInterval(timerInterval)
     }
 })
+
+var ToastSuccessCenterLogin = Swal.mixin({
+    showDenyButton: true,
+    confirmButtonText: 'OK',
+    denyButtonText: `HỦY`,
+    icon: 'info',
+    customClass: {
+        confirmButton: 'btn btn-primary',
+        denyButton: 'btn btn-danger',
+    }
+})
