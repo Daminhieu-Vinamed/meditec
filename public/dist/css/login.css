@@ -2546,8 +2546,8 @@ iframe {
 [ Button ]*/
 .btn-primary {
     color: white;
-    background-color: #137eff;
-    border-color: #137eff;
+    background-color: #137eff !important;
+    border-color: #137eff !important;
 }
 
 .btn-danger {

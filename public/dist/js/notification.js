@@ -16,6 +16,8 @@ var Toast = Swal.mixin({
 var ToastErrorCenter = Swal.mixin({
     icon: 'error',
     title: 'THÔNG BÁO !',
+    allowOutsideClick: false,
+    allowEscapeKey: false,
     confirmButtonColor: '#137eff',
     customClass: {
         confirmButton: 'btn btn-info',
@@ -28,6 +30,8 @@ var ToastSuccessCenterTime = Swal.mixin({
     html: 'Hệ thống sẽ tự động đăng xuất sau khi thời gian kết thúc.\n Thời gian còn <b></b> milli giây',
     timer: 5000,
     timerProgressBar: true,
+    allowOutsideClick: false,
+    allowEscapeKey: false,
     didOpen: () => {
         Swal.showLoading()
         const b = Swal.getHtmlContainer().querySelector('b')
@@ -42,6 +46,8 @@ var ToastSuccessCenterTime = Swal.mixin({
 
 var ToastSuccessCenterLogin = Swal.mixin({
     showDenyButton: true,
+    allowOutsideClick: false,
+    allowEscapeKey: false,
     confirmButtonText: 'OK',
     denyButtonText: `HỦY`,
     icon: 'info',
