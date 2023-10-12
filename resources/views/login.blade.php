@@ -37,6 +37,8 @@
 		</div>
 	</div>
 	<div id="dropDownSelect1"></div>
+	<script src="{{ asset('dist/js/swalalert2@11.js') }}"></script>
+	<script src="{{ asset('dist/js/notification.js') }}"></script>
 	<script src="{{asset('dist/js/bootstrap.bundle.min.js')}}"></script>
 	<script src="{{asset('dist/js/jquery.min.js')}}"></script>
 	<script src="{{asset('dist/js/login.js')}}"></script>
