@@ -75,24 +75,24 @@ class ProductionOrderService extends ProductionOrderRepository
                             $workDay, 
                             $quantityFail, 
                             $machineCode, 
-                            isset($request->DeptCodetmp[$item]) ? $request->DeptCodetmp[$item] : null
+                            isset($request->DeptCodetmp[$item]) ? $request->DeptCodetmp[$item] : config('constants.null')
                         ]
                     );
                 }
                 DB::commit();
-                return response()->json(['error_correct' => 'Cập nhật thành công !']);
+                return response()->json(['error_correct' => __('messages.product_order.success')]);
             } catch (\Exception $e) {
                 DB::rollBack();
                 $message = $e->getMessage();
-                $contains = str_contains($message, 'Sai giờ làm việc');
+                $contains = str_contains($message, __('messages.product_order.wrong_time'));
                 if ($contains) {
-                    return response()->json(['error_incorrect' => 'Thời gian làm việc không được vượt quá quy định !']);
+                    return response()->json(['error_incorrect' => __('messages.product_order.too_regulated_time')]);
                 }else{
                     return response()->json(['error_incorrect' => $message]);
                 }
             }
         }elseif(isset($request->type) && $request->type === 'edit'){
-            return response()->json(['error_incorrect' => 'Chức năng chỉnh sửa hiện tại đang trong quá trình phát triển !']);
+            return response()->json(['error_incorrect' => __('messages.product_order.function_update')]);
         }
     }
 }

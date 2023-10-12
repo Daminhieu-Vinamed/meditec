@@ -60,7 +60,7 @@
                                                 <td>
                                                     <select name="DeptCodetmp[]">
                                                         @foreach ($arrayDept as $itemCode)
-                                                            @if ($itemCode->IsGroup == 0 && $itemCode->IsActive == 1 && $itemCode->Loai_Ps !== null)
+                                                            @if ($itemCode->IsGroup == config('constants.number.zero') && $itemCode->IsActive == config('constants.number.one') && $itemCode->Loai_Ps !== config('constants.null'))
                                                                 <option value="{{ $itemCode->Code }}">{{$itemCode->Code}} - {{$itemCode->Name}}</option>
                                                             @endif
                                                         @endforeach
@@ -70,7 +70,7 @@
                                             <td>
                                                 <select name="ChantCode[]" class="select-chantCode" id="{{$item->Id}}">
                                                     @foreach ($arrayChantCode as $itemCode)
-                                                        @if ($itemCode->IsGroup == 0 && $itemCode->IsActive == 1)
+                                                        @if ($itemCode->IsGroup == config('constants.number.zero') && $itemCode->IsActive == config('constants.number.one'))
                                                             <option value="{{ $itemCode->Code }}">{{$itemCode->Code}} - {{$itemCode->Name}}</option>
                                                         @endif
                                                     @endforeach
@@ -78,7 +78,7 @@
                                             </td>
                                             <td>
                                                 <div class="form-group">
-                                                    <input class="form-control" value="{{$arrayChantCode[0]->WorkDay}}" id="WorkDay-{{$item->Id}}" name="WorkDay[]" type="text" placeholder="Nhập số giờ">
+                                                    <input class="form-control" value="{{$arrayChantCode[config('constants.number.zero')]->WorkDay}}" id="WorkDay-{{$item->Id}}" name="WorkDay[]" type="text" placeholder="Nhập số giờ">
                                                     <span class="text-danger error-workday-{{$location}}"></span>
                                                 </div>
                                             </td>
@@ -86,7 +86,7 @@
                                                 <select name="MachineCode[]">
                                                     <option value="">-----</option>
                                                     @foreach ($arrayMachineCode as $itemCode)
-                                                        @if ($itemCode->IsGroup == 0 && $itemCode->IsActive == 1)
+                                                        @if ($itemCode->IsGroup == config('constants.number.zero') && $itemCode->IsActive == config('constants.number.one'))
                                                             <option value="{{ $itemCode->Code }}">{{$itemCode->Code}} - {{$itemCode->Name}}</option>
                                                         @endif
                                                     @endforeach
@@ -96,7 +96,7 @@
                                                 <select name="StageNo[]">
                                                     <option value="">-----</option>
                                                     @foreach ($arrayStage as $itemCode)
-                                                        @if ($itemCode->IsGroup == 0 && $itemCode->IsActive == 1)
+                                                        @if ($itemCode->IsGroup == config('constants.number.zero') && $itemCode->IsActive == config('constants.number.one'))
                                                             <option value="{{ $itemCode->Code }}">{{$itemCode->Code}} - {{$itemCode->Name}}</option>
                                                         @endif
                                                     @endforeach
@@ -107,16 +107,16 @@
                                                     <select name="ChildStageNo[]">
                                                         <option value="">-----</option>
                                                         @foreach ($arrayChildStage as $itemCode)
-                                                            @if ($itemCode->IsGroup == 0 && $itemCode->IsActive == 1)
+                                                            @if ($itemCode->IsGroup == config('constants.number.zero') && $itemCode->IsActive == config('constants.number.one'))
                                                                 <option value="{{ $itemCode->ChildCode }}">{{$itemCode->ChildCode}} - {{$itemCode->ChildName}}</option>
                                                             @endif
                                                         @endforeach
                                                     </select>
                                                 </td>
                                             @endif
-                                            <td>{{number_format($item->JobQuantity,2,",",".")}}</td>
-                                            <td>{{number_format($item->JobQuantityTT,2,",",".")}}</td>
-                                            <td>{{number_format($item->QuantityCL,2,",",".")}}</td>
+                                            <td>{{number_format($item->JobQuantity,config('constants.number.two'),",",".")}}</td>
+                                            <td>{{number_format($item->JobQuantityTT,config('constants.number.two'),",",".")}}</td>
+                                            <td>{{number_format($item->QuantityCL,config('constants.number.two'),",",".")}}</td>
                                             <th scope="row">{{$item->DocNo}}</th>
                                             <td>{{$item->ItemLotCode}}</td>
                                         </tr>
