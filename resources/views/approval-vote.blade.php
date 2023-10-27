@@ -1,10 +1,5 @@
 @extends('layout.master')
 @section('title', 'Approval Vote')
-@section('css')
-    <link rel="stylesheet" href="{{ asset('dist/css/dataTables.css') }}">
-    <link rel="stylesheet" href="{{ asset('dist/css/dataTables.responsive.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('dist/css/jquery.dataTables.min.css') }}">
-@endsection
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -34,8 +29,5 @@
     </div>
 @endsection
 @push('js')
-    <script src="{{asset('dist/js/dataTables.js')}}"></script>
-    <script src="{{asset('dist/js/dataTables.responsive.min.js')}}"></script>
-    <script src="{{asset('dist/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('dist/js/approval-vote.js')}}"></script>
 @endpush

@@ -1,6 +1,30 @@
 $(document).ready(function () {
-    $('[name="MachineCode[]"]').select2();
-    $('[name="ChantCode[]"]').select2({ minimumResultsForSearch: -1 });
+    $('.approval-vote-detail-table').DataTable({
+        responsive: true,
+        rowReorder: true,
+        scrollX: true,
+        language: {
+            emptyTable: 'Danh sách hiện tại đang trống',
+            info: "Đang hiển thị trang _PAGE_ trên tổng _PAGES_ trang, _PAGES_ trang này có tổng _TOTAL_ phiếu",
+            lengthMenu: 'Hiển thị <select class="totalInPage">'+
+                        '<option value="10">10 phiếu trên trang</option>'+
+                        '<option value="20">20 phiếu trên trang</option>'+
+                        '<option value="30">30 phiếu trên trang</option>'+
+                        '<option value="40">40 phiếu trên trang</option>'+
+                        '<option value="50">50 phiếu trên trang</option>'+
+                        '<option value="-1">tất cả phiếu trên trang</option>'+
+                        '</select>',
+            search: "Tìm kiếm phiếu có dữ liệu _INPUT_",
+            paginate: {
+                previous: '<i class="fa-solid fa-caret-left"></i>',
+                next: '<i class="fa-solid fa-caret-right"></i>',
+            },
+        },
+        drawCallback: function() {
+            $('.totalInPage, [name="ChantCode[]"]').select2({ minimumResultsForSearch: -1 });
+            $('[name="MachineCode[]"]').select2();
+        }
+    })
     $(document).on('click', '.update-status-approval-vote-detail', function () {
         const parentId = $(this).attr('id');
         const Id = $("input[name='Id[]']").map(function(){return $(this).val();}).get();
