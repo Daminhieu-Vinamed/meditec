@@ -5,14 +5,14 @@ $(document).ready(function () {
         scrollX: true,
         language: {
             emptyTable: 'Danh sách hiện tại đang trống',
-            info: "Đang hiển thị trang _PAGE_ trên tổng _PAGES_ trang, _PAGES_ trang này có tổng _TOTAL_ phiếu",
+            info: "Đang hiển thị trang _PAGE_ trên tổng _PAGES_ trang, _PAGES_ trang này có tổng _TOTAL_ bản ghi",
             lengthMenu: 'Hiển thị <select class="totalInPage">'+
-                        '<option value="10">10 phiếu trên trang</option>'+
-                        '<option value="20">20 phiếu trên trang</option>'+
-                        '<option value="30">30 phiếu trên trang</option>'+
-                        '<option value="40">40 phiếu trên trang</option>'+
-                        '<option value="50">50 phiếu trên trang</option>'+
-                        '<option value="-1">tất cả phiếu trên trang</option>'+
+                        '<option value="10">10 bản ghi trên trang</option>'+
+                        '<option value="20">20 bản ghi trên trang</option>'+
+                        '<option value="30">30 bản ghi trên trang</option>'+
+                        '<option value="40">40 bản ghi trên trang</option>'+
+                        '<option value="50">50 bản ghi trên trang</option>'+
+                        '<option value="-1">tất cả bản ghi trên trang</option>'+
                         '</select>',
             search: "Tìm kiếm phiếu có dữ liệu _INPUT_",
             paginate: {
