@@ -11,7 +11,7 @@
                         <a href="{{ route('list.approval-vote') }}" class="btn btn-danger text-white">Quay trở lại</a>
                     </div>
                     <div class="table-responsive text-nowrap">
-                        <table class="table table-bordered table-responsive-lg table-striped table-hover">
+                        <table class="table table-bordered display nowrap approval-vote-detail-table" style="width:100%">
                             <thead>
                                 <tr>
                                     <th scope="col">Mã máy</th>
@@ -20,10 +20,10 @@
                                     <th scope="col">Giờ công</th>
                                     <th scope="col">Mã CBNV</th>
                                     <th scope="col">Tên nhân viên</th>
-                                    <th scope="col">Mã BTP</th>
-                                    <th scope="col">Loại BTP,TP</th>
                                     <th scope="col">Số lượng</th>
                                     <th scope="col">ĐVT</th>
+                                    <th scope="col">Mã BTP</th>
+                                    <th scope="col">Loại BTP,TP</th>
                                     <th scope="col">Lô sản xuất</th>
                                     <th scope="col">Hệ số</th>
                                     <th scope="col">Số lượng quy đổi</th>
@@ -57,10 +57,10 @@
                                         <td><input class="form-control" type="text" name="TimeExcute[]" value="{{number_format($item->TimeExcute,config('constants.number.two'),".",".")}}"></td>
                                         <td>{{$item->EmployeeCode}}</td>
                                         <td>{{$item->EmployeeName}}</td>
-                                        <td>{{$item->ProductCode}}</td>
-                                        <td>{{$item->Name}}</td>
                                         <td><input class="form-control" type="text" name="Quantity9[]" value="{{number_format($item->Quantity9,config('constants.number.two'),".",".")}}"></td>
                                         <td>{{$item->Unit}}</td>
+                                        <td>{{$item->ProductCode}}</td>
+                                        <td>{{$item->Name}}</td>
                                         <td>{{$item->ItemLotCode}}</td>
                                         <td>{{number_format($item->ConvertRate9,config('constants.number.two'),",",".")}}</td>
                                         <td>{{number_format($item->Quantity,config('constants.number.two'),",",".")}}</td>
