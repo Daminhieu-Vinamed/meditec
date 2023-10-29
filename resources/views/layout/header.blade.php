@@ -40,7 +40,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <span class="full-name-user-header align-sub">{{session()->get('user')->Name}}</span>
-                        <img src="{{ asset('dist/images/avatar.png') }}" alt="user" class="rounded-circle" width="31">
+                        <img src="{{ session()->get('user')->Gender === config('constants.sex.man') ? asset('dist/images/man.png') : asset('dist/images/woman.png') }}" alt="user" class="rounded-circle" width="31">
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
                         {{-- <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user me-1 ms-1"></i>My Profile</a>
