@@ -10,6 +10,10 @@
                         <button type="button" class="btn btn-info update-status-approval-vote-detail" id="{{$parentId}}">Lưu và duyệt phiếu</button>
                         <a href="{{ route('list.approval-vote') }}" class="btn btn-danger text-white">Quay trở lại</a>
                     </div>
+                    <div class="d-flex justify-content-between">
+                        <div class="infoInTable"></div>
+                        <div class="searchInTable"></div>
+                    </div>
                     <div class="table-responsive text-nowrap">
                         <table class="table table-bordered display nowrap approval-vote-detail-table" style="width:100%">
                             <thead>

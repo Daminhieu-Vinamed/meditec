@@ -31,6 +31,7 @@ $(document).ready(function () {
                 previous: '<i class="fa-solid fa-caret-left"></i>',
                 next: '<i class="fa-solid fa-caret-right"></i>',
             },
+            zeroRecords: "Không có phiếu nào có dữ liệu bạn tìm kiếm"
         }
     });
 

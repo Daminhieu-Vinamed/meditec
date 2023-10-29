@@ -1,6 +1,20 @@
 $(document).ready(function () {
-    $('[name="MachineCode[]"], [name="ChantCode[]"], [name="StageNo[]"], [name="ChildStageNo[]"]').select2();
-    $('[name="ChantCode[]"], [name="DeptCodetmp[]"]').select2({ minimumResultsForSearch: -1 });
+    $('.production-order-table').DataTable({
+        rowReorder: true,
+        paginate: false,
+        language: {
+            emptyTable: 'Danh sách hiện tại đang trống',
+            search: "Tìm kiếm sản phẩm có dữ liệu _INPUT_",
+            info: "Tổng có _TOTAL_ sản phẩm",
+            zeroRecords: "Không có sản phẩm nào có dữ liệu bạn tìm kiếm"
+        },
+        drawCallback: function() {
+            $('[name="MachineCode[]"], [name="ChantCode[]"], [name="StageNo[]"], [name="ChildStageNo[]"]').select2();
+            $('[name="ChantCode[]"], [name="DeptCodetmp[]"]').select2({ minimumResultsForSearch: -1 });
+        }
+    })
+    $('.dataTables_info').appendTo('.infoInTable');
+    $('.dataTables_filter').appendTo('.searchInTable');
     $('.select-chantCode').change(function(){
         const valueSelect = $(this).val();
         const idSelect = $(this).attr('id');
