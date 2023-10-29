@@ -10,7 +10,7 @@
                 <h1 class="text-center ">ĐĂNG NHẬP THÀNH CÔNG</h1>
             </div>
             <div class="contant_box_404">
-            <h3 class="h2">BẠN HÃY QUÉT LẠI MÃ QR CODE</h3>
+            <h3 class="h2">BẠN HÃY QUÉT LẠI LỆNH SẢN XUẤT</h3>
         </div>
             </div>
             </div>

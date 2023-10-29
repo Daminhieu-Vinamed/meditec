@@ -5,5 +5,9 @@ return [
         'zero' => 0,
         'one' => 1,
         'two' => 2,
+    ],
+    'sex' => [
+        'man' => "1",
+        'woman' => "2",
     ]
 ];
