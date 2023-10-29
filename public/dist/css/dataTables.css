@@ -273,11 +273,11 @@
     float: left;
   }
   
-  .dataTables_wrapper .dataTables_filter {
+  .dataTables_filter {
     float: right;
     text-align: right;
   }
-  .dataTables_wrapper .dataTables_filter input {
+  .dataTables_filter input {
     height: calc(1.5em + 0.75rem + 2px);
     padding: 0 0 0 8px;
     overflow: hidden;
@@ -302,14 +302,14 @@
     background-image: linear-gradient(to top, #eee 0, #fff 50%);
   }
 
-  .dataTables_wrapper .dataTables_filter input:focus{
+  .dataTables_filter input:focus{
     border: 1px solid #5897fb;
     outline: 0;
     -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, .3);
     box-shadow: 0 0 5px rgba(0, 0, 0, .3)
   }
 
-  .dataTables_wrapper .dataTables_info {
+  .dataTables_info {
     clear: both;
     float: left;
     padding-top: 0.755em;
@@ -414,8 +414,8 @@
     background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.9) 25%, rgba(255, 255, 255, 0.9) 75%, rgba(255, 255, 255, 0) 100%);
   }
   .dataTables_wrapper .dataTables_length,
-  .dataTables_wrapper .dataTables_filter,
-  .dataTables_wrapper .dataTables_info,
+  .dataTables_filter,
+  .dataTables_info,
   .dataTables_wrapper .dataTables_processing,
   .dataTables_wrapper .dataTables_paginate {
     color: #333;
@@ -454,7 +454,7 @@
   }
   
   @media screen and (max-width: 767px) {
-    .dataTables_wrapper .dataTables_info,
+    .dataTables_info,
   .dataTables_wrapper .dataTables_paginate {
       float: none;
       text-align: center;
@@ -465,11 +465,11 @@
   }
   @media screen and (max-width: 640px) {
     .dataTables_wrapper .dataTables_length,
-  .dataTables_wrapper .dataTables_filter {
+  .dataTables_filter {
       float: none;
       text-align: center;
     }
-    .dataTables_wrapper .dataTables_filter {
+    .dataTables_filter {
       margin-top: 0.5em;
     }
   }

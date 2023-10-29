@@ -6,13 +6,18 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body d-flex justify-content-between">
-                        <h4 class="card-title">Cập nhật số lượng</h4>
+                        <h4 class="card-title">Cập nhật số lượng lệnh sản xuất</h4>
+                        <button type="button" class="btn btn-info submit-update" value="update">Cập nhật</button>
                         <a href="{{ route('list.approval-vote') }}" class="btn btn-primary">Danh sách phiếu cần duyệt</a>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <div class="infoInTable"></div>
+                        <div class="searchInTable"></div>
                     </div>
                     <form action="{{ route('list.update') }}" method="post">
                         @csrf
                         <div class="table-responsive text-nowrap">
-                            <table class="table table-bordered table-responsive-lg table-striped table-hover">
+                            <table class="table table-bordered display nowrap production-order-table" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th scope="col">Mã sản phẩm</th>
@@ -123,10 +128,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                        </div>
-                        <div class="mt-2">
-                            <button type="button" class="btn btn-info submit-update" value="update">Cập nhật</button>
-                            {{-- <button type="button" class="btn btn-success text-white submit-edit" value="edit">Chỉnh sửa</button> --}}
                         </div>
                     </form>
                 </div>
