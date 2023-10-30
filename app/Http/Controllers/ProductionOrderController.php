@@ -21,6 +21,12 @@ class ProductionOrderController extends Controller
         return view('production-order', $data);
     }
 
+    public function getAddProductionOrderInformation(Request $request)
+    {
+        $data = $this->productionOrderService->getProductionOrder($request);
+        return view('additional-production-order', $data);
+    }
+
     public function getTime(){
         return $this->productionOrderService->getTime();
     }
@@ -29,7 +35,7 @@ class ProductionOrderController extends Controller
         return $this->productionOrderService->getProductCode();
     }
 
-    public function update(Validate $request)
+    public function updateProductionOrder(Validate $request)
     {
         return $this->productionOrderService->updateProductionOrder($request);
     }

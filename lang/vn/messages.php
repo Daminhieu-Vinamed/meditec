@@ -9,9 +9,9 @@ return [
         'success' => 'Duyệt phiếu thành công !'
     ],
     'product_order' => [
-        'success' => 'Cập nhật thành công !',
+        'success' => 'Cập nhật lệnh sản xuất thành công !',
+        'additional' => 'Bổ xung lệnh sản xuất thành công !',
         'wrong_time' => 'Sai giờ làm việc',
         'too_regulated_time' => 'Thời gian làm việc không được vượt quá quy định !',
-        'function_update' => 'Chức năng chỉnh sửa hiện tại đang trong quá trình phát triển !',
     ]
 ];

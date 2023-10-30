@@ -28,8 +28,8 @@ $(document).ready(function () {
                         '</select>',
             search: "Tìm kiếm phiếu có dữ liệu _INPUT_",
             paginate: {
-                previous: '<i class="fa-solid fa-caret-left"></i>',
-                next: '<i class="fa-solid fa-caret-right"></i>',
+                previous: '<i class="previous">&laquo;</i>',
+                next: '<i class="next">&raquo;</i>',
             },
             zeroRecords: "Không có phiếu nào có dữ liệu bạn tìm kiếm"
         }

@@ -6,7 +6,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body d-flex justify-content-between">
-                        <h4 class="card-title">Danh sách chi tiết phiếu cần duyệt</h4>
+                        <h3 class="card-title">Danh sách chi tiết phiếu cần duyệt</h3>
                         <a href="{{ route('list.production-order', ['id' => session()->get('idScanQr')]) }}" class="btn btn-danger text-white">Quay trở lại</a>
                     </div>
                     <div class="table-responsive text-nowrap">

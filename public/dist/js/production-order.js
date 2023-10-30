@@ -55,9 +55,10 @@ $(document).ready(function () {
               .map(function(){return $(this).val();}).get();
         var DeptCodetmp = $("select[name='DeptCodetmp[]']")
               .map(function(){return $(this).val();}).get();
-        var type = $(this).val();
+        var DocDate = $("input[name='DocDate[]']")
+              .map(function(){return $(this).val();}).get();
         $.ajax({
-            url: "/update" ,
+            url: "/update-production-order" ,
             type:'POST',
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -69,10 +70,10 @@ $(document).ready(function () {
                 ProductCode: ProductCode,
                 ChantCode: ChantCode,
                 Id: Id,
-                type: type,
                 QuantityFail: QuantityFail,
                 MachineCode: MachineCode,
                 DeptCodetmp: DeptCodetmp,
+                DocDate: DocDate,
             },
             success: function(dataSuccess) {
                 for (let i = 0; i < QuantitySX.length; i++) {

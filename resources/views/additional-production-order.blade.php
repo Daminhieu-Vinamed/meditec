@@ -6,12 +6,9 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body d-flex justify-content-between">
-                        <h3 class="card-title">Cập nhật thông tin lệnh sản xuất</h3>
-                        <button type="button" class="btn btn-info submit-update">Cập nhật</button>
-                        <div>
-                            <a href="{{ route('list.add-production-order-information', ['id' => session()->get('idScanQr')]) }}" class="btn btn-success">Bổ xung thông tin lệnh sản xuất</a>
-                            <a href="{{ route('list.approval-vote') }}" class="btn btn-primary">Danh sách phiếu cần duyệt</a>
-                        </div>
+                        <h4 class="card-title">Bổ xung thông tin lệnh sản xuất</h4>
+                        <button type="button" class="btn btn-info submit-update">Bổ xung</button>
+                        <a href="{{ route('list.production-order', ['id' => session()->get('idScanQr')]) }}" class="btn btn-danger text-white">Quay trở lại</a>
                     </div>
                     <div class="d-flex justify-content-between">
                         <div class="infoInTable"></div>
@@ -21,6 +18,7 @@
                         <table class="table table-bordered display nowrap production-order-table" style="width:100%">
                             <thead>
                                 <tr>
+                                    <th scope="col">Thời gian bổ xung</th>
                                     <th scope="col">Mã sản phẩm</th>
                                     <th scope="col">Tên sản phẩm</th>
                                     <th scope="col">Số lượng sản xuất hôm nay</th>
@@ -48,6 +46,7 @@
                                         <input type="hidden" name="ItemLotCode[]" value="{{$item->ItemLotCode}}">
                                         <input type="hidden" name="ProductCode[]" value="{{$item->ProductCode}}">
                                         <input type="hidden" name="Id[]" value="{{$item->Id}}">
+                                        <td><input class="form-control" name="DocDate[]" type="date"></td>
                                         <td>{{$item->ProductCode}}</td>
                                         <td>{{$item->ProductName}}</td>
                                         <td>
