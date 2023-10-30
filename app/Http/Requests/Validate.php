@@ -32,7 +32,6 @@ class Validate extends FormRequest
             "QuantityFail.*"  => "nullable|numeric",
             "WorkDay" => "array",
             "WorkDay.*"  => 'required|numeric',
-            "type" => "required",
         ];
     }
     public function messages()

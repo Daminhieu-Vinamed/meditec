@@ -18,9 +18,10 @@ use Illuminate\Support\Facades\Route;
 */
 Route::middleware('checkRole')->prefix('/')->name('list.')->group(function (){
     Route::get('edit/{id}', [ProductionOrderController::class,'getProductionOrder'])->name('production-order');
+    Route::get('add-production-order-information/{id}', [ProductionOrderController::class,'getAddProductionOrderInformation'])->name('add-production-order-information');
     Route::get('get-time', [ProductionOrderController::class,'getTime']);
     Route::get('get-product-code', [ProductionOrderController::class,'getProductCode']);
-    Route::post('update', [ProductionOrderController::class,'update'])->name('update');
+    Route::post('update-production-order', [ProductionOrderController::class,'updateProductionOrder']);
     Route::get('notification', [ProductionOrderController::class,'notification'])->name('notification');
     Route::get('approval-vote', [ApprovalVoteController::class,'getViewApprovalVote'])->name('approval-vote');
     Route::get('get-data', [ApprovalVoteController::class,'getDataApprovalVote']);
