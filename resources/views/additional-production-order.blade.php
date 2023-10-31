@@ -6,9 +6,9 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body d-flex justify-content-between">
-                        <h4 class="card-title">Bổ xung thông tin lệnh sản xuất</h4>
-                        <button type="button" class="btn btn-info submit-update">Bổ xung</button>
-                        <a href="{{ route('list.production-order', ['id' => session()->get('idScanQr')]) }}" class="btn btn-danger text-white">Quay trở lại</a>
+                        <h4 class="card-title">BỔ XUNG THÔNG TIN LỆNH SẢN XUẤT</h4>
+                        <button type="button" class="btn btn-info submit-update-production-order">Bổ xung</button>
+                        <a href="{{ route('list.production-order', ['id' => session()->get('idScanQr')]) }}" class="btn btn-danger">Quay trở lại</a>
                     </div>
                     <div class="d-flex justify-content-between">
                         <div class="infoInTable"></div>
@@ -51,13 +51,13 @@
                                         <td>{{$item->ProductName}}</td>
                                         <td>
                                             <div class="form-group">
-                                                <input class="form-control quantity-sx-{{$location}}" name="QuantitySX[]" type="text" placeholder="Số lượng">
+                                                <input class="form-control quantity-sx-{{$location}}" name="QuantitySX[]" type="text" placeholder="Nhập số lượng">
                                                 <span class="text-danger error-quantity-{{$location}}"></span>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="form-group">
-                                                <input class="form-control quantity-fail-{{$location}}" name="QuantityFail[]" type="text" placeholder="Phế phẩm">
+                                                <input class="form-control quantity-fail-{{$location}}" name="QuantityFail[]" type="text" placeholder="Nhập phế phẩm">
                                                 <span class="text-danger error-quantity-fail-{{$location}}"></span>
                                             </div>
                                         </td>
@@ -65,7 +65,7 @@
                                             <td>
                                                 <select name="DeptCodetmp[]">
                                                     @foreach ($arrayDept as $itemCode)
-                                                        @if ($itemCode->IsGroup == config('constants.number.zero') && $itemCode->IsActive == config('constants.number.one') && $itemCode->Loai_Ps !== config('constants.null'))
+                                                        @if ($itemCode->IsGroup == config('constants.number.zero') && $itemCode->IsActive == config('constants.number.one') && $itemCode->Loai_Ps !== config('constants.value.null'))
                                                             <option value="{{ $itemCode->Code }}">{{$itemCode->Code}} - {{$itemCode->Name}}</option>
                                                         @endif
                                                     @endforeach

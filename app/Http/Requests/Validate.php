@@ -26,6 +26,8 @@ class Validate extends FormRequest
         return [
             "ProductCode" => "array",
             "ProductCode.*"  => "required",
+            "ItemLotCode" => "array",
+            "ItemLotCode.*"  => "required",
             "QuantitySX" => "array",
             "QuantitySX.*"  => "nullable|numeric",
             "QuantityFail" => "array",
@@ -39,6 +41,7 @@ class Validate extends FormRequest
         return [
             'QuantitySX.*.numeric' => __('validation.product_order.is_number_quantity'),
             'QuantityFail.*.numeric' => __('validation.product_order.is_number_waste'),
+            'ItemLotCode.*.required' => __('validation.product_order.required_item_lot_code'),
             'WorkDay.*.numeric' => __('validation.product_order.is_number_time'),
             'WorkDay.*.required' => __('validation.product_order.required'),
             'ProductCode.*.required' => __('validation.product_order.select_code'),

@@ -6,9 +6,9 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body d-flex justify-content-between">
-                        <h3 class="card-title">Chi tiết phiếu cần duyệt</h3>
+                        <h4 class="card-title">CHI TIẾT PHIẾU CẦN DUYỆT</h4>
                         <button type="button" class="btn btn-info update-status-approval-vote-detail" id="{{$parentId}}">Lưu và duyệt phiếu</button>
-                        <a href="{{ route('list.approval-vote') }}" class="btn btn-danger text-white">Quay trở lại</a>
+                        <a href="{{ route('list.approval-vote') }}" class="btn btn-danger">Quay trở lại</a>
                     </div>
                     <div class="d-flex justify-content-between">
                         <div class="infoInTable"></div>

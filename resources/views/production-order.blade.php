@@ -6,8 +6,8 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body d-flex justify-content-between">
-                        <h3 class="card-title">Cập nhật thông tin lệnh sản xuất</h3>
-                        <button type="button" class="btn btn-info submit-update">Cập nhật</button>
+                        <h4 class="card-title">CẬP NHẬT THÔNG TIN LỆNH SẢN XUẤT</h4>
+                        <button type="button" class="btn btn-info submit-update-production-order">Cập nhật</button>
                         <div>
                             <a href="{{ route('list.add-production-order-information', ['id' => session()->get('idScanQr')]) }}" class="btn btn-success">Bổ xung thông tin lệnh sản xuất</a>
                             <a href="{{ route('list.approval-vote') }}" class="btn btn-primary">Danh sách phiếu cần duyệt</a>
@@ -35,14 +35,14 @@
                                     @if ($arrayChildStage->isNotEmpty())
                                         <th scope="col">Công đoạn con</th>
                                     @endif
+                                    <th scope="col">Lô</th>
                                     <th scope="col">Số lượng ban đầu</th>
                                     <th scope="col">Số lượng đã sản xuất</th>
                                     <th scope="col">Số lượng còn lại phải sản xuất</th>
                                     <th scope="col">Lệnh sản xuất</th>
-                                    <th scope="col">Lô</th>
                                 </tr>
                             </thead>
-                            <tbody class="products">
+                            <tbody class="production-order-tbody">
                                 @foreach ($data as $location => $item)
                                     <tr>
                                         <input type="hidden" name="ItemLotCode[]" value="{{$item->ItemLotCode}}">
@@ -52,13 +52,13 @@
                                         <td>{{$item->ProductName}}</td>
                                         <td>
                                             <div class="form-group">
-                                                <input class="form-control quantity-sx-{{$location}}" name="QuantitySX[]" type="text" placeholder="Số lượng">
+                                                <input class="form-control quantity-sx-{{$location}}" name="QuantitySX[]" type="text" placeholder="Nhập số lượng">
                                                 <span class="text-danger error-quantity-{{$location}}"></span>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="form-group">
-                                                <input class="form-control quantity-fail-{{$location}}" name="QuantityFail[]" type="text" placeholder="Phế phẩm">
+                                                <input class="form-control quantity-fail-{{$location}}" name="QuantityFail[]" type="text" placeholder="Nhập phế phẩm">
                                                 <span class="text-danger error-quantity-fail-{{$location}}"></span>
                                             </div>
                                         </td>
@@ -66,7 +66,7 @@
                                             <td>
                                                 <select name="DeptCodetmp[]">
                                                     @foreach ($arrayDept as $itemCode)
-                                                        @if ($itemCode->IsGroup == config('constants.number.zero') && $itemCode->IsActive == config('constants.number.one') && $itemCode->Loai_Ps !== config('constants.null'))
+                                                        @if ($itemCode->IsGroup == config('constants.number.zero') && $itemCode->IsActive == config('constants.number.one') && $itemCode->Loai_Ps !== config('constants.value.null'))
                                                             <option value="{{ $itemCode->Code }}">{{$itemCode->Code}} - {{$itemCode->Name}}</option>
                                                         @endif
                                                     @endforeach
@@ -89,7 +89,7 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <select name="MachineCode[]">
+                                            <select name="MachineCode[]" class="select-MachineCode">
                                                 <option value="">-----</option>
                                                 @foreach ($arrayMachineCode as $itemCode)
                                                     @if ($itemCode->IsGroup == config('constants.number.zero') && $itemCode->IsActive == config('constants.number.one'))
@@ -99,7 +99,7 @@
                                             </select>
                                         </td>
                                         <td>
-                                            <select name="StageNo[]">
+                                            <select name="StageNo[]" class="select-StageNo">
                                                 <option value="">-----</option>
                                                 @foreach ($arrayStage as $itemCode)
                                                     @if ($itemCode->IsGroup == config('constants.number.zero') && $itemCode->IsActive == config('constants.number.one'))
@@ -120,16 +120,21 @@
                                                 </select>
                                             </td>
                                         @endif
+                                        <td>{{$item->ItemLotCode}}</td>
                                         <td>{{number_format($item->JobQuantity,config('constants.number.two'),",",".")}}</td>
                                         <td>{{number_format($item->JobQuantityTT,config('constants.number.two'),",",".")}}</td>
                                         <td>{{number_format($item->QuantityCL,config('constants.number.two'),",",".")}}</td>
-                                        <th scope="row">{{$item->DocNo}}</th>
-                                        <td>{{$item->ItemLotCode}}</td>
+                                        <td>{{$item->DocNo}}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
+                    @if (empty($arrayDept))
+                        <div class="mt-2">
+                            <button class="btn btn-warning add-product-to-production-order">Thêm sản phẩm</button>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
