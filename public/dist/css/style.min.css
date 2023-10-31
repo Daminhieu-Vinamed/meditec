@@ -101,7 +101,7 @@ h4,
 h5,
 h6 {
     margin-top: 0;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0;
     font-weight: 400;
     line-height: 1.2;
     color: inherit
@@ -3397,20 +3397,20 @@ fieldset:disabled .btn {
 }
 
 .btn-warning {
-    color: #000;
+    color: #fff;
     background-color: #ffbc34;
     border-color: #ffbc34
 }
 
 .btn-warning:hover {
-    color: #000;
+    color: #fff;
     background-color: #ffc652;
     border-color: #ffc348
 }
 
 .btn-check:focus+.btn-warning,
 .btn-warning:focus {
-    color: #000;
+    color: #fff;
     background-color: #ffc652;
     border-color: #ffc348;
     -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, .3);
@@ -3422,7 +3422,7 @@ fieldset:disabled .btn {
 .btn-warning.active,
 .btn-warning:active,
 .show>.btn-warning.dropdown-toggle {
-    color: #000;
+    color: #fff;
     background-color: #ffc95d;
     border-color: #ffc348
 }
@@ -3438,26 +3438,26 @@ fieldset:disabled .btn {
 
 .btn-warning.disabled,
 .btn-warning:disabled {
-    color: #000;
+    color: #fff;
     background-color: #ffbc34;
     border-color: #ffbc34
 }
 
 .btn-danger {
-    color: #000;
+    color: #fff;
     background-color: #fa5838;
     border-color: #fa5838
 }
 
 .btn-danger:hover {
-    color: #000;
+    color: #fff;
     background-color: #fb7156;
     border-color: #fb694c
 }
 
 .btn-check:focus+.btn-danger,
 .btn-danger:focus {
-    color: #000;
+    color: #fff;
     background-color: #fb7156;
     border-color: #fb694c;
     -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, .3);
@@ -3469,7 +3469,7 @@ fieldset:disabled .btn {
 .btn-danger.active,
 .btn-danger:active,
 .show>.btn-danger.dropdown-toggle {
-    color: #000;
+    color: #fff;
     background-color: #fb7960;
     border-color: #fb694c
 }
@@ -3485,7 +3485,7 @@ fieldset:disabled .btn {
 
 .btn-danger.disabled,
 .btn-danger:disabled {
-    color: #000;
+    color: #fff;
     background-color: #fa5838;
     border-color: #fa5838
 }
@@ -3899,7 +3899,7 @@ fieldset:disabled .btn {
 }
 
 .btn-outline-warning:hover {
-    color: #000;
+    color: #fff;
     background-color: #ffbc34;
     border-color: #ffbc34
 }
@@ -3915,7 +3915,7 @@ fieldset:disabled .btn {
 .btn-outline-warning.active,
 .btn-outline-warning.dropdown-toggle.show,
 .btn-outline-warning:active {
-    color: #000;
+    color: #fff;
     background-color: #ffbc34;
     border-color: #ffbc34
 }

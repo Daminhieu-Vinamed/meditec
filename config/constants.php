@@ -1,6 +1,9 @@
 <?php
 return [
-    'null' => NULL,
+    'value' => [
+        'null' => NULL,
+        'string-empty' => "",
+    ],
     'number' => [
         'zero' => 0,
         'one' => 1,
