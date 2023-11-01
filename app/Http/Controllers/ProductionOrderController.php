@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Validate;
+use App\Http\Requests\ProductionOrderRequest;
 use App\Services\ProductionOrderService;
 use Illuminate\Http\Request;
 
@@ -35,7 +35,7 @@ class ProductionOrderController extends Controller
         return $this->productionOrderService->getProductCode();
     }
 
-    public function updateProductionOrder(Validate $request)
+    public function updateProductionOrder(ProductionOrderRequest $request)
     {
         return $this->productionOrderService->updateProductionOrder($request);
     }

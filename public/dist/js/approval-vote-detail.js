@@ -15,6 +15,25 @@ $(document).ready(function () {
     })
     $('.dataTables_info').appendTo('.infoInTable');
     $('.dataTables_filter').appendTo('.searchInTable');
+
+    $('.select-chantCode').change(function(){
+        getTime($(this).val(), $(this).attr('id'), 'TimeExcute');
+    });
+
+    function hasAlphabet(string) {
+        for (var i = 0; i < string.length; i++) {
+          if (/[a-zA-Z]/.test(string.charAt(i))) {
+            return true;
+          }
+        }
+        return false;
+    }
+
+    $("select[name='MachineCode[]']").change(function(){
+        const machineName = $(this).children('option:selected').attr('machine-name');
+        $(this).parent().parent().find("td:eq(1)").text(machineName);
+    });
+
     $(document).on('click', '.update-status-approval-vote-detail', function () {
         const parentId = $(this).attr('id');
         const Id = $("input[name='Id[]']").map(function(){return $(this).val();}).get();
@@ -22,6 +41,11 @@ $(document).ready(function () {
         const ChantCode = $("select[name='ChantCode[]']").map(function(){return $(this).val();}).get();
         const TimeExcute = $("input[name='TimeExcute[]']").map(function(){return $(this).val();}).get();
         const Quantity9 = $("input[name='Quantity9[]']").map(function(){return $(this).val();}).get();
+        Quantity9.forEach((element, key) => {
+            if (hasAlphabet(element) && element.length !== 0) {
+                Quantity9[key] = "string";
+            }
+        });
         $.ajax({
             url: "/update-status-detail-approval-vote",
             type:'POST',
@@ -36,19 +60,34 @@ $(document).ready(function () {
                 TimeExcute: TimeExcute,
                 Quantity9: Quantity9,
             },
-            success: function(notification) {
-                if (notification.error_correct  === undefined) {
-                    alert('Duyệt phiếu thành công !')
-                } else {
-                    alert(notification.error_correct);   
+            success: function(dataSuccess) {
+                if (dataSuccess.error_correct  === undefined) {
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Duyệt phiếu thành công !'
+                    })
+                } else { 
+                    Toast.fire({
+                        icon: 'success',
+                        title: dataSuccess.error_correct
+                    })
                 }
-                window.location.reload();
             },
-            error: function (notification) {
-                if (notification.error_incorrect !== undefined) {
-                    alert(notification.error_incorrect);
+            error: function (dataError) {
+                let errors = dataError.responseJSON?.errors;
+                for (let i = 0; i < Quantity9.length; i++) {
+                    errors['Quantity9.'+ i] ? $('.error-quantity-' + i).html(errors['Quantity9.'+ i][0]) : $('.error-quantity-' + i).html('')
+                    errors['TimeExcute.'+ i] ? $('.error-time-excute-' + i).html(errors['TimeExcute.'+ i][0]) : $('.error-time-excute-' + i).html('')
+                }
+                if (dataError.error_incorrect !== undefined) {
+                    ToastErrorCenter.fire({
+                        text: dataError.error_incorrect,
+                    })
                 } else {
-                    alert('Lỗi hệ thống !');
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'Duyệt phiếu thất bại !'
+                    })
                 }
             }
         });

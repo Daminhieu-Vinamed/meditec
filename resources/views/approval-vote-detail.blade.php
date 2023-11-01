@@ -35,7 +35,7 @@
                                 </tr>
                             </thead>
                             <tbody class="products">
-                                @foreach ($detailApprovalVote as $item)
+                                @foreach ($detailApprovalVote as $location => $item)
                                 <input type="hidden" name="Id[]" value="{{$item->Id}}">
                                     <tr>
                                         <td>
@@ -43,14 +43,14 @@
                                                 <option value="">-----</option>
                                                 @foreach ($arrayMachineCode as $itemCode)
                                                     @if ($itemCode->IsGroup == config('constants.number.zero') && $itemCode->IsActive == config('constants.number.one'))
-                                                        <option {{ $item->MachineCode === $itemCode->Code ? 'selected' : '' }} value="{{ $itemCode->Code }}">{{$itemCode->Code}} - {{$itemCode->Name}}</option>
+                                                        <option {{ $item->MachineCode === $itemCode->Code ? 'selected' : '' }} machine-name="{{$itemCode->Name}}" value="{{ $itemCode->Code }}">{{$itemCode->Code}} - {{$itemCode->Name}}</option>
                                                     @endif
                                                 @endforeach
                                             </select>
                                         </td>
                                         <td>{{$item->MachineName}}</td>
                                         <td>
-                                            <select name="ChantCode[]">
+                                            <select name="ChantCode[]" class="select-chantCode" id="{{$item->Id}}">
                                                 @foreach ($arrayChantCode as $itemCode)
                                                     @if ($itemCode->IsGroup == config('constants.number.zero') && $itemCode->IsActive == config('constants.number.one'))
                                                         <option {{ $item->ChantCode === $itemCode->Code ? 'selected' : '' }} value="{{ $itemCode->Code }}">{{$itemCode->Code}} - {{$itemCode->Name}}</option>
@@ -58,10 +58,16 @@
                                                 @endforeach
                                             </select>
                                         </td>
-                                        <td><input class="form-control" type="text" name="TimeExcute[]" value="{{number_format($item->TimeExcute,config('constants.number.two'),".",".")}}"></td>
+                                        <td>
+                                            <input class="form-control" type="text" name="TimeExcute[]" id="TimeExcute-{{$item->Id}}" value="{{number_format($item->TimeExcute,config('constants.number.two'),".",".")}}">
+                                            <span class="text-danger error-time-excute-{{$location}}"></span>
+                                        </td>
                                         <td>{{$item->EmployeeCode}}</td>
                                         <td>{{$item->EmployeeName}}</td>
-                                        <td><input class="form-control" type="text" name="Quantity9[]" value="{{number_format($item->Quantity9,config('constants.number.two'),".",".")}}"></td>
+                                        <td>
+                                            <input class="form-control" type="text" name="Quantity9[]" value="{{number_format($item->Quantity9,config('constants.number.two'),".",".")}}">
+                                            <span class="text-danger error-quantity-{{$location}}"></span>
+                                        </td>
                                         <td>{{$item->Unit}}</td>
                                         <td>{{$item->ProductCode}}</td>
                                         <td>{{$item->Name}}</td>
@@ -80,5 +86,6 @@
     </div>
 @endsection
 @push('js')
+    <script src="{{asset('dist/js/get-time-by-shift.js')}}"></script>
     <script src="{{asset('dist/js/approval-vote-detail.js')}}"></script>
 @endpush

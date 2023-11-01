@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('.production-order-table').DataTable({
+    var productionOrderTable = $('.production-order-table').DataTable({
         rowReorder: true,
         paginate: false,
         language: {
@@ -17,75 +17,37 @@ $(document).ready(function () {
     $('.dataTables_info').appendTo('.infoInTable');
     $('.dataTables_filter').appendTo('.searchInTable');
 
-    function getTime(valueSelect, idSelect) {
-        if (sessionStorage.getItem('string-all-shift') === null) {
-            $.ajax({
-                url: "/get-time",
-                type:'GET',
-                success: function(data) {
-                    var objectShift =data.shiftAll.find(element => element.Code === valueSelect);
-                    $('#WorkDay-'+idSelect+'').val(objectShift.WorkDay);
-                    const myJSON = JSON.stringify(data.shiftAll);
-                    sessionStorage.setItem('string-all-shift', myJSON)
-                }
-            });
-        } else {
-            const MyJSON = JSON.parse(sessionStorage.getItem('string-all-shift'));
-            var objectShift = MyJSON.find(element => element.Code  === valueSelect);
-            $('#WorkDay-'+idSelect+'').val(objectShift.WorkDay);
-        }
-    }
-
     $('.select-chantCode').change(function(){
-        getTime($(this).val(), $(this).attr('id'));
+        getTime($(this).val(), $(this).attr('id'), 'WorkDay');
     });
 
     function addRow(locationId) {
-        if ($('.list-product-new').length === 0) {
-            $('.production-order-tbody').append(
-                `<tr class="list-product-new">
-                    <td colspan="13"><h4>SẢN PHẨM MỚI</h4></td>
-                </tr>`
-            )
-        }else{
-            locationId--; 
-        }
-
-        $('.production-order-tbody').append(`<tr>
-            <td>
-                <select name="ProductCode[]" id="ProductCode-`+ locationId +`">
-                    <option value="">-----</option>`+
-                    JSON.parse(sessionStorage.getItem('product-code')).map(item => ("<option value="+ item.ProductCode +">"+ item.ProductCode + " - " + item.Name +"</option>"))    
-                +`</select><br>
-                <span class="text-danger error-product-code-` + locationId + `"></span>
-            </td>
-            <td></td>
-            <td>
-                <input class="form-control" name="QuantitySX[]" placeholder="Nhập số lượng"/>
-                <span class="text-danger error-quantity-` + locationId + `"></span>
-            </td>
-            <td>
-                <input class="form-control" name="QuantityFail[]" placeholder="Nhập phế phẩm"/>
-                <span class="text-danger error-quantity-fail-` + locationId + `"></span>
-            </td>
-            <td>
-                <select name="ChantCode[]" id="`+ locationId +`" class="select-chantCode select2-chantCode-` + locationId + `"></select>
-            </td>
-            <td>
-                <input class="form-control" id="WorkDay-` + locationId + `" name="WorkDay[]" type="text" placeholder="Nhập số giờ">
-                <span class="text-danger error-workday-` + locationId + `"></span>
-            </td>
-            <td><select name="MachineCode[]" id="MachineCode-`+ locationId +`"></select></td>
-            <td><select name="StageNo[]" id="StageNo-`+ locationId +`"></select></td>
-            <td>
-                <input class="form-control" name="ItemLotCode[]" type="text" placeholder="Nhập lô">
-                <span class="text-danger error-item-lot-code-` + locationId + `"></span>
-            </td>
-            <td colspan="4"><button class="btn btn-danger delete-new-product">Xóa sản phẩm</button></td>
-        </tr>`);
+        productionOrderTable.row.add([
+            `<select name="ProductCode[]" id="ProductCode-`+ locationId +`">
+                <option value="">-----</option>`
+                +JSON.parse(sessionStorage.getItem('product-code')).map(item => ("<option value="+ item.ProductCode +">"+ item.ProductCode + " - " + item.Name +"</option>"))+
+            `</select><br>
+            <span class="text-danger error-product-code-` + locationId + `"></span>`,
+            '',
+            `<input class="form-control" name="QuantitySX[]" placeholder="Nhập số lượng"/>
+            <span class="text-danger error-quantity-` + locationId + `"></span>`,
+            `<input class="form-control" name="QuantityFail[]" placeholder="Nhập phế phẩm"/>
+            <span class="text-danger error-quantity-fail-` + locationId + `"></span>`,
+            `<select name="ChantCode[]" id="`+ locationId +`" class="select-chantCode select2-chantCode-` + locationId + `"></select>`,
+            `<input class="form-control" id="WorkDay-` + locationId + `" name="WorkDay[]" type="text" placeholder="Nhập số giờ">
+            <span class="text-danger error-workday-` + locationId + `"></span>`,
+            `<select name="MachineCode[]" id="MachineCode-`+ locationId +`"></select>`,
+            `<select name="StageNo[]" id="StageNo-`+ locationId +`"></select>`,
+            `<input class="form-control" name="ItemLotCode[]" type="text" placeholder="Nhập lô">
+            <span class="text-danger error-item-lot-code-` + locationId + `"></span>`,
+            `<button class="btn btn-danger delete-new-product">Xóa sản phẩm</button>`,
+            '',
+            '',
+            '',
+        ]).draw(false);
 
         $('.delete-new-product').on('click', function() {
-            $(this).parent().parent().remove();
+            productionOrderTable.row( $(this).parents('tr') ).remove().draw();
         })
 
         //Select2
@@ -106,10 +68,10 @@ $(document).ready(function () {
 
         $('.select2-chantCode-' + locationId + '').val($('.select2-chantCode-' + locationId + ' option:eq(0)').val()).trigger('change');
 
-        getTime($('.select2-chantCode-' + locationId + ' option:eq(0)').val(), locationId);
+        getTime($('.select2-chantCode-' + locationId + ' option:eq(0)').val(), locationId, 'WorkDay');
 
         $('.select2-chantCode-' + locationId + '').change(function(){
-            getTime($(this).val(), $(this).attr('id'));
+            getTime($(this).val(), $(this).attr('id'), 'WorkDay');
         });
 
         //Machine Code
@@ -129,7 +91,6 @@ $(document).ready(function () {
 
     $(document).on('click', '.add-product-to-production-order', function () {
         let locationId = $('.production-order-tbody tr').length;
-
         if (sessionStorage.getItem('product-code') === null) {
             $.ajax({
                 url: "/get-product-code",
@@ -217,7 +178,7 @@ $(document).ready(function () {
                 }
                 Toast.fire({
                     icon: 'error',
-                    title: 'Thao tác không thành công !'
+                    title: 'Cập nhật lệnh sản xuất thất bại !'
                 })
             }
         });
