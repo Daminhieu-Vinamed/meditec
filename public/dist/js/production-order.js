@@ -40,20 +40,7 @@ $(document).ready(function () {
         getTime($(this).val(), $(this).attr('id'));
     });
 
-    $(document).on('click', '.add-product-to-production-order', function () {
-        let locationId = $('.production-order-tbody tr').length;
-
-        if (sessionStorage.getItem('product-code') === null) {
-            $.ajax({
-                url: "/get-product-code",
-                type:'GET',
-                success: function(data) {
-                    const myJSON = JSON.stringify(data.arrayProductCode);
-                    sessionStorage.setItem('product-code', myJSON)
-                }
-            });
-        }
-        
+    function addRow(locationId) {
         if ($('.list-product-new').length === 0) {
             $('.production-order-tbody').append(
                 `<tr class="list-product-new">
@@ -138,6 +125,24 @@ $(document).ready(function () {
         });
 
         $('#StageNo-' + locationId + '').val($('#StageNo-' + locationId + ' option:eq(0)').val()).trigger('change');
+    }
+
+    $(document).on('click', '.add-product-to-production-order', function () {
+        let locationId = $('.production-order-tbody tr').length;
+
+        if (sessionStorage.getItem('product-code') === null) {
+            $.ajax({
+                url: "/get-product-code",
+                type:'GET',
+                success: function(data) {
+                    const myJSON = JSON.stringify(data.arrayProductCode);
+                    sessionStorage.setItem('product-code', myJSON)
+                    addRow(locationId)
+                }
+            });
+        }else{
+            addRow(locationId)
+        }
     }); 
 
     $(document).on('click', '.submit-update-production-order', function () {
