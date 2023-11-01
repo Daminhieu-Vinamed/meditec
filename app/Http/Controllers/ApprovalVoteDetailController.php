@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\B20HrmShift;
-use App\Models\B20Machine;
-use App\Models\vB30JobRecordDetailWeb;
+use App\Http\Requests\ApprovalVoteDetailRequest;
 use App\Services\ApprovalVoteDetailService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class ApprovalVoteDetailController extends Controller
 {
@@ -24,7 +21,7 @@ class ApprovalVoteDetailController extends Controller
         return view('approval-vote-detail', $data);
     }
 
-    public function updateStatusApprovalVoteDetail(Request $request) {
+    public function updateStatusApprovalVoteDetail(ApprovalVoteDetailRequest $request) {
         return $this->approvalVoteDetailService->updateStatusApprovalVoteDetail($request);
     }
 }

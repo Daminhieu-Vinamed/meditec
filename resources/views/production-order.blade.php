@@ -141,5 +141,6 @@
     </div>
 @endsection
 @push('js')
+    <script src="{{asset('dist/js/get-time-by-shift.js')}}"></script>
     <script src="{{asset('dist/js/production-order.js')}}"></script>
 @endpush

@@ -69,7 +69,7 @@ $(document).ready(function () {
                     })
                 } else {
                     ToastErrorCenter.fire({
-                        text: 'Lỗi hệ thống !',
+                        text: 'Duyệt phiếu thất bại !',
                     })
                 }
             }
