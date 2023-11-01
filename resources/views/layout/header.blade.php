@@ -18,7 +18,7 @@
             </div> 
         </div>
         <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin6">
-            <ul class="navbar-nav float-start me-auto">
+            {{-- <ul class="navbar-nav float-start me-auto"> --}}
                 {{-- <li class="nav-item search-box">
                     <a class="nav-link waves-effect waves-dark" href="javascript:void(0)">
                         <div class="d-flex align-items-center">
@@ -35,7 +35,8 @@
                         </a>
                     </form>
                 </li> --}}
-            </ul>
+                <marquee><h1>CHÀO MỪNG BẠN ĐẾN VỚI HỆ THỐNG QUẢN LÝ NHÀ MÁY MEDITEC</h1></marquee>
+            {{-- </ul> --}}
             <ul class="navbar-nav float-end">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
