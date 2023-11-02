@@ -12344,14 +12344,6 @@ html[dir=ltr] body .p-l-0 {
     padding-left: 0
 }
 
-#main-wrapper[data-layout=horizontal],
-#main-wrapper[data-layout=vertical] {}
-
-#main-wrapper[data-layout=horizontal] .topbar .top-navbar .navbar-header[data-logobg=skin5],
-#main-wrapper[data-layout=vertical] .topbar .top-navbar .navbar-header[data-logobg=skin5] {
-    background: #233242
-}
-
 #main-wrapper[data-layout=horizontal] .topbar .top-navbar .navbar-header[data-logobg=skin6],
 #main-wrapper[data-layout=vertical] .topbar .top-navbar .navbar-header[data-logobg=skin6] {
     background: #fff
@@ -12463,8 +12455,6 @@ html[dir=ltr] body .p-l-0 {
     padding: 15px 20px
 }
 
-#main-wrapper[data-layout=vertical] {}
-
 #main-wrapper[data-layout=vertical] .topbar .top-navbar .navbar-header {
     -webkit-transition: 0.2s ease-in;
     -o-transition: 0.2s ease-in;
@@ -12476,8 +12466,6 @@ html[dir=ltr] body .p-l-0 {
 }
 
 @media (min-width:768px) {
-    #main-wrapper[data-layout=vertical] {}
-
     #main-wrapper[data-layout=vertical][data-sidebartype=full] .topbar .top-navbar .navbar-header {
         width: 168px
     }
@@ -12527,8 +12515,6 @@ html[dir=ltr] body .p-l-0 {
 }
 
 @media (max-width:767px) {
-    #main-wrapper {}
-
     #main-wrapper[data-sidebartype=mini-sidebar] .left-sidebar {
         left: -251px
     }
@@ -13066,10 +13052,6 @@ textarea.form-control {
 
 .topbar .top-navbar .navbar-header .navbar-brand .dark-logo {
     display: none
-}
-
-.topbar .top-navbar .navbar-header .navbar-brand .logo-icon {
-    margin-right: 5px
 }
 
 .topbar .top-navbar .navbar-header .navbar-brand .sidebartoggler {
