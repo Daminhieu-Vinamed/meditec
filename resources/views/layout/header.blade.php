@@ -35,7 +35,7 @@
                         </a>
                     </form>
                 </li> --}}
-                <marquee><h1 class="text-info">HỆ THỐNG QUẢN LÝ SẢN PHẨM CÔNG TY TNHH CÔNG NGHỆ MEDITEC</h1></marquee>
+                <marquee><h1 class="text-info">ỨNG DỤNG CÔNG NGHỆ TRONG SẢN XUẤT CÔNG TY TNHH CÔNG NGHỆ MEDITEC</h1></marquee>
             {{-- </ul> --}}
             <ul class="navbar-nav float-end">
                 <li class="nav-item dropdown">
