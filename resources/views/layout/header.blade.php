@@ -12,7 +12,7 @@
                     </b>
                     <span class="logo-text">
                         <img src="{{ asset('dist/images/logo-text.png') }}" alt="homepage" class="dark-logo" />
-                        <img src="{{ asset('dist/images/logo-light-text.png') }}" class="light-logo" alt="homepage" />
+                        <img src="{{ asset('dist/images/logo-text.png') }}" class="light-logo" alt="homepage" />
                     </span>
                 </a>
             </div> 
@@ -35,7 +35,7 @@
                         </a>
                     </form>
                 </li> --}}
-                <marquee><h1>CHÀO MỪNG BẠN ĐẾN VỚI HỆ THỐNG QUẢN LÝ NHÀ MÁY MEDITEC</h1></marquee>
+                <marquee><h1 class="text-info">HỆ THỐNG QUẢN LÝ SẢN PHẨM CÔNG TY TNHH CÔNG NGHỆ MEDITEC</h1></marquee>
             {{-- </ul> --}}
             <ul class="navbar-nav float-end">
                 <li class="nav-item dropdown">
