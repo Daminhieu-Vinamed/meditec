@@ -1,5 +1,5 @@
 @extends('layout.master')
-@section('title', 'Approval Vote')
+@section('title', 'Approval vote')
 @section('content')
     <div class="container-fluid">
         <div class="row">

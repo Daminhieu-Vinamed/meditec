@@ -1,5 +1,5 @@
 @extends('layout.master')
-@section('title', 'Edit')
+@section('title', 'Additional production order')
 @section('content')
     <div class="container-fluid">
         <div class="row">
