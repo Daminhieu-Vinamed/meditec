@@ -1,5 +1,5 @@
 @extends('layout.master')
-@section('title', 'Edit')
+@section('title', 'Notification')
 @section('content')
     <section class="page_404">
         <div class="container">

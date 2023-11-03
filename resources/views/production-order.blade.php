@@ -1,5 +1,5 @@
 @extends('layout.master')
-@section('title', 'Edit')
+@section('title', 'Production order')
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -9,7 +9,7 @@
                         <h4 class="card-title">CẬP NHẬT THÔNG TIN LỆNH SẢN XUẤT</h4>
                         <button type="button" class="btn btn-info submit-update-production-order">Cập nhật</button>
                         <div>
-                            <a href="{{ route('list.add-production-order-information', ['id' => session()->get('idScanQr')]) }}" class="btn btn-success">Bổ xung thông tin lệnh sản xuất</a>
+                            <a href="{{ route('list.additional-production-order', ['id' => session()->get('idScanQr')]) }}" class="btn btn-success">Bổ xung thông tin lệnh sản xuất</a>
                             <a href="{{ route('list.approval-vote') }}" class="btn btn-primary">Danh sách phiếu cần duyệt</a>
                         </div>
                     </div>
