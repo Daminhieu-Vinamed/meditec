@@ -29,7 +29,6 @@
     <script src="{{ asset('dist/js/notification.js') }}"></script>
     <script src="{{asset('dist/js/jquery.min.js')}}"></script>
     <script src="{{asset('dist/js/custom.min.js')}}"></script>
-    <script src="{{asset('dist/js/waves.js')}}"></script>
     <script src="{{asset('dist/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{ asset('dist/js/select2.min.js') }}"></script>
     <script src="{{asset('dist/js/dataTables.js')}}"></script>
