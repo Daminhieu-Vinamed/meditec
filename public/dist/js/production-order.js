@@ -21,8 +21,8 @@ $(document).ready(function () {
         getTime($(this).val(), $(this).attr('id'), 'WorkDay');
     });
 
-    function addRow(locationId) {
-        productionOrderTable.row.add([
+    function addRow(locationId, idButtonAddProduct) {
+        arrayColumn = [
             `<select name="ProductCode[]" id="ProductCode-`+ locationId +`">
                 <option value="">-----</option>`
                 +JSON.parse(sessionStorage.getItem('product-code')).map(item => ("<option value="+ item.ProductCode +">"+ item.ProductCode + " - " + item.Name +"</option>"))+
@@ -44,7 +44,12 @@ $(document).ready(function () {
             '',
             '',
             '',
-        ]).draw(false);
+        ]
+        if (idButtonAddProduct === 'add-product-to-additional-production-order') {
+            var columnTime = `<input class="form-control" name="DocDate[]" type="date">`;
+            arrayColumn.unshift(columnTime);
+        } 
+        productionOrderTable.row.add(arrayColumn).draw(false);
 
         $('.delete-new-product').on('click', function() {
             productionOrderTable.row( $(this).parents('tr') ).remove().draw();
@@ -58,7 +63,7 @@ $(document).ready(function () {
         $('#ProductCode-' + locationId + '').on('change', function() {
             const MyJSON = JSON.parse(sessionStorage.getItem('product-code'));
             var objectProduct = MyJSON.find(element => element.ProductCode  ===  $(this).val());
-            $(this).parent().parent().find("td:eq(1)").text(objectProduct.Name);
+            $(this).parent().next('td').text(objectProduct.Name);
         })
 
         //Chant Code
@@ -89,8 +94,9 @@ $(document).ready(function () {
         $('#StageNo-' + locationId + '').val($('#StageNo-' + locationId + ' option:eq(0)').val()).trigger('change');
     }
 
-    $(document).on('click', '.add-product-to-production-order', function () {
+    $(document).on('click', '#add-product-to-production-order, #add-product-to-additional-production-order', function () {
         let locationId = $('.production-order-tbody tr').length;
+        let idButtonAddProduct = $(this).attr('id');
         if (sessionStorage.getItem('product-code') === null) {
             $.ajax({
                 url: "/get-product-code",
@@ -98,11 +104,11 @@ $(document).ready(function () {
                 success: function(data) {
                     const myJSON = JSON.stringify(data.arrayProductCode);
                     sessionStorage.setItem('product-code', myJSON)
-                    addRow(locationId)
+                    addRow(locationId, idButtonAddProduct)
                 }
             });
         }else{
-            addRow(locationId)
+            addRow(locationId, idButtonAddProduct)
         }
     }); 
 

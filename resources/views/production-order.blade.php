@@ -132,7 +132,7 @@
                     </div>
                     @if (empty($arrayDept))
                         <div class="mt-2">
-                            <button class="btn btn-warning add-product-to-production-order">Thêm sản phẩm</button>
+                            <button class="btn btn-warning" id="add-product-to-production-order">Thêm sản phẩm</button>
                         </div>
                     @endif
                 </div>
