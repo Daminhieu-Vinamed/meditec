@@ -88,7 +88,7 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <select name="MachineCode[]">
+                                            <select name="MachineCode[]" class="select-MachineCode">
                                                 <option value="">-----</option>
                                                 @foreach ($arrayMachineCode as $itemCode)
                                                     @if ($itemCode->IsGroup == config('constants.number.zero') && $itemCode->IsActive == config('constants.number.one'))
@@ -98,7 +98,7 @@
                                             </select>
                                         </td>
                                         <td>
-                                            <select name="StageNo[]">
+                                            <select name="StageNo[]" class="select-StageNo">
                                                 <option value="">-----</option>
                                                 @foreach ($arrayStage as $itemCode)
                                                     @if ($itemCode->IsGroup == config('constants.number.zero') && $itemCode->IsActive == config('constants.number.one'))
