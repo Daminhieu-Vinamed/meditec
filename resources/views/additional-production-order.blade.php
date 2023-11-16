@@ -40,7 +40,7 @@
                                     <th scope="col">Lô</th>
                                 </tr>
                             </thead>
-                            <tbody class="products">
+                            <tbody class="production-order-tbody">
                                 @foreach ($data as $location => $item)
                                     <tr>
                                         <input type="hidden" name="ItemLotCode[]" value="{{$item->ItemLotCode}}">
@@ -129,11 +129,17 @@
                             </tbody>
                         </table>
                     </div>
+                    @if (empty($arrayDept))
+                        <div class="mt-2">
+                            <button class="btn btn-warning" id="add-product-to-additional-production-order">Thêm sản phẩm</button>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
 @endsection
 @push('js')
+    <script src="{{asset('dist/js/get-time-by-shift.js')}}"></script>
     <script src="{{asset('dist/js/production-order.js')}}"></script>
 @endpush
