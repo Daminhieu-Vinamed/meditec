@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\ProductionOrderRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ProductionOrderRequest extends FormRequest
@@ -32,6 +33,8 @@ class ProductionOrderRequest extends FormRequest
             "QuantityFail.*"  => "nullable|numeric",
             "WorkDay" => "array",
             "WorkDay.*"  => 'required|numeric',
+            "DeptCodetmp" => "array",
+            "DeptCodetmp.*"  => new ProductionOrderRule($this->DeptCodetmp),
         ];
     }
     public function messages()
