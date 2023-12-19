@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\ProductionOrderRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ProductionOrderRequest extends FormRequest
@@ -34,7 +33,7 @@ class ProductionOrderRequest extends FormRequest
             "WorkDay" => "array",
             "WorkDay.*"  => 'required|numeric',
             "DeptCodetmp" => "array",
-            "DeptCodetmp.*"  => new ProductionOrderRule($this->DeptCodetmp),
+            "DeptCodetmp.*"  => 'required',
         ];
     }
     public function messages()
@@ -46,6 +45,7 @@ class ProductionOrderRequest extends FormRequest
             'WorkDay.*.numeric' => __('validation.product_order.is_number_time'),
             'WorkDay.*.required' => __('validation.product_order.required'),
             'ProductCode.*.required' => __('validation.product_order.select_code'),
+            'DeptCodetmp.*.required' => __('validation.product_order.required_factory'),
         ];
     }
 }
