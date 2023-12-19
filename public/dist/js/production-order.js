@@ -181,6 +181,7 @@ $(document).ready(function () {
                     errors['WorkDay.'+ i] ? $('.error-workday-' + i).html(errors['WorkDay.'+ i][0]) : $('.error-workday-' + i).html('')
                     errors['ProductCode.'+ i] ? $('.error-product-code-' + i).html(errors['ProductCode.'+ i][0]) : $('.error-product-code-' + i).html('')
                     errors['ItemLotCode.'+ i] ? $('.error-item-lot-code-' + i).html(errors['ItemLotCode.'+ i][0]) : $('.error-item-lot-code-' + i).html('')
+                    errors['DeptCodetmp.'+ i] ? $('.error-dept-code-mp-' + i).html(errors['DeptCodetmp.'+ i][0]) : $('.error-dept-code-mp-' + i).html('')
                 }
                 Toast.fire({
                     icon: 'error',

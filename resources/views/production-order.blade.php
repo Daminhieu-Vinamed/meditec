@@ -65,12 +65,14 @@
                                         @if (!empty($arrayDept))
                                             <td>
                                                 <select name="DeptCodetmp[]">
+                                                    <option value="">Trống</option>
                                                     @foreach ($arrayDept as $itemCode)
                                                         @if ($itemCode->IsGroup == config('constants.number.zero') && $itemCode->IsActive == config('constants.number.one') && $itemCode->Loai_Ps !== config('constants.value.null'))
                                                             <option value="{{ $itemCode->Code }}">{{$itemCode->Code}} - {{$itemCode->Name}}</option>
                                                         @endif
                                                     @endforeach
-                                                </select>
+                                                </select><br>
+                                                <span class="text-danger error-dept-code-mp-{{$location}}"></span>
                                             </td>
                                         @endif
                                         <td>
@@ -90,7 +92,7 @@
                                         </td>
                                         <td>
                                             <select name="MachineCode[]" class="select-MachineCode">
-                                                <option value="">-----</option>
+                                                <option value="">Trống</option>
                                                 @foreach ($arrayMachineCode as $itemCode)
                                                     @if ($itemCode->IsGroup == config('constants.number.zero') && $itemCode->IsActive == config('constants.number.one'))
                                                         <option value="{{ $itemCode->Code }}">{{$itemCode->Code}} - {{$itemCode->Name}}</option>
@@ -100,7 +102,7 @@
                                         </td>
                                         <td>
                                             <select name="StageNo[]" class="select-StageNo">
-                                                <option value="">-----</option>
+                                                <option value="">Trống</option>
                                                 @foreach ($arrayStage as $itemCode)
                                                     @if ($itemCode->IsGroup == config('constants.number.zero') && $itemCode->IsActive == config('constants.number.one'))
                                                         <option value="{{ $itemCode->Code }}">{{$itemCode->Code}} - {{$itemCode->Name}}</option>
@@ -111,7 +113,7 @@
                                         @if ($arrayChildStage->isNotEmpty())
                                             <td>
                                                 <select name="ChildStageNo[]">
-                                                    <option value="">-----</option>
+                                                    <option value="">Trống</option>
                                                     @foreach ($arrayChildStage as $itemCode)
                                                         @if ($itemCode->IsGroup == config('constants.number.zero') && $itemCode->IsActive == config('constants.number.one'))
                                                             <option value="{{ $itemCode->ChildCode }}">{{$itemCode->ChildCode}} - {{$itemCode->ChildName}}</option>
