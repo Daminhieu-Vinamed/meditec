@@ -1,0 +1,7 @@
+{
+    "/dist/js/login.js": "/dist/js/login.js",
+    "/dist/js/production-order.js": "/dist/js/production-order.js",
+    "/dist/js/approval-vote.js": "/dist/js/approval-vote.js",
+    "/dist/js/approval-vote-detail.js": "/dist/js/approval-vote-detail.js",
+    "/dist/js/get-time-by-shift.js": "/dist/js/get-time-by-shift.js"
+}
