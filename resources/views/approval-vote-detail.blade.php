@@ -17,11 +17,11 @@
                         </h6>
                     </div>
                     <div class="row mb-4">
-                        <div class="col-sm-4"></div>
-                        <div class="col-sm-4">
-                            <button type="button" class="btn btn-grey-light update-status-approval-vote-detail" id="{{$parentId}}">LƯU VÀ DUYỆT PHIẾU</button>
+                        <div class="col-sm-5"></div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-grey-light update-status-approval-vote-detail" id="{{$parentId}}">LƯU VÀ DUYỆT</button>
                         </div>
-                        <div class="col-sm-4"></div>
+                        <div class="col-sm-5"></div>
                     </div>
                     <div class="d-flex justify-content-between">
                         <div class="infoInTable"></div>
