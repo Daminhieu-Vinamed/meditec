@@ -6,11 +6,17 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body d-flex justify-content-between">
-                        <h4 class="card-title">CẬP NHẬT THÔNG TIN LỆNH SẢN XUẤT</h4>
-                        <button type="button" class="btn btn-info submit-update-production-order">Cập nhật</button>
-                        <div>
-                            <a href="{{ route('list.additional-production-order', ['id' => session()->get('idScanQr')]) }}" class="btn btn-success">Bổ xung thông tin lệnh sản xuất</a>
-                            <a href="{{ route('list.approval-vote') }}" class="btn btn-primary">Danh sách phiếu cần duyệt</a>
+                        <h6 class="card-title"><a href="{{ route('list.notification') }}">Trang chủ</a><img width="20px" src="{{ asset('dist/images/right.svg') }}" alt="">Cập nhật thông tin lệnh sản xuất</h6>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-sm-4 mb-2">
+                            <a href="{{ route('list.additional-production-order', ['id' => session()->get('idScanQr')]) }}" class="btn btn-grey-light">BỔ XUNG THÔNG TIN LỆNH SẢN XUẤT</a>
+                        </div>
+                        <div class="col-sm-4 mb-2">
+                            <button type="button" class="btn btn-grey-light submit-update-production-order">CẬP NHẬT LỆNH SẢN XUẤT</button>
+                        </div>
+                        <div class="col-sm-4 mb-2">
+                            <a href="{{ route('list.approval-vote') }}" class="btn btn-grey-light">DANH SÁCH PHIẾU CẦN DUYỆT</a>
                         </div>
                     </div>
                     <div class="d-flex justify-content-between">
@@ -133,8 +139,12 @@
                         </table>
                     </div>
                     @if (empty($arrayDept))
-                        <div class="mt-2">
-                            <button class="btn btn-warning" id="add-product-to-production-order">Thêm sản phẩm</button>
+                        <div class="row mt-2">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-4">
+                                <button class="btn btn-grey-light" id="add-product-to-production-order">THÊM SẢN PHẨM</button>
+                            </div>
+                            <div class="col-sm-4"></div>
                         </div>
                     @endif
                 </div>

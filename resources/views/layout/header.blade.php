@@ -1,21 +1,14 @@
 <header class="topbar" data-navbarbg="skin6">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg bg-grey-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
             <img src="{{ asset('dist/images/logo-text.png') }}" class="light-logo" alt="homepage" />
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <img src="{{ asset('dist/images/menu-bar.svg') }}" alt="">
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                {{-- <li class="nav-item">
-                <a class="btn btn-success" href="{{ route('list.additional-production-order', ['id' => session()->get('idScanQr')]) }}">Bổ xung thông tin lệnh sản xuất</a>
-                </li>
-                <li class="nav-item">
-                <a class="btn btn-primary" href="{{ route('list.approval-vote') }}">Danh sách phiếu cần duyệt</a>
-                </li> --}}
-            </ul>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
             <div class="d-flex align-items-center">
                 <span class="full-name-user-header align-sub">{{session()->get('user')->Name}}</span>
                 <div class="flex-shrink-0 dropdown">

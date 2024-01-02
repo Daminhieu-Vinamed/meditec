@@ -23,6 +23,7 @@
     </div>
     <div id="main-wrapper" data-navbarbg="skin6" data-theme="light" data-layout="vertical" data-sidebartype="full" data-boxed-layout="full">
         @include('layout.header')
+        <marquee class="mt-3"><h1 class="text-info">ỨNG DỤNG CÔNG NGHỆ TRONG SẢN XUẤT CÔNG TY TNHH CÔNG NGHỆ MEDITEC</h1></marquee>
         @yield('content')
     </div>
     <script src="{{ asset('dist/js/swalalert2@11.js') }}"></script>

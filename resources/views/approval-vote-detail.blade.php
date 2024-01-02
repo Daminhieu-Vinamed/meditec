@@ -6,9 +6,22 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body d-flex justify-content-between">
-                        <h4 class="card-title">CHI TIẾT PHIẾU CẦN DUYỆT</h4>
-                        <button type="button" class="btn btn-info update-status-approval-vote-detail" id="{{$parentId}}">Lưu và duyệt phiếu</button>
-                        <a href="{{ route('list.approval-vote') }}" class="btn btn-danger">Quay trở lại</a>
+                        <h6 class="card-title">
+                            <a href="{{ route('list.notification') }}">Trang chủ</a>
+                            <img width="20px" src="{{ asset('dist/images/right.svg') }}" alt="">
+                            <a href="{{ route('list.production-order', ['id' => session()->get('idScanQr')]) }}">Cập nhật thông tin lệnh sản xuất</a>
+                            <img width="20px" src="{{ asset('dist/images/right.svg') }}" alt="">
+                            <a href="{{ route('list.approval-vote') }}">Danh sách phiếu cần duyệt</a>
+                            <img width="20px" src="{{ asset('dist/images/right.svg') }}" alt="">
+                            Chi tiết phiếu cần duyệt
+                        </h6>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4">
+                            <button type="button" class="btn btn-grey-light update-status-approval-vote-detail" id="{{$parentId}}">LƯU VÀ DUYỆT PHIẾU</button>
+                        </div>
+                        <div class="col-sm-4"></div>
                     </div>
                     <div class="d-flex justify-content-between">
                         <div class="infoInTable"></div>
