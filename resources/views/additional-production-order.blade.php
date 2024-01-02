@@ -6,9 +6,20 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body d-flex justify-content-between">
-                        <h4 class="card-title">BỔ XUNG THÔNG TIN LỆNH SẢN XUẤT</h4>
-                        <button type="button" class="btn btn-info submit-update-production-order">Bổ xung</button>
-                        <a href="{{ route('list.production-order', ['id' => session()->get('idScanQr')]) }}" class="btn btn-danger">Quay trở lại</a>
+                        <h6 class="card-title">
+                            <a href="{{ route('list.notification') }}">Trang chủ</a>
+                            <img width="20px" src="{{ asset('dist/images/right.svg') }}" alt="">
+                            <a href="{{ route('list.production-order', ['id' => session()->get('idScanQr')]) }}">Cập nhật thông tin lệnh sản xuất</a>
+                            <img width="20px" src="{{ asset('dist/images/right.svg') }}" alt="">
+                            Bổ xung thông tin lệnh sản xuất
+                        </h6>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4">
+                            <button type="button" class="btn btn-grey-light submit-update-production-order">BỔ XUNG THÔNG TIN LỆNH SẢN XUẤT</button>
+                        </div>
+                        <div class="col-sm-4"></div>
                     </div>
                     <div class="d-flex justify-content-between">
                         <div class="infoInTable"></div>
@@ -130,8 +141,12 @@
                         </table>
                     </div>
                     @if (empty($arrayDept))
-                        <div class="mt-2">
-                            <button class="btn btn-warning" id="add-product-to-additional-production-order">Thêm sản phẩm</button>
+                        <div class="row mt-2">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-4">
+                                <button class="btn btn-grey-light" id="add-product-to-additional-production-order">THÊM SẢN PHẨM</button>
+                            </div>
+                            <div class="col-sm-4"></div>
                         </div>
                     @endif
                 </div>

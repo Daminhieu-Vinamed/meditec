@@ -6,8 +6,13 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body d-flex justify-content-between">
-                        <h4 class="card-title">DANH SÁCH PHIẾU CẦN DUYỆT</h4>
-                        <a href="{{ route('list.production-order', ['id' => session()->get('idScanQr')]) }}" class="btn btn-danger">Quay trở lại</a>
+                        <h6 class="card-title">
+                            <a href="{{ route('list.notification') }}">Trang chủ</a>
+                            <img width="20px" src="{{ asset('dist/images/right.svg') }}" alt="">
+                            <a href="{{ route('list.production-order', ['id' => session()->get('idScanQr')]) }}">Cập nhật thông tin lệnh sản xuất</a>
+                            <img width="20px" src="{{ asset('dist/images/right.svg') }}" alt="">
+                            Danh sách phiếu cần duyệt
+                        </h6>
                     </div>
                     <div class="table-responsive text-nowrap">
                         <table class="table table-bordered display nowrap approval-vote-table" style="width:100%">
