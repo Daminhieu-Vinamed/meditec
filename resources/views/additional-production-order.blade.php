@@ -15,11 +15,11 @@
                         </h6>
                     </div>
                     <div class="row mb-4">
-                        <div class="col-sm-4"></div>
-                        <div class="col-sm-4">
-                            <button type="button" class="btn btn-grey-light submit-update-production-order">BỔ XUNG THÔNG TIN LỆNH SẢN XUẤT</button>
+                        <div class="col-sm-5"></div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-grey-light submit-update-production-order">BỔ XUNG</button>
                         </div>
-                        <div class="col-sm-4"></div>
+                        <div class="col-sm-5"></div>
                     </div>
                     <div class="d-flex justify-content-between">
                         <div class="infoInTable"></div>
@@ -142,11 +142,11 @@
                     </div>
                     @if (empty($arrayDept))
                         <div class="row mt-2">
-                            <div class="col-sm-4"></div>
-                            <div class="col-sm-4">
-                                <button class="btn btn-grey-light" id="add-product-to-additional-production-order">THÊM SẢN PHẨM</button>
+                            <div class="col-sm-5"></div>
+                            <div class="col-sm-2">
+                                <button class="btn btn-grey-light" id="add-product-to-additional-production-order">THÊM MỚI</button>
                             </div>
-                            <div class="col-sm-4"></div>
+                            <div class="col-sm-5"></div>
                         </div>
                     @endif
                 </div>
