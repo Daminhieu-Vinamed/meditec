@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg bg-grey-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-            <img src="{{ asset('dist/images/logo-text.png') }}" class="light-logo" alt="homepage" />
+            <img src="{{ asset('dist/images/logo-header.png') }}" class="light-logo" alt="homepage" />
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <img src="{{ asset('dist/images/menu-bar.svg') }}" alt="">
