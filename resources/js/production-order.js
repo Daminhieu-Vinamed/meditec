@@ -24,7 +24,7 @@ $(document).ready(function () {
     function addRow(locationId, idButtonAddProduct) {
         arrayColumn = [
             `<select name="ProductCode[]" id="ProductCode-`+ locationId +`">
-                <option value="">-----</option>`
+                <option value="">Trống</option>`
                 +JSON.parse(sessionStorage.getItem('product-code')).map(item => ("<option value="+ item.ProductCode +">"+ item.ProductCode + " - " + item.Name +"</option>"))+
             `</select><br>
             <span class="text-danger error-product-code-` + locationId + `"></span>`,
