@@ -7,6 +7,7 @@
 	<meta name="csrf-token" content="{{ csrf_token() }}" />
 	{{ Html::favicon('favicon.ico') }}
 	<link rel="stylesheet" type="text/css" href="{{asset('dist/css/bootstrap/css/bootstrap.min.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('dist/font/font-awesome/css/font-awesome.min.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('dist/font/icon-font.min.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('dist/css/login.css')}}">
 </head>
@@ -16,16 +17,16 @@
 			<div class="wrap-login100 p-t-30 p-b-50">
 				<span class="login100-form-title p-b-20"><img src="{{ asset('dist/images/logo-login.png') }}" alt="logo-login"></span>
 				<div class="login100-form validate-form p-b-33 p-t-5">
-					<div class="wrap-input100 validate-input" data-validate = "Enter username">
+					<div class="wrap-input100 validate-input" data-validate = "Mã không được để trống">
 						<input class="input100" type="text" name="Code" placeholder="Mã">
 						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
 					</div>
-					<div class="wrap-input100 validate-input" data-validate="Enter password">
+					<div class="wrap-input100 validate-input" data-validate="Mật khẩu không được để trống">
 						<input class="input100" type="password" name="password" placeholder="Mật khẩu">
 						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
 					</div>
 					@if (Session::has('error_incorrect'))
-						<div class="validate-input">
+						<div class="validate-input mt-1">
 							<span class="focus-input100 text-center text-danger">{{ Session::get('error_incorrect') }}</span>
 						</div>
 					@endif

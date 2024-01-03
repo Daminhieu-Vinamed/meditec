@@ -26,7 +26,7 @@ class CheckLogin
             if (isset($request->id) && $request->id !== config('constants.value.null')) {
                 session(['idScanQr' => $request->id]);
             }
-            return redirect()->route('form.getLogin')->with('error_incorrect', __('messages.auth.failure'));
+            return redirect()->route('form.getLogin');
         }
     }
 }
