@@ -2,7 +2,6 @@
 return [
     'auth' => [
         'not_enough_rights' => 'Tài khoản này không đủ quyền !',
-        'failure' => 'Đăng nhập thất bại !',
         'wrong' => 'Sai tài khoản hoặc mật khẩu !'
     ],
     'approval_vote' => [
