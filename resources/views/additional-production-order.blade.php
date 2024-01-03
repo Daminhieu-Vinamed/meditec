@@ -100,7 +100,7 @@
                                         </td>
                                         <td>
                                             <select name="MachineCode[]" class="select-MachineCode">
-                                                <option value="">-----</option>
+                                                <option value="">Trống</option>
                                                 @foreach ($arrayMachineCode as $itemCode)
                                                     @if ($itemCode->IsGroup == config('constants.number.zero') && $itemCode->IsActive == config('constants.number.one'))
                                                         <option value="{{ $itemCode->Code }}">{{$itemCode->Code}} - {{$itemCode->Name}}</option>
@@ -110,7 +110,7 @@
                                         </td>
                                         <td>
                                             <select name="StageNo[]" class="select-StageNo">
-                                                <option value="">-----</option>
+                                                <option value="">Trống</option>
                                                 @foreach ($arrayStage as $itemCode)
                                                     @if ($itemCode->IsGroup == config('constants.number.zero') && $itemCode->IsActive == config('constants.number.one'))
                                                         <option value="{{ $itemCode->Code }}">{{$itemCode->Code}} - {{$itemCode->Name}}</option>
@@ -121,7 +121,7 @@
                                         @if ($arrayChildStage->isNotEmpty())
                                             <td>
                                                 <select name="ChildStageNo[]">
-                                                    <option value="">-----</option>
+                                                    <option value="">Trống</option>
                                                     @foreach ($arrayChildStage as $itemCode)
                                                         @if ($itemCode->IsGroup == config('constants.number.zero') && $itemCode->IsActive == config('constants.number.one'))
                                                             <option value="{{ $itemCode->ChildCode }}">{{$itemCode->ChildCode}} - {{$itemCode->ChildName}}</option>
