@@ -1,5 +1,5 @@
 <header class="topbar" data-navbarbg="skin6">
-    <nav class="navbar navbar-expand-lg bg-grey-light">
+    <nav class="navbar navbar-expand-lg bg-grey-light fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
             <img src="{{ asset('dist/images/logo-header.png') }}" class="light-logo" alt="homepage" />
