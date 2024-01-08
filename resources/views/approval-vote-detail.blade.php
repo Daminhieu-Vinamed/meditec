@@ -49,8 +49,8 @@
                             </thead>
                             <tbody class="products">
                                 @foreach ($detailApprovalVote as $location => $item)
-                                <input type="hidden" name="Id[]" value="{{$item->Id}}">
                                     <tr>
+                                        <input type="hidden" name="Id[]" value="{{$item->Id}}">
                                         <td>
                                             <select name="MachineCode[]">
                                                 <option value="">Trống</option>
