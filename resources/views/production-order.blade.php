@@ -141,12 +141,14 @@
                         </table>
                     </div>
                     @if (empty($arrayDept))
-                        <div class="row mt-2">
-                            <div class="col-sm-5"></div>
-                            <div class="col-sm-2">
+                        <div class="row">
+                            <div class="col-sm-2 mt-2"></div>
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-2 mt-2">
                                 <button class="btn btn-grey-light" id="add-product-to-production-order">THÊM MỚI</button>
                             </div>
-                            <div class="col-sm-5"></div>
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-2 mt-2"></div>
                         </div>
                     @endif
                 </div>

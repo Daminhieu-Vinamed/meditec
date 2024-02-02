@@ -28,7 +28,7 @@ $(document).ready(function () {
                 +JSON.parse(sessionStorage.getItem('product-code')).map(item => ("<option value="+ item.ProductCode +">"+ item.ProductCode + " - " + item.Name +"</option>"))+
             `</select><br>
             <span class="text-danger error-product-code-` + locationId + `"></span>`,
-            '',
+            `<input type="checkbox" name="arrayCheckbox[]" class="checkbox-delete-row"/>`,
             `<input class="form-control" name="QuantitySX[]" placeholder="Nhập số lượng"/>
             <span class="text-danger error-quantity-` + locationId + `"></span>`,
             `<input class="form-control" name="QuantityFail[]" placeholder="Nhập phế phẩm"/>
@@ -40,20 +40,13 @@ $(document).ready(function () {
             `<select name="StageNo[]" id="StageNo-`+ locationId +`"></select>`,
             `<input class="form-control" name="ItemLotCode[]" type="text" placeholder="Nhập lô">
             <span class="text-danger error-item-lot-code-` + locationId + `"></span>`,
-            `<button class="btn btn-danger delete-new-product">Xóa sản phẩm</button>`,
-            '',
-            '',
-            '',
+            '','','','',
         ]
         if (idButtonAddProduct === 'add-product-to-additional-production-order') {
             var columnTime = `<input class="form-control" name="DocDate[]" type="date">`;
             arrayColumn.unshift(columnTime);
         } 
         productionOrderTable.row.add(arrayColumn).draw(false);
-
-        $('.delete-new-product').on('click', function() {
-            productionOrderTable.row( $(this).parents('tr') ).remove().draw();
-        })
 
         //Select2
         $('#ProductCode-' + locationId + ', #MachineCode-' + locationId + ', #StageNo-' + locationId + '').select2();
@@ -63,7 +56,11 @@ $(document).ready(function () {
         $('#ProductCode-' + locationId + '').on('change', function() {
             const MyJSON = JSON.parse(sessionStorage.getItem('product-code'));
             var objectProduct = MyJSON.find(element => element.ProductCode  ===  $(this).val());
-            $(this).parent().next('td').text(objectProduct.Name);
+            objectProduct === undefined 
+            ? 
+            $(this).parent().next('td').contents().filter(function(){ return this.tagName != 'INPUT'; }).remove() 
+            : 
+            $(this).parent().next('td').append(objectProduct.Name);
         })
 
         //Chant Code
@@ -94,9 +91,36 @@ $(document).ready(function () {
         $('#StageNo-' + locationId + '').val($('#StageNo-' + locationId + ' option:eq(0)').val()).trigger('change');
     }
 
+    $(document).on('click', '.delete-new-product', function () {
+        var arrayCheckbox = $("input[name='arrayCheckbox[]']").map(
+                function(){
+                    if ($(this).prop('checked')) {
+                        return $(this);
+                    }
+                }
+            ).get();
+        if ($.isArray(arrayCheckbox) && arrayCheckbox.length > 0 ) {
+            arrayCheckbox.forEach(element => {
+                productionOrderTable.row(element.parents('tr') ).remove().draw();
+            })
+            Toast.fire({
+                icon: 'success',
+                title: 'Xóa sản phẩm thành công !'
+            })
+        } else {
+            Toast.fire({
+                icon: 'error',
+                title: 'Chưa chọn sản phẩm để xóa !'
+            })
+        }
+    }); 
+    
     $(document).on('click', '#add-product-to-production-order, #add-product-to-additional-production-order', function () {
         let locationId = $('.production-order-tbody tr').length;
-        let idButtonAddProduct = $(this).attr('id');
+        let idButtonAddProduct = $(this).attr('id'); 
+        if (!$('.delete-new-product').is('*')) {
+            $(this).parent().parent().children().first().append('<button class="btn btn-grey-light delete-new-product">XÓA</button>')
+        }
         if (sessionStorage.getItem('product-code') === null) {
             $.ajax({
                 url: "/get-product-code",

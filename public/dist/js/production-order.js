@@ -28,15 +28,12 @@ $(document).ready(function () {
   function addRow(locationId, idButtonAddProduct) {
     arrayColumn = ["<select name=\"ProductCode[]\" id=\"ProductCode-" + locationId + "\">\n                <option value=\"\">Tr\u1ED1ng</option>" + JSON.parse(sessionStorage.getItem('product-code')).map(function (item) {
       return "<option value=" + item.ProductCode + ">" + item.ProductCode + " - " + item.Name + "</option>";
-    }) + "</select><br>\n            <span class=\"text-danger error-product-code-" + locationId + "\"></span>", '', "<input class=\"form-control\" name=\"QuantitySX[]\" placeholder=\"Nh\u1EADp s\u1ED1 l\u01B0\u1EE3ng\"/>\n            <span class=\"text-danger error-quantity-" + locationId + "\"></span>", "<input class=\"form-control\" name=\"QuantityFail[]\" placeholder=\"Nh\u1EADp ph\u1EBF ph\u1EA9m\"/>\n            <span class=\"text-danger error-quantity-fail-" + locationId + "\"></span>", "<select name=\"ChantCode[]\" id=\"" + locationId + "\" class=\"select-chantCode select2-chantCode-" + locationId + "\"></select>", "<input class=\"form-control\" id=\"WorkDay-" + locationId + "\" name=\"WorkDay[]\" type=\"text\" placeholder=\"Nh\u1EADp s\u1ED1 gi\u1EDD\">\n            <span class=\"text-danger error-workday-" + locationId + "\"></span>", "<select name=\"MachineCode[]\" id=\"MachineCode-" + locationId + "\"></select>", "<select name=\"StageNo[]\" id=\"StageNo-" + locationId + "\"></select>", "<input class=\"form-control\" name=\"ItemLotCode[]\" type=\"text\" placeholder=\"Nh\u1EADp l\xF4\">\n            <span class=\"text-danger error-item-lot-code-" + locationId + "\"></span>", "<button class=\"btn btn-danger delete-new-product\">X\xF3a s\u1EA3n ph\u1EA9m</button>", '', '', ''];
+    }) + "</select><br>\n            <span class=\"text-danger error-product-code-" + locationId + "\"></span>", "<input type=\"checkbox\" name=\"arrayCheckbox[]\" class=\"checkbox-delete-row\"/>", "<input class=\"form-control\" name=\"QuantitySX[]\" placeholder=\"Nh\u1EADp s\u1ED1 l\u01B0\u1EE3ng\"/>\n            <span class=\"text-danger error-quantity-" + locationId + "\"></span>", "<input class=\"form-control\" name=\"QuantityFail[]\" placeholder=\"Nh\u1EADp ph\u1EBF ph\u1EA9m\"/>\n            <span class=\"text-danger error-quantity-fail-" + locationId + "\"></span>", "<select name=\"ChantCode[]\" id=\"" + locationId + "\" class=\"select-chantCode select2-chantCode-" + locationId + "\"></select>", "<input class=\"form-control\" id=\"WorkDay-" + locationId + "\" name=\"WorkDay[]\" type=\"text\" placeholder=\"Nh\u1EADp s\u1ED1 gi\u1EDD\">\n            <span class=\"text-danger error-workday-" + locationId + "\"></span>", "<select name=\"MachineCode[]\" id=\"MachineCode-" + locationId + "\"></select>", "<select name=\"StageNo[]\" id=\"StageNo-" + locationId + "\"></select>", "<input class=\"form-control\" name=\"ItemLotCode[]\" type=\"text\" placeholder=\"Nh\u1EADp l\xF4\">\n            <span class=\"text-danger error-item-lot-code-" + locationId + "\"></span>", '', '', '', ''];
     if (idButtonAddProduct === 'add-product-to-additional-production-order') {
       var columnTime = "<input class=\"form-control\" name=\"DocDate[]\" type=\"date\">";
       arrayColumn.unshift(columnTime);
     }
     productionOrderTable.row.add(arrayColumn).draw(false);
-    $('.delete-new-product').on('click', function () {
-      productionOrderTable.row($(this).parents('tr')).remove().draw();
-    });
 
     //Select2
     $('#ProductCode-' + locationId + ', #MachineCode-' + locationId + ', #StageNo-' + locationId + '').select2();
@@ -51,7 +48,9 @@ $(document).ready(function () {
       var objectProduct = MyJSON.find(function (element) {
         return element.ProductCode === $(_this).val();
       });
-      $(this).parent().next('td').text(objectProduct.Name);
+      objectProduct === undefined ? $(this).parent().next('td').contents().filter(function () {
+        return this.tagName != 'INPUT';
+      }).remove() : $(this).parent().next('td').append(objectProduct.Name);
     });
 
     //Chant Code
@@ -76,9 +75,33 @@ $(document).ready(function () {
     });
     $('#StageNo-' + locationId + '').val($('#StageNo-' + locationId + ' option:eq(0)').val()).trigger('change');
   }
+  $(document).on('click', '.delete-new-product', function () {
+    var arrayCheckbox = $("input[name='arrayCheckbox[]']").map(function () {
+      if ($(this).prop('checked')) {
+        return $(this);
+      }
+    }).get();
+    if ($.isArray(arrayCheckbox) && arrayCheckbox.length > 0) {
+      arrayCheckbox.forEach(function (element) {
+        productionOrderTable.row(element.parents('tr')).remove().draw();
+      });
+      Toast.fire({
+        icon: 'success',
+        title: 'Xóa sản phẩm thành công !'
+      });
+    } else {
+      Toast.fire({
+        icon: 'error',
+        title: 'Chưa chọn sản phẩm để xóa !'
+      });
+    }
+  });
   $(document).on('click', '#add-product-to-production-order, #add-product-to-additional-production-order', function () {
     var locationId = $('.production-order-tbody tr').length;
     var idButtonAddProduct = $(this).attr('id');
+    if (!$('.delete-new-product').is('*')) {
+      $(this).parent().parent().children().first().append('<button class="btn btn-grey-light delete-new-product">XÓA</button>');
+    }
     if (sessionStorage.getItem('product-code') === null) {
       $.ajax({
         url: "/get-product-code",
