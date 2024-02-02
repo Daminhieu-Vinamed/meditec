@@ -35,7 +35,7 @@ $(document).ready(function () {
   }
   $("select[name='MachineCode[]']").change(function () {
     var machineName = $(this).children('option:selected').attr('machine-name');
-    $(this).parent().parent().find("td:eq(1)").text(machineName);
+    $(this).parent().parent().find("td:eq(1)").text(machineName === undefined ? '' : machineName);
   });
   $(document).on('click', '.update-status-approval-vote-detail', function () {
     var parentId = $(this).attr('id');
