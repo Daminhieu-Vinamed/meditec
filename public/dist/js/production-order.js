@@ -22,9 +22,11 @@ $(document).ready(function () {
   });
   $('.dataTables_info').appendTo('.infoInTable');
   $('.dataTables_filter').appendTo('.searchInTable');
-  $('.select-chantCode').change(function () {
-    getTime($(this).val(), $(this).attr('id'), 'WorkDay');
-  });
+
+  // $('.select-chantCode').change(function(){
+  //     getTime($(this).val(), $(this).attr('id'), 'WorkDay');
+  // });
+
   function addRow(locationId, idButtonAddProduct) {
     arrayColumn = ["<select name=\"ProductCode[]\" id=\"ProductCode-" + locationId + "\">\n                <option value=\"\">Tr\u1ED1ng</option>" + JSON.parse(sessionStorage.getItem('product-code')).map(function (item) {
       return "<option value=" + item.ProductCode + ">" + item.ProductCode + " - " + item.Name + "</option>";
@@ -58,17 +60,19 @@ $(document).ready(function () {
       $('.select2-chantCode-' + locationId + '').append('<option value="' + $(this).val() + '">' + $(this).text() + '</option>');
     });
     $('.select2-chantCode-' + locationId + '').val($('.select2-chantCode-' + locationId + ' option:eq(0)').val()).trigger('change');
-    getTime($('.select2-chantCode-' + locationId + ' option:eq(0)').val(), locationId, 'WorkDay');
-    $('.select2-chantCode-' + locationId + '').change(function () {
-      getTime($(this).val(), $(this).attr('id'), 'WorkDay');
-    });
+
+    // getTime($('.select2-chantCode-' + locationId + ' option:eq(0)').val(), locationId, 'WorkDay');
+
+    // $('.select2-chantCode-' + locationId + '').change(function(){
+    //     getTime($(this).val(), $(this).attr('id'), 'WorkDay');
+    // });
 
     //Machine Code
     $(".production-order-tbody > tr:first > td > .select-MachineCode option").each(function () {
       $('#MachineCode-' + locationId + '').append('<option value="' + $(this).val() + '">' + $(this).text() + '</option>');
     });
     $('#MachineCode-' + locationId + '').val($('#MachineCode-' + locationId + ' option:eq(0)').val()).trigger('change');
-
+    console.log(locationId);
     //Stage No
     $(".production-order-tbody > tr:first > td > .select-StageNo option").each(function () {
       $('#StageNo-' + locationId + '').append('<option value="' + $(this).val() + '">' + $(this).text() + '</option>');

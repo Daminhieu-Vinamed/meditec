@@ -94,7 +94,9 @@
                                         </td>
                                         <td>
                                             <div class="form-group">
-                                                <input class="form-control" value="{{$arrayChantCode[config('constants.number.zero')]->WorkDay}}" id="WorkDay-{{$item->Id}}" name="WorkDay[]" type="text" placeholder="Nhập số giờ">
+                                                <input class="form-control" 
+                                                {{-- value="{{$arrayChantCode[config('constants.number.zero')]->WorkDay}}"  --}}
+                                                id="WorkDay-{{$item->Id}}" name="WorkDay[]" type="text" placeholder="Nhập số giờ">
                                                 <span class="text-danger error-workday-{{$location}}"></span>
                                             </div>
                                         </td>
@@ -157,6 +159,6 @@
     </div>
 @endsection
 @push('js')
-    <script src="{{asset('dist/js/get-time-by-shift.js')}}"></script>
+    {{-- <script src="{{asset('dist/js/get-time-by-shift.js')}}"></script> --}}
     <script src="{{asset('dist/js/production-order.js')}}"></script>
 @endpush
