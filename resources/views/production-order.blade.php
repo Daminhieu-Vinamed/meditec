@@ -97,7 +97,7 @@
                                                 <input class="form-control" 
                                                 {{-- value="{{$arrayChantCode[config('constants.number.zero')]->WorkDay}}"  --}}
                                                 id="WorkDay-{{$item->Id}}" name="WorkDay[]" type="text" placeholder="Nhập số giờ">
-                                                <span class="text-danger error-workday-{{$location}}"></span>
+                                                {{-- <span class="text-danger error-workday-{{$location}}"></span> --}}
                                             </div>
                                         </td>
                                         <td>
