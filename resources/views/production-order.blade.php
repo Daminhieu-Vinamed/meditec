@@ -69,7 +69,7 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <select name="DeptCodetmp[]">
+                                            <select name="DeptCodetmp[]" class="select-productCode">
                                                 <option value="">Trống</option>
                                                 @foreach ($arrayDept as $itemCode)
                                                     @if ($itemCode->IsGroup == config('constants.number.zero') && $itemCode->IsActive == config('constants.number.one') && $itemCode->Loai_Ps !== config('constants.value.null'))
@@ -138,17 +138,15 @@
                             </tbody>
                         </table>
                     </div>
-                    @if (empty($arrayDept))
-                        <div class="row">
-                            <div class="col-sm-2 mt-2"></div>
-                            <div class="col-sm-3"></div>
-                            <div class="col-sm-2 mt-2">
-                                <button class="btn btn-grey-light" id="add-product-to-production-order">THÊM MỚI</button>
-                            </div>
-                            <div class="col-sm-3"></div>
-                            <div class="col-sm-2 mt-2"></div>
+                    <div class="row">
+                        <div class="col-sm-2 mt-2"></div>
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-2 mt-2">
+                            <button class="btn btn-grey-light" id="add-product-to-production-order">THÊM MỚI</button>
                         </div>
-                    @endif
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-2 mt-2"></div>
+                    </div>
                 </div>
             </div>
         </div>
