@@ -33,6 +33,7 @@ $(document).ready(function () {
             <span class="text-danger error-quantity-` + locationId + `"></span>`,
             `<input class="form-control" name="QuantityFail[]" placeholder="Nhập phế phẩm"/>
             <span class="text-danger error-quantity-fail-` + locationId + `"></span>`,
+            `<select name="DeptCodetmp[]" id="DeptCodetmp-`+ locationId +`"></select>`,
             `<select name="ChantCode[]" id="`+ locationId +`" class="select-chantCode select2-chantCode-` + locationId + `"></select>`,
             `<input class="form-control" id="WorkDay-` + locationId + `" name="WorkDay[]" type="text" placeholder="Nhập số giờ">
             <span class="text-danger error-workday-` + locationId + `"></span>`,
@@ -49,8 +50,7 @@ $(document).ready(function () {
         productionOrderTable.row.add(arrayColumn).draw(false);
 
         //Select2
-        $('#ProductCode-' + locationId + ', #MachineCode-' + locationId + ', #StageNo-' + locationId + '').select2();
-        $('.select2-chantCode-' + locationId + '').select2({ minimumResultsForSearch: -1 });
+        $('#ProductCode-' + locationId).select2();
         
         //Product Code
         $('#ProductCode-' + locationId + '').on('change', function() {
@@ -82,7 +82,14 @@ $(document).ready(function () {
         });
 
         $('#MachineCode-' + locationId + '').val($('#MachineCode-' + locationId + ' option:eq(0)').val()).trigger('change');
-        console.log(locationId);
+
+        //Product Code
+        $(".production-order-tbody > tr:first > td > .select-productCode option").each(function(){
+            $('#DeptCodetmp-' + locationId + '').append('<option value="'+ $(this).val() +'">' + $(this).text() + '</option>');
+        });
+
+        $('#DeptCodetmp-' + locationId + '').val($('#DeptCodetmp-' + locationId + ' option:eq(0)').val()).trigger('change');
+
         //Stage No
         $(".production-order-tbody > tr:first > td > .select-StageNo option").each(function(){
             $('#StageNo-' + locationId + '').append('<option value="'+ $(this).val() +'">' + $(this).text() + '</option>');
@@ -158,7 +165,7 @@ $(document).ready(function () {
         var DocDate = $("input[name='DocDate[]']")
               .map(function(){return $(this).val();}).get();
         $.ajax({
-            url: "/update-production-order" ,
+            url: "/update-production-order",
             type:'POST',
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
