@@ -32,8 +32,8 @@ class ProductionOrderRequest extends FormRequest
             "QuantityFail.*"  => "nullable|numeric",
             // "WorkDay" => "array",
             // "WorkDay.*"  => 'required|numeric',
-            "DeptCodetmp" => "array",
-            "DeptCodetmp.*"  => 'required',
+            // "DeptCodetmp" => "array",
+            // "DeptCodetmp.*"  => 'required',
         ];
     }
     public function messages()
