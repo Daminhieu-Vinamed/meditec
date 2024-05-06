@@ -44,6 +44,7 @@ class ProductionOrderService extends ProductionOrderRepository
                 $quantityFail = $request->QuantityFail[$item];
                 $machineCode = $request->MachineCode[$item] === config('constants.value.null') ? config('constants.value.string-empty') : $request->MachineCode[$item];
                 $itemLotCode = $request->ItemLotCode[$item];
+                $DeptCodetmp = $request->DeptCodetmp[$item];
                 settype($Id, "integer");
                 DB::update(
                     'EXEC usp_UpdateB20ProductionorderQuan_JobQuantityTT ?, ?, ?, ?, ?, ?, ?',
@@ -69,7 +70,7 @@ class ProductionOrderService extends ProductionOrderRepository
                         $workDay,
                         $quantityFail,
                         $machineCode,
-                        isset($request->DeptCodetmp[$item]) ? $request->DeptCodetmp[$item] : config('constants.value.null'),
+                        $DeptCodetmp,
                         isset($request->DocDate[$item]) ? $request->DocDate[$item] : config('constants.value.null')
                     ]
                 );
