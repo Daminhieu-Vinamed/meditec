@@ -33,9 +33,7 @@
                                     <th scope="col">Tên sản phẩm</th>
                                     <th scope="col">Số lượng sản xuất hôm nay</th>
                                     <th scope="col">Phế phẩm</th>
-                                    @if (!empty($arrayDept))
-                                        <th scope="col">Phân xưởng</th>
-                                    @endif
+                                    <th scope="col">Phân xưởng</th>
                                     <th scope="col">Ca sản xuất</th>
                                     <th scope="col">Số giờ</th>
                                     <th scope="col">Mã máy</th>
@@ -70,19 +68,17 @@
                                                 <span class="text-danger error-quantity-fail-{{$location}}"></span>
                                             </div>
                                         </td>
-                                        @if (!empty($arrayDept))
-                                            <td>
-                                                <select name="DeptCodetmp[]">
-                                                    <option value="">Trống</option>
-                                                    @foreach ($arrayDept as $itemCode)
-                                                        @if ($itemCode->IsGroup == config('constants.number.zero') && $itemCode->IsActive == config('constants.number.one') && $itemCode->Loai_Ps !== config('constants.value.null'))
-                                                            <option value="{{ $itemCode->Code }}">{{$itemCode->Code}} - {{$itemCode->Name}}</option>
-                                                        @endif
-                                                    @endforeach
-                                                </select><br>
-                                                <span class="text-danger error-dept-code-mp-{{$location}}"></span>
-                                            </td>
-                                        @endif
+                                        <td>
+                                            <select name="DeptCodetmp[]">
+                                                <option value="">Trống</option>
+                                                @foreach ($arrayDept as $itemCode)
+                                                    @if ($itemCode->IsGroup == config('constants.number.zero') && $itemCode->IsActive == config('constants.number.one') && $itemCode->Loai_Ps !== config('constants.value.null'))
+                                                        <option value="{{ $itemCode->Code }}">{{$itemCode->Code}} - {{$itemCode->Name}}</option>
+                                                    @endif
+                                                @endforeach
+                                            </select><br>
+                                            <span class="text-danger error-dept-code-mp-{{$location}}"></span>
+                                        </td>
                                         <td>
                                             <select name="ChantCode[]" class="select-chantCode" id="{{$item->Id}}">
                                                 @foreach ($arrayChantCode as $itemCode)
