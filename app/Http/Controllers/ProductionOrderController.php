@@ -17,14 +17,22 @@ class ProductionOrderController extends Controller
 
     public function getProductionOrder(Request $request)
     {
-        $data = $this->productionOrderService->getProductionOrder($request);
-        return view('production-order', $data);
+        try {
+            $data = $this->productionOrderService->getProductionOrder($request);
+            return view('production-order', $data);
+        } catch (\Exception $e) {
+            return view('notification');
+        }
     }
 
     public function getAdditionalProductionOrder(Request $request)
     {
-        $data = $this->productionOrderService->getProductionOrder($request);
-        return view('additional-production-order', $data);
+        try {
+            $data = $this->productionOrderService->getProductionOrder($request);
+            return view('additional-production-order', $data);
+        } catch (\Exception $e) {
+            return view('notification');
+        }
     }
 
     public function getTime()
