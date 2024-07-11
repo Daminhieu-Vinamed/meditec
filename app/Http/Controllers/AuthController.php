@@ -28,9 +28,4 @@ class AuthController extends Controller
     {
         return $this->authService->logout($request);
     }
-    
-    public function back(Request $request)
-    {
-        return $this->authService->deleteSessionUser($request);
-    }
 }

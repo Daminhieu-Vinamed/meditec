@@ -13,18 +13,16 @@ class ProductionOrderService extends ProductionOrderRepository
         $this->productionOrderRepository = $productionOrderRepository;
     }
 
-    public function getProductionOrder($request)
+    public function getProductionOrder1($request)
     {
-        if (session()->get('idScanQr') !== $request->id) {
-            session(['idScanQr' => $request->id]);
-        }
-        $dataList = $this->productionOrderRepository->getProductionOrder($request->id);
+        $dataList = $this->productionOrderRepository->getProductionOrder1($request->id);
         return $dataList;
     }
-
-    public function getTime()
+    
+    public function getProductionOrder2($request)
     {
-        return $this->productionOrderRepository->getTime();
+        $dataList = $this->productionOrderRepository->getProductionOrder2($request->id);
+        return $dataList;
     }
 
     public function getProductCode()
@@ -32,7 +30,7 @@ class ProductionOrderService extends ProductionOrderRepository
         return $this->productionOrderRepository->getProductCode();
     }
 
-    public function updateProductionOrder($request)
+    public function updateProductionOrder1($request)
     {
         DB::beginTransaction();
         try {
@@ -62,6 +60,64 @@ class ProductionOrderService extends ProductionOrderRepository
                     'EXEC usp_Create_B30JobRecord ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?',
                     [
                         session()->get('user')->Code,
+                        $quantitySx,
+                        $itemLotCode,
+                        $productCode,
+                        $Id,
+                        $chantCode,
+                        $workDay,
+                        $quantityFail,
+                        $machineCode,
+                        $DeptCodetmp,
+                        isset($request->DocDate[$item]) ? $request->DocDate[$item] : config('constants.value.null')
+                    ]
+                );
+            }
+            DB::commit();
+            return response()->json(['error_correct' => $request->DocDate === config('constants.value.null') ? __('messages.product_order.success') : __('messages.product_order.additional')]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            $message = $e->getMessage();
+            $contains = str_contains($message, __('messages.product_order.wrong_time'));
+            if ($contains) {
+                return response()->json(['error_incorrect' => __('messages.product_order.too_regulated_time')]);
+            } else {
+                return response()->json(['error_incorrect' => $message]);
+            }
+        }
+    }
+    
+    public function updateProductionOrder2($request)
+    {
+        DB::beginTransaction();
+        try {
+            foreach ($request->ProductCode as $item => $productCode) {
+                $employee = $request->Employee[$item];
+                $quantitySx = $request->QuantitySX[$item];
+                $chantCode = $request->ChantCode[$item];
+                $workDay = $request->WorkDay[$item];
+                $Id = isset($request->Id[$item]) ? $request->Id[$item] : config('constants.value.string-empty');
+                $quantityFail = $request->QuantityFail[$item];
+                $machineCode = $request->MachineCode[$item] === config('constants.value.null') ? config('constants.value.string-empty') : $request->MachineCode[$item];
+                $itemLotCode = $request->ItemLotCode[$item];
+                $DeptCodetmp = $request->DeptCodetmp[$item];
+                settype($Id, "integer");
+                DB::update(
+                    'EXEC usp_UpdateB20ProductionorderQuan_JobQuantityTT ?, ?, ?, ?, ?, ?, ?',
+                    [
+                        $Id,
+                        $quantitySx,
+                        $itemLotCode,
+                        $productCode,
+                        $workDay,
+                        $chantCode,
+                        $employee
+                    ]
+                );
+                DB::insert(
+                    'EXEC usp_Create_B30JobRecord ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?',
+                    [
+                        $employee,
                         $quantitySx,
                         $itemLotCode,
                         $productCode,

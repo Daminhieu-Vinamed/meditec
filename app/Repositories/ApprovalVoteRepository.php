@@ -22,7 +22,7 @@ class ApprovalVoteRepository extends AbstractRepository
             return '<a href="'.route('list.detail-approval-vote', ['id' => $approvalVote['Id']]).'">'.$approvalVote['DocNo'].'</a>';
         })
         ->addColumn('action', function($approvalVote){
-           return '<button type="button" class="btn btn-grey-light update-status-approval-vote" id="'. $approvalVote['Id'].'">DUYỆT PHIẾU</button>';
+           return '<button type="button" class="btn btn-info update-status-approval-vote" id="'. $approvalVote['Id'].'">DUYỆT PHIẾU</button>';
         })
         ->rawColumns(['DocNo', 'action'])
         ->make(true);
