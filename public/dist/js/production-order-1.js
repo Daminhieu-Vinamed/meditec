@@ -1,8 +1,8 @@
 /******/ (() => { // webpackBootstrap
 var __webpack_exports__ = {};
-/*!******************************************!*\
-  !*** ./resources/js/production-order.js ***!
-  \******************************************/
+/*!********************************************!*\
+  !*** ./resources/js/production-order-1.js ***!
+  \********************************************/
 $(document).ready(function () {
   var productionOrderTable = $('.production-order-table').DataTable({
     rowReorder: true,
@@ -22,11 +22,6 @@ $(document).ready(function () {
   });
   $('.dataTables_info').appendTo('.infoInTable');
   $('.dataTables_filter').appendTo('.searchInTable');
-
-  // $('.select-chantCode').change(function(){
-  //     getTime($(this).val(), $(this).attr('id'), 'WorkDay');
-  // });
-
   function addRow(locationId, idButtonAddProduct) {
     arrayColumn = ["<select name=\"ProductCode[]\" id=\"ProductCode-" + locationId + "\">\n                <option value=\"\">Tr\u1ED1ng</option>" + JSON.parse(sessionStorage.getItem('product-code')).map(function (item) {
       return "<option value=" + item.ProductCode + ">" + item.ProductCode + " - " + item.Name + "</option>";
@@ -57,12 +52,6 @@ $(document).ready(function () {
       $('.select2-chantCode-' + locationId + '').append('<option value="' + $(this).val() + '">' + $(this).text() + '</option>');
     });
     $('.select2-chantCode-' + locationId + '').val($('.select2-chantCode-' + locationId + ' option:eq(0)').val()).trigger('change');
-
-    // getTime($('.select2-chantCode-' + locationId + ' option:eq(0)').val(), locationId, 'WorkDay');
-
-    // $('.select2-chantCode-' + locationId + '').change(function(){
-    //     getTime($(this).val(), $(this).attr('id'), 'WorkDay');
-    // });
 
     //Machine Code
     $(".production-order-tbody > tr:first > td > .select-MachineCode option").each(function () {
@@ -107,7 +96,7 @@ $(document).ready(function () {
     var locationId = $('.production-order-tbody tr').length;
     var idButtonAddProduct = $(this).attr('id');
     if (!$('.delete-new-product').is('*')) {
-      $(this).parent().parent().children().first().append('<button class="btn btn-grey-light delete-new-product">XÓA</button>');
+      $(this).parent().append('<button class="btn btn-danger delete-new-product">XÓA</button>');
     }
     if (sessionStorage.getItem('product-code') === null) {
       $.ajax({
@@ -155,7 +144,7 @@ $(document).ready(function () {
       return $(this).val();
     }).get();
     $.ajax({
-      url: "/update-production-order",
+      url: "/update-production-order-1",
       type: 'POST',
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -203,7 +192,6 @@ $(document).ready(function () {
           errors['WorkDay.' + i] ? $('.error-workday-' + i).html(errors['WorkDay.' + i][0]) : $('.error-workday-' + i).html('');
           errors['ProductCode.' + i] ? $('.error-product-code-' + i).html(errors['ProductCode.' + i][0]) : $('.error-product-code-' + i).html('');
           errors['ItemLotCode.' + i] ? $('.error-item-lot-code-' + i).html(errors['ItemLotCode.' + i][0]) : $('.error-item-lot-code-' + i).html('');
-          errors['DeptCodetmp.' + i] ? $('.error-dept-code-mp-' + i).html(errors['DeptCodetmp.' + i][0]) : $('.error-dept-code-mp-' + i).html('');
         }
         Toast.fire({
           icon: 'error',

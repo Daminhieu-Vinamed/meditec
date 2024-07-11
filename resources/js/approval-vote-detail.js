@@ -16,10 +16,6 @@ $(document).ready(function () {
     $('.dataTables_info').appendTo('.infoInTable');
     $('.dataTables_filter').appendTo('.searchInTable');
 
-    $('.select-chantCode').change(function(){
-        getTime($(this).val(), $(this).attr('id'), 'TimeExcute');
-    });
-
     function hasAlphabet(string) {
         for (var i = 0; i < string.length; i++) {
           if (/[a-zA-Z]/.test(string.charAt(i))) {
@@ -61,11 +57,13 @@ $(document).ready(function () {
                 Quantity9: Quantity9,
             },
             success: function(dataSuccess) {
+                var link = window.location.origin;
                 if (dataSuccess.error_correct  === undefined) {
                     Toast.fire({
                         icon: 'success',
                         title: 'Duyệt phiếu thành công !'
                     })
+                    location.href = link + '/approval-vote';
                 } else { 
                     Toast.fire({
                         icon: 'success',

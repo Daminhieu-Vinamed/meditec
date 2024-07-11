@@ -16,6 +16,8 @@
                         <img src="{{ session()->get('user')->Gender === config('constants.sex.man') ? asset('dist/images/man.png') : asset('dist/images/woman.png') }}" alt="user" class="rounded-circle" width="31">
                     </a>
                     <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser" data-popper-placement="bottom-end">
+                        <li><a class="dropdown-item" href="{{ route('list.scan-qr-code') }}">Quét mã</a></li>
+                        <li><a class="dropdown-item" href="{{ route('list.approval-vote') }}">Danh sách phiếu</a></li>
                         <li><a class="dropdown-item" href="{{ route('logout') }}">Đăng xuất</a></li>
                     </ul>
                 </div>

@@ -23,9 +23,6 @@ class CheckLogin
                 return redirect()->route('form.getLogin')->with('error_incorrect', __('messages.auth.not_enough_rights'));
             }
         } else {
-            if (isset($request->id) && $request->id !== config('constants.value.null')) {
-                session(['idScanQr' => $request->id]);
-            }
             return redirect()->route('form.getLogin');
         }
     }

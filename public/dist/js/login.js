@@ -39,13 +39,9 @@ $(function () {
               html: "Họ và tên: <b>" + dataSuccess.fullName + "</b><br>Mã nhân viên: <b>" + dataSuccess.Code + "</b><br>Thông tin đúng nhấn nút <b>OK</b><br>Thông tin sai nhấn <b>HỦY</b>"
             }).then(function (result) {
               if (result.isConfirmed) {
-                if (dataSuccess.id !== null) {
-                  location.href = link + '/edit/' + dataSuccess.id;
-                } else {
-                  location.href = link + '/notification';
-                }
+                location.href = link + '/scan-qr-code';
               } else if (result.isDenied) {
-                location.href = link + '/back';
+                location.href = link + '/logout';
               }
             });
           } else {
@@ -53,11 +49,7 @@ $(function () {
               icon: 'error',
               title: dataSuccess.errorLogin
             }).then(function () {
-              if (dataSuccess.id !== null) {
-                location.href = link + '/edit/' + dataSuccess.id;
-              } else {
-                location.href = link + '/notification';
-              }
+              location.href = link + '/scan-qr-code';
             });
           }
         }

@@ -7,6 +7,7 @@ use App\Models\B20HrmShift;
 use App\Models\B20ItemWeb;
 use App\Models\B20Machine;
 use App\Models\B20Stage;
+use App\Models\User;
 use App\Models\vB20Item_Web;
 use App\Models\vB20ProductionorderQuanWeb;
 use App\Repositories\AbstractRepository;
@@ -18,7 +19,7 @@ class ProductionOrderRepository extends AbstractRepository
         return vB20ProductionorderQuanWeb::class;
     }
 
-    public function getProductionOrder($ParentId)
+    public function getProductionOrder1($ParentId)
     {
         $data = vB20ProductionorderQuanWeb::where('ParentId', $ParentId)->get();
         $arrayChantCode = B20HrmShift::orderBy('Code', 'ASC')->get();
@@ -26,18 +27,36 @@ class ProductionOrderRepository extends AbstractRepository
         $arrayStage = B20Stage::orderBy('Code', 'ASC')->get();
         $arrayChildStage = B20ItemWeb::where('ParentCode', $data[config('constants.number.zero')]->ProductCode)->get();
         $arrayDept = B20Dept::orderBy('Code', 'ASC')->get();
-        return array('data' => $data, 'arrayChantCode' => $arrayChantCode, 'arrayMachineCode' => $arrayMachineCode, 'arrayStage' => $arrayStage, 'arrayChildStage' => $arrayChildStage, 'arrayDept' => $arrayDept);
+        return array(
+            'data' => $data, 
+            'arrayChantCode' => $arrayChantCode, 
+            'arrayMachineCode' => $arrayMachineCode, 
+            'arrayStage' => $arrayStage, 
+            'arrayChildStage' => $arrayChildStage, 
+            'arrayDept' => $arrayDept,
+            'id' => $ParentId
+        );
     }
-
-    public function getTime()
+    
+    public function getProductionOrder2($ParentId)
     {
-        $shiftAll = B20HrmShift::orderBy('Code', 'ASC')->get();
-        $arrayShift = $shiftAll->map(function ($shift) {
-            return collect($shift->toArray())
-                ->only(['Code', 'Name', 'WorkDay'])
-                ->all();
-        });
-        return response()->json(['shiftAll' => $arrayShift]);
+        $data = vB20ProductionorderQuanWeb::select('ItemLotCode', 'ProductCode', 'Id', 'ProductName', 'JobQuantity', 'JobQuantityTT', 'QuantityCL', 'DocNo')->where('ParentId', $ParentId)->get();
+        $arrayChantCode = B20HrmShift::orderBy('Code', 'ASC')->get();
+        $arrayMachineCode = B20Machine::orderBy('Code', 'ASC')->get();
+        $arrayStage = B20Stage::orderBy('Code', 'ASC')->get();
+        $arrayChildStage = B20ItemWeb::where('ParentCode', $data[config('constants.number.zero')]->ProductCode)->get();
+        $arrayDept = B20Dept::orderBy('Code', 'ASC')->get();
+        $arrayEmployee = User::where('IsActive', config('constants.number.one'))->where('IsGroup', config('constants.number.zero'))->select('Code', 'Name')->get();
+        return array(
+            'data' => $data, 
+            'arrayChantCode' => $arrayChantCode, 
+            'arrayMachineCode' => $arrayMachineCode, 
+            'arrayStage' => $arrayStage, 
+            'arrayChildStage' => $arrayChildStage, 
+            'arrayDept' => $arrayDept, 
+            'id' => $ParentId,
+            'arrayEmployee' => $arrayEmployee
+        );
     }
 
     public function getProductCode()

@@ -8,6 +8,7 @@
     {{ Html::favicon('favicon.ico') }}
     <link href="{{asset('dist/css/style.min.css')}}" rel="stylesheet">
     <link href="{{asset('dist/css/style.css')}}" rel="stylesheet">
+    @yield('css')
     <link rel="stylesheet" href="{{ asset('dist/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('dist/css/dataTables.css') }}">
     <link rel="stylesheet" href="{{ asset('dist/css/dataTables.responsive.min.css') }}">
@@ -23,7 +24,7 @@
     </div>
     <div id="main-wrapper" data-navbarbg="skin6" data-theme="light" data-layout="vertical" data-sidebartype="full" data-boxed-layout="full">
         @include('layout.header')
-        <marquee class="mt-3"><h1 class="text-info">ỨNG DỤNG CÔNG NGHỆ TRONG SẢN XUẤT CÔNG TY TNHH CÔNG NGHỆ MEDITEC</h1></marquee>
+        <marquee class="mt-2"><h1 class="text-info">ỨNG DỤNG CÔNG NGHỆ TRONG SẢN XUẤT CÔNG TY TNHH CÔNG NGHỆ MEDITEC</h1></marquee>
         @yield('content')
     </div>
     <script src="{{ asset('dist/js/swalalert2@11.js') }}"></script>

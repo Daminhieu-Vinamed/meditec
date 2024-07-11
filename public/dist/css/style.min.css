@@ -3051,11 +3051,7 @@ fieldset:disabled .btn {
     border-color: #5ac146
 }
 
-.btn-grey-light {
-    width: 100%;
-}
-
-.btn-grey-light, .bg-grey-light{
+.bg-grey-light{
     background: #ccc;
     background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #ccc), color-stop(0.6, #eee)) #ccc;
     background: -webkit-linear-gradient(center bottom, #ccc 0, #eee 60%) #ccc;

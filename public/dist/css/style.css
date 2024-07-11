@@ -12,37 +12,6 @@ tbody > tr > td,th {
 .form-group {
   margin-bottom: 0;
 }
-/*======================
-    404 page
-=======================*/
-.page_404{ 
-  padding:40px 0; 
-  background:#fff; 
-  font-family: "texturina", sans-serif;
-}
-
-.page_404 img{ 
-  width:100%;
-}
-
-.four_zero_four_bg {
-  background-image: url('../images/notification.gif');
-  height: 400px;
-  background-position: center;
-}
-
-
-.four_zero_four_bg h1{
-  font-size:50px;
-}
-
-.four_zero_four_bg h3{
-  font-size:80px;
-}
-      
-.contant_box_404{ 
-  margin-top:-50px;
-}
 
 .card-title{
   margin-bottom: 0 !important;
@@ -52,10 +21,6 @@ tbody > tr > td,th {
   font-size: 20px;
   color: black;
   padding-right: 5px;
-}
-
-.string-data-product-code{
-  display: none;
 }
 
 .select2-container .select2-choice{

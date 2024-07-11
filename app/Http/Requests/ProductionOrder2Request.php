@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProductionOrderRequest extends FormRequest
+class ProductionOrder2Request extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,6 +22,8 @@ class ProductionOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
+            "Employee" => "array",
+            "Employee.*"  => "required",
             "ProductCode" => "array",
             "ProductCode.*"  => "required",
             "ItemLotCode" => "array",
@@ -30,10 +32,8 @@ class ProductionOrderRequest extends FormRequest
             "QuantitySX.*"  => "nullable|numeric",
             "QuantityFail" => "array",
             "QuantityFail.*"  => "nullable|numeric",
-            // "WorkDay" => "array",
-            // "WorkDay.*"  => 'required|numeric',
-            // "DeptCodetmp" => "array",
-            // "DeptCodetmp.*"  => 'required',
+            "WorkDay" => "array",
+            "WorkDay.*"  => 'nullable|numeric',
         ];
     }
     public function messages()
@@ -43,9 +43,8 @@ class ProductionOrderRequest extends FormRequest
             'QuantityFail.*.numeric' => __('validation.product_order.is_number_waste'),
             'ItemLotCode.*.required' => __('validation.product_order.required_item_lot_code'),
             'WorkDay.*.numeric' => __('validation.product_order.is_number_time'),
-            'WorkDay.*.required' => __('validation.product_order.required'),
-            'ProductCode.*.required' => __('validation.product_order.select_code'),
-            'DeptCodetmp.*.required' => __('validation.product_order.required_factory'),
+            'ProductCode.*.required' => __('validation.product_order.select_product_code'),
+            'Employee.*.required' => __('validation.product_order.select_user_code'),
         ];
     }
 }
