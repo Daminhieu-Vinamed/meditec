@@ -27,16 +27,14 @@ $(document).ready(function () {
     function addRow(locationId) {
         arrayColumn = [
             `<select name="Employee[]" id="Employee-`+ locationId +`" multiple="multiple">
-                <option value="">Trống</option>
+                <option selected disabled>Trống</option>
             </select><br>
             <span class="text-danger error-employee-` + locationId + `"></span>`,
             `<select name="ProductCode[]" id="ProductCode-`+ locationId +`">
                 <option value="">Trống</option>
             </select><br>
             <span class="text-danger error-product-code-` + locationId + `"></span>`,
-            `<input type="checkbox" name="arrayCheckbox[]" class="checkbox-delete-row"/>
-            <input type="hidden" name="ItemLotCode[]">
-            <input type="hidden" name="Id[]">`,
+            `<input type="checkbox" name="arrayCheckbox[]" class="checkbox-delete-row"/>`,
             `<input class="form-control" name="QuantitySX[]" placeholder="Nhập số lượng"/>
             <span class="text-danger error-quantity-` + locationId + `"></span>`,
             `<input class="form-control" name="QuantityFail[]" placeholder="Nhập phế phẩm"/>

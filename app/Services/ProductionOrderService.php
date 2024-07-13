@@ -89,6 +89,7 @@ class ProductionOrderService extends ProductionOrderRepository
     
     public function updateProductionOrder2($request)
     {
+        dd($request);
         DB::beginTransaction();
         try {
             foreach ($request->ProductCode as $item => $productCode) {
