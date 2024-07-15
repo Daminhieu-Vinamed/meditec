@@ -89,48 +89,49 @@ class ProductionOrderService extends ProductionOrderRepository
     
     public function updateProductionOrder2($request)
     {
-        dd($request);
         DB::beginTransaction();
         try {
-            foreach ($request->ProductCode as $item => $productCode) {
-                $employee = $request->Employee[$item];
-                $quantitySx = $request->QuantitySX[$item];
-                $chantCode = $request->ChantCode[$item];
-                $workDay = $request->WorkDay[$item];
-                $Id = isset($request->Id[$item]) ? $request->Id[$item] : config('constants.value.string-empty');
-                $quantityFail = $request->QuantityFail[$item];
-                $machineCode = $request->MachineCode[$item] === config('constants.value.null') ? config('constants.value.string-empty') : $request->MachineCode[$item];
-                $itemLotCode = $request->ItemLotCode[$item];
-                $DeptCodetmp = $request->DeptCodetmp[$item];
-                settype($Id, "integer");
-                DB::update(
-                    'EXEC usp_UpdateB20ProductionorderQuan_JobQuantityTT ?, ?, ?, ?, ?, ?, ?',
-                    [
-                        $Id,
-                        $quantitySx,
-                        $itemLotCode,
-                        $productCode,
-                        $workDay,
-                        $chantCode,
-                        $employee
-                    ]
-                );
-                DB::insert(
-                    'EXEC usp_Create_B30JobRecord ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?',
-                    [
-                        $employee,
-                        $quantitySx,
-                        $itemLotCode,
-                        $productCode,
-                        $Id,
-                        $chantCode,
-                        $workDay,
-                        $quantityFail,
-                        $machineCode,
-                        $DeptCodetmp,
-                        isset($request->DocDate[$item]) ? $request->DocDate[$item] : config('constants.value.null')
-                    ]
-                );
+            foreach ($request->Employee as $item => $ArrEmployee) {
+                foreach ($ArrEmployee as $key => $employee) {
+                    $productCode = $request->ProductCode[$item];
+                    $quantitySx = $request->QuantitySX[$item];
+                    $chantCode = $request->ChantCode[$item];
+                    $workDay = $request->WorkDay[$item];
+                    $Id = isset($request->Id[$item]) ? $request->Id[$item] : config('constants.value.string-empty');
+                    $quantityFail = $request->QuantityFail[$item];
+                    $machineCode = $request->MachineCode[$item] === config('constants.value.null') ? config('constants.value.string-empty') : $request->MachineCode[$item];
+                    $itemLotCode = $request->ItemLotCode[$item];
+                    $DeptCodetmp = $request->DeptCodetmp[$item];
+                    settype($Id, "integer");
+                    DB::update(
+                        'EXEC usp_UpdateB20ProductionorderQuan_JobQuantityTT ?, ?, ?, ?, ?, ?, ?',
+                        [
+                            $Id,
+                            $quantitySx,
+                            $itemLotCode,
+                            $productCode,
+                            $workDay,
+                            $chantCode,
+                            $employee
+                        ]
+                    );
+                    DB::insert(
+                        'EXEC usp_Create_B30JobRecord ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?',
+                        [
+                            $employee,
+                            $quantitySx,
+                            $itemLotCode,
+                            $productCode,
+                            $Id,
+                            $chantCode,
+                            $workDay,
+                            $quantityFail,
+                            $machineCode,
+                            $DeptCodetmp,
+                            isset($request->DocDate[$item]) ? $request->DocDate[$item] : config('constants.value.null')
+                        ]
+                    );
+                }
             }
             DB::commit();
             return response()->json(['error_correct' => $request->DocDate === config('constants.value.null') ? __('messages.product_order.success') : __('messages.product_order.additional')]);

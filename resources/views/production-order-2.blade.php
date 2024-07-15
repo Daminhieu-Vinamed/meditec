@@ -44,8 +44,7 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <select name="Employee[]" multiple="multiple">
-                                                <option selected disabled>Trống</option>
+                                            <select name="Employee[]" multiple="multiple" id="Employee-0">
                                                 @foreach ($arrayEmployee as $item)
                                                     <option value="{{ $item->Code }}">{{ $item->Code }} -
                                                         {{ $item->Name }}</option>

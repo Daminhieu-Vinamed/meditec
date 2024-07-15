@@ -9,7 +9,11 @@ $(document).ready(function () {
             zeroRecords: "Không có sản phẩm nào có dữ liệu bạn tìm kiếm"
         },
         drawCallback: function() {
-            $('[name="ProductCode[]"], [name="MachineCode[]"], [name="ChantCode[]"], [name="StageNo[]"], [name="ChildStageNo[]"], [name="Employee[]"]').select2();
+            $('[name="ProductCode[]"], [name="MachineCode[]"], [name="ChantCode[]"], [name="StageNo[]"], [name="ChildStageNo[]"]').select2();
+            $('[name="Employee[]"]').select2({
+                placeholder: "Chọn mã nhân viên",
+                allowClear: true
+            });
             $('[name="ChantCode[]"], [name="DeptCodetmp[]"]').select2({ minimumResultsForSearch: -1 });
         },
         createdRow: function( row, data, dataIndex ) {
@@ -171,8 +175,19 @@ $(document).ready(function () {
     }); 
 
     $(document).on('click', '.submit-update-production-order', function () {
-        var Employee = $("select[name='Employee[]']")
-              .map(function(){return $(this).val();}).get();
+        var arrEmployee = [];
+        for (let index = 0; index < productionOrderTable.rows().count(); index++) {
+            let employee = $('#Employee-' + index + '').val();
+            let arrEmployeeChild = [];
+            if (employee.length > 0) {
+                for (let index = 0; index < employee.length; index++) {
+                    arrEmployeeChild[index] = employee[index];
+                }
+                arrEmployee[index] = arrEmployeeChild;
+            }else{
+                arrEmployee[index] = '';
+            }
+        }
         var QuantitySX = $("input[name='QuantitySX[]']")
               .map(function(){return $(this).val();}).get();
         var WorkDay = $("input[name='WorkDay[]']")
@@ -200,7 +215,7 @@ $(document).ready(function () {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             data: {
-                Employee: Employee,
+                Employee: arrEmployee,
                 QuantitySX: QuantitySX,
                 WorkDay: WorkDay,
                 ItemLotCode: ItemLotCode,
