@@ -58,10 +58,13 @@
                                                 @foreach ($data as $item)
                                                     <option value="{{ $item->ProductCode }}"
                                                         ItemLotCode="{{ $item->ItemLotCode }}"
-                                                        ProductName="{{ $item->ProductName }}" Id="{{ $item->Id }}"
+                                                        ProductName="{{ $item->ProductName }}" 
+                                                        Id="{{ $item->Id }}"
                                                         JobQuantity="{{ $item->JobQuantity }}"
                                                         JobQuantityTT="{{ $item->JobQuantityTT }}"
-                                                        QuantityCL="{{ $item->QuantityCL }}" DocNo="{{ $item->DocNo }}">
+                                                        QuantityCL="{{ $item->QuantityCL }}" 
+                                                        DocNo="{{ $item->DocNo }}"
+                                                        CapacityOne="{{ $item->CapacityOne }}">
                                                         {{ $item->ProductCode }} - {{ $item->ProductName }}</option>
                                                 @endforeach
                                             </select><br>
@@ -70,8 +73,8 @@
                                         <td></td>
                                         <td>
                                             <div class="form-group">
-                                                <input class="form-control" name="QuantitySX[]" type="text"
-                                                    placeholder="Nhập số lượng">
+                                                <input class="form-control" name="QuantitySX[]" type="text" placeholder="Nhập số lượng">
+                                                <input type="hidden" id="CapacityOne-0">
                                                 <span class="text-danger error-quantity-0"></span>
                                             </div>
                                         </td>
@@ -108,7 +111,7 @@
                                         </td>
                                         <td>
                                             <div class="form-group">
-                                                <input class="form-control" name="WorkDay[]" type="text" placeholder="Nhập số giờ">
+                                                <input class="form-control" name="WorkDay[]" id="WorkDay-0" type="text" placeholder="Nhập số giờ">
                                                 <span class="text-danger error-workday-0"></span>
                                             </div>
                                         </td>
