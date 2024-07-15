@@ -39,7 +39,8 @@ $(document).ready(function () {
             </select><br>
             <span class="text-danger error-product-code-` + locationId + `"></span>`,
             `<input type="checkbox" name="arrayCheckbox[]" class="checkbox-delete-row"/>`,
-            `<input class="form-control" name="QuantitySX[]" placeholder="Nhập số lượng"/>
+            `<input class="form-control" name="QuantitySX[]" id="QuantitySX-` + locationId + `" placeholder="Nhập số lượng"/>
+            <input type="hidden" id="CapacityOne-` + locationId + `">
             <span class="text-danger error-quantity-` + locationId + `"></span>`,
             `<input class="form-control" name="QuantityFail[]" placeholder="Nhập phế phẩm"/>
             <span class="text-danger error-quantity-fail-` + locationId + `"></span>`,
@@ -47,7 +48,7 @@ $(document).ready(function () {
                 <option value="">Trống</option>
             </select>`,
             `<select name="ChantCode[]" id="ChantCode-`+ locationId +`"></select>`,
-            `<input class="form-control" name="WorkDay[]" type="text" placeholder="Nhập số giờ">
+            `<input class="form-control" name="WorkDay[]" id="WorkDay-`+locationId+`" type="text" placeholder="Nhập số giờ">
             <span class="text-danger error-workday-` + locationId + `"></span>`,
             `<select name="MachineCode[]" id="MachineCode-`+ locationId +`">
                 <option value="">Trống</option>
@@ -112,24 +113,38 @@ $(document).ready(function () {
             var JobQuantityTT = element.attr("JobQuantityTT");
             var QuantityCL = element.attr("QuantityCL");
             var DocNo = element.attr("DocNo");
-            $(this).parent().parent().find("#ProductName").html(`<input type="checkbox" name="arrayCheckbox[]" class="checkbox-delete-row"/>`+ProductName+`
+            var CapacityOne = element.attr("CapacityOne");
+            $('#CapacityOne-' + locationId + '').val(CapacityOne ? CapacityOne : 0);
+            $(this).parent().parent().find("#ProductName").html(ProductName && ItemLotCode && Id ? ``+ProductName+`
             <input type="hidden" name="ItemLotCode[]" value="` + ItemLotCode + `">
-            <input type="hidden" name="Id[]" value="` + Id + `">`);
-            $(this).parent().parent().find("#ItemLotCode").text(ItemLotCode);
-            $(this).parent().parent().find("#JobQuantity").text(JobQuantity);
-            $(this).parent().parent().find("#JobQuantityTT").text(JobQuantityTT);
-            $(this).parent().parent().find("#QuantityCL").text(QuantityCL);
-            $(this).parent().parent().find("#DocNo").text(DocNo);
+            <input type="hidden" name="Id[]" value="` + Id + `">` : '');
+            $(this).parent().parent().find("#ItemLotCode").text(ItemLotCode ? ItemLotCode : '');
+            $(this).parent().parent().find("#JobQuantity").text(JobQuantity ? JobQuantity: '');
+            $(this).parent().parent().find("#JobQuantityTT").text(JobQuantityTT ? JobQuantityTT: '');
+            $(this).parent().parent().find("#QuantityCL").text(QuantityCL ? QuantityCL: '');
+            $(this).parent().parent().find("#DocNo").text(DocNo ? DocNo : '');
+
+            let valueCapacityOne =  Number($('#CapacityOne-' + locationId + '').val());
+            if (valueCapacityOne !== 0) {
+                let valueQuantitySX = Number($(this).val());
+                let workDay = valueQuantitySX/valueCapacityOne;
+                $('#WorkDay-' + locationId + '').val(workDay.toFixed(2));
+            }else{
+                $('#WorkDay-' + locationId + '').val('');
+            }
+        });
+
+        $('#QuantitySX-' + locationId + '').blur(function(){
+            let valueCapacityOne =  Number($('#CapacityOne-' + locationId + '').val());
+            if (valueCapacityOne !== 0) {
+                let valueQuantitySX = Number($(this).val());
+                let workDay = valueQuantitySX/valueCapacityOne;
+                $('#WorkDay-' + locationId + '').val(workDay.toFixed(2));
+            }else{
+                $('#WorkDay-' + locationId + '').val('');
+            }
         });
     }
-
-    $(document).on('click', '#add-row', function () {
-        let locationId = $('tbody tr').length;
-        if (!$('.delete-new-product').is('*')) {
-            $(this).parent().append('<button class="btn btn-danger delete-new-product">XÓA</button>')
-        }
-        addRow(locationId)
-    });
 
     $("select[name='ProductCode[]']").change(function(){
         var element = $(this).children('option:selected');
@@ -140,6 +155,8 @@ $(document).ready(function () {
         var JobQuantityTT = element.attr("JobQuantityTT");
         var QuantityCL = element.attr("QuantityCL");
         var DocNo = element.attr("DocNo");
+        var CapacityOne = element.attr("CapacityOne");
+        $('#CapacityOne-0').val(CapacityOne);
         $(this).parent().parent().find("#ProductName").html(ProductName && ItemLotCode && Id ? ``+ProductName+`
         <input type="hidden" name="ItemLotCode[]" value="` + ItemLotCode + `">
         <input type="hidden" name="Id[]" value="` + Id + `">` : '');
@@ -148,6 +165,34 @@ $(document).ready(function () {
         $(this).parent().parent().find("#JobQuantityTT").text(JobQuantityTT ? JobQuantityTT: '');
         $(this).parent().parent().find("#QuantityCL").text(QuantityCL ? QuantityCL: '');
         $(this).parent().parent().find("#DocNo").text(DocNo ? DocNo : '');
+
+        let valueCapacityOne = Number($('#CapacityOne-0').val());
+        if (valueCapacityOne !== 0) {
+            let valueQuantitySX = Number($(this).val());
+            let workDay = valueQuantitySX/valueCapacityOne;
+            $('#WorkDay-0').val(workDay.toFixed(2));
+        }else{
+            $('#WorkDay-0').val('');
+        }
+    });
+
+    $('input[name="QuantitySX[]"]').blur(function(){
+        let valueCapacityOne = Number($('#CapacityOne-0').val());
+        if (valueCapacityOne !== 0) {
+            let valueQuantitySX = Number($(this).val());
+            let workDay = valueQuantitySX/valueCapacityOne;
+            $('#WorkDay-0').val(workDay.toFixed(2));
+        }else{
+            $('#WorkDay-0').val('');
+        }
+    })
+
+    $(document).on('click', '#add-row', function () {
+        let locationId = $('tbody tr').length;
+        if (!$('.delete-new-product').is('*')) {
+            $(this).parent().append('<button class="btn btn-danger delete-new-product">XÓA</button>')
+        }
+        addRow(locationId)
     });
 
     $(document).on('click', '.delete-new-product', function () {
