@@ -19,6 +19,11 @@ class AuthController extends Controller
         return view('login');
     }
     
+    public function notification()
+    {
+        return view('notification');
+    }
+    
     public function postLogin(Request $request)
     {
         return $this->authService->postLogin($request);
