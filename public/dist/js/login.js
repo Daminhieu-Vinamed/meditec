@@ -39,7 +39,7 @@ $(function () {
               html: "Họ và tên: <b>" + dataSuccess.fullName + "</b><br>Mã nhân viên: <b>" + dataSuccess.Code + "</b><br>Thông tin đúng nhấn nút <b>OK</b><br>Thông tin sai nhấn <b>HỦY</b>"
             }).then(function (result) {
               if (result.isConfirmed) {
-                location.href = link + '/scan-qr-code';
+                location.href = link + '/notification';
               } else if (result.isDenied) {
                 location.href = link + '/logout';
               }
@@ -49,7 +49,7 @@ $(function () {
               icon: 'error',
               title: dataSuccess.errorLogin
             }).then(function () {
-              location.href = link + '/scan-qr-code';
+              location.href = link + '/notification';
             });
           }
         }

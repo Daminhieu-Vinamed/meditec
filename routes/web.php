@@ -32,6 +32,7 @@ Route::middleware('checkRole')->prefix('/')->name('list.')->group(function () {
     Route::post('update-status-detail-approval-vote', [ApprovalVoteDetailController::class, 'updateStatusApprovalVoteDetail']);
     Route::get('scan-qr-code', [ScanQrCodeController::class, 'getScanQrCode'])->name('scan-qr-code');
     Route::post('scan-qr-code', [ScanQrCodeController::class, 'postScanQrCode']);
+    Route::get('notification', [AuthController::class, 'notification']);
 });
 Route::middleware('checkSession')->prefix('/')->name('form.')->group(function () {
     Route::get('login', [AuthController::class, 'getLogin'])->name('getLogin');
