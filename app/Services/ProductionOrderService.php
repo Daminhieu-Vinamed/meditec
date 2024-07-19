@@ -98,7 +98,6 @@ class ProductionOrderService extends ProductionOrderRepository
                     $chantCode = $request->ChantCode[$item];
                     $workDay = $request->WorkDay[$item];
                     $Id = isset($request->Id[$item]) ? $request->Id[$item] : config('constants.value.string-empty');
-                    $quantityFail = $request->QuantityFail[$item];
                     $machineCode = $request->MachineCode[$item] === config('constants.value.null') ? config('constants.value.string-empty') : $request->MachineCode[$item];
                     $itemLotCode = $request->ItemLotCode[$item];
                     $DeptCodetmp = $request->DeptCodetmp[$item];
@@ -125,7 +124,6 @@ class ProductionOrderService extends ProductionOrderRepository
                             $Id,
                             $chantCode,
                             $workDay,
-                            $quantityFail,
                             $machineCode,
                             $DeptCodetmp,
                             isset($request->DocDate[$item]) ? $request->DocDate[$item] : config('constants.value.null')

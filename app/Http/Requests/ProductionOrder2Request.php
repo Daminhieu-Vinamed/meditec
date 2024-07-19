@@ -32,8 +32,6 @@ class ProductionOrder2Request extends FormRequest
             "Id.*"  => "required",
             "QuantitySX" => "array",
             "QuantitySX.*"  => "nullable|numeric",
-            "QuantityFail" => "array",
-            "QuantityFail.*"  => "nullable|numeric",
             "WorkDay" => "array",
             "WorkDay.*"  => 'nullable|numeric',
         ];
@@ -42,7 +40,6 @@ class ProductionOrder2Request extends FormRequest
     {
         return [
             'QuantitySX.*.numeric' => __('validation.product_order.is_number_quantity'),
-            'QuantityFail.*.numeric' => __('validation.product_order.is_number_waste'),
             'WorkDay.*.numeric' => __('validation.product_order.is_number_time'),
             'ProductCode.*.required' => __('validation.product_order.select_product_code'),
             'Employee.*.required' => __('validation.product_order.select_user_code'),
