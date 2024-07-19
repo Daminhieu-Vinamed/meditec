@@ -25,17 +25,15 @@ $(document).ready(function () {
     },
     createdRow: function createdRow(row, data, dataIndex) {
       $($(row).children()[2]).attr('id', 'ProductName');
+      $($(row).children()[9]).attr('id', 'Performance');
       $($(row).children()[10]).attr('id', 'ItemLotCode');
-      $($(row).children()[11]).attr('id', 'JobQuantity');
-      $($(row).children()[12]).attr('id', 'JobQuantityTT');
-      $($(row).children()[13]).attr('id', 'QuantityCL');
-      $($(row).children()[14]).attr('id', 'DocNo');
+      $($(row).children()[11]).attr('id', 'DocNo');
     }
   });
   $('.dataTables_info').appendTo('.infoInTable');
   $('.dataTables_filter').appendTo('.searchInTable');
   function addRow(locationId) {
-    arrayColumn = ["<select name=\"Employee[]\" id=\"Employee-" + locationId + "\" multiple=\"multiple\">\n                <option selected disabled>Tr\u1ED1ng</option>\n            </select><br>\n            <span class=\"text-danger error-employee-" + locationId + "\"></span>", "<select name=\"ProductCode[]\" id=\"ProductCode-" + locationId + "\">\n                <option value=\"\">Tr\u1ED1ng</option>\n            </select><br>\n            <span class=\"text-danger error-product-code-" + locationId + "\"></span>", "<input type=\"checkbox\" name=\"arrayCheckbox[]\" class=\"checkbox-delete-row\"/>", "<input class=\"form-control\" name=\"QuantitySX[]\" id=\"QuantitySX-" + locationId + "\" placeholder=\"Nh\u1EADp s\u1ED1 l\u01B0\u1EE3ng\"/>\n            <input type=\"hidden\" id=\"CapacityOne-" + locationId + "\">\n            <span class=\"text-danger error-quantity-" + locationId + "\"></span>", "<input class=\"form-control\" name=\"QuantityFail[]\" placeholder=\"Nh\u1EADp ph\u1EBF ph\u1EA9m\"/>\n            <span class=\"text-danger error-quantity-fail-" + locationId + "\"></span>", "<select name=\"DeptCodetmp[]\" id=\"DeptCodetmp-" + locationId + "\">\n                <option value=\"\">Tr\u1ED1ng</option>\n            </select>", "<select name=\"ChantCode[]\" id=\"ChantCode-" + locationId + "\"></select>", "<input class=\"form-control\" name=\"WorkDay[]\" id=\"WorkDay-" + locationId + "\" type=\"text\" placeholder=\"Nh\u1EADp s\u1ED1 gi\u1EDD\">\n            <span class=\"text-danger error-workday-" + locationId + "\"></span>", "<select name=\"MachineCode[]\" id=\"MachineCode-" + locationId + "\">\n                <option value=\"\">Tr\u1ED1ng</option>\n            </select>", "<select name=\"StageNo[]\" id=\"StageNo-" + locationId + "\">\n                <option value=\"\">Tr\u1ED1ng</option>\n            </select>", '', '', '', '', ''];
+    arrayColumn = ["<select name=\"Employee[]\" id=\"Employee-" + locationId + "\" multiple=\"multiple\">\n                <option selected disabled>Tr\u1ED1ng</option>\n            </select><br>\n            <span class=\"text-danger error-employee-" + locationId + "\"></span>", "<select name=\"ProductCode[]\" id=\"ProductCode-" + locationId + "\">\n                <option value=\"\">Tr\u1ED1ng</option>\n            </select><br>\n            <span class=\"text-danger error-product-code-" + locationId + "\"></span>", "<input type=\"checkbox\" name=\"arrayCheckbox[]\" class=\"checkbox-delete-row\"/>", "<select name=\"StageNo[]\" id=\"StageNo-" + locationId + "\">\n                <option value=\"\">Tr\u1ED1ng</option>\n            </select>", "<select name=\"MachineCode[]\" id=\"MachineCode-" + locationId + "\">\n                <option value=\"\">Tr\u1ED1ng</option>\n            </select>", "<input class=\"form-control\" name=\"QuantitySX[]\" id=\"QuantitySX-" + locationId + "\" placeholder=\"Nh\u1EADp s\u1ED1 l\u01B0\u1EE3ng\"/>\n            <input type=\"hidden\" id=\"CapacityOne-" + locationId + "\">\n            <span class=\"text-danger error-quantity-" + locationId + "\"></span>", "<select name=\"DeptCodetmp[]\" id=\"DeptCodetmp-" + locationId + "\">\n                <option value=\"\">Tr\u1ED1ng</option>\n            </select>", "<select name=\"ChantCode[]\" id=\"ChantCode-" + locationId + "\"></select>", "<input class=\"form-control\" name=\"WorkDay[]\" id=\"WorkDay-" + locationId + "\" type=\"text\" placeholder=\"Nh\u1EADp s\u1ED1 gi\u1EDD\">\n            <span class=\"text-danger error-workday-" + locationId + "\"></span>", '', '', ''];
     productionOrderTable.row.add(arrayColumn).draw(false);
 
     //Employee
@@ -46,7 +44,7 @@ $(document).ready(function () {
 
     //Chant Code
     $('tbody > tr:first > td > [name="ProductCode[]"] option').each(function () {
-      $('#ProductCode-' + locationId + '').append("<option value=\"" + $(this).val() + "\" \n            ItemLotCode=\"" + $(this).attr('ItemLotCode') + "\" \n            ProductName=\"" + $(this).attr('ProductName') + "\"\n            Id=\"" + $(this).attr('Id') + "\"\n            JobQuantity=\"" + $(this).attr('JobQuantity') + "\"\n            JobQuantityTT=\"" + $(this).attr('JobQuantityTT') + "\"\n            QuantityCL=\"" + $(this).attr('QuantityCL') + "\"\n            DocNo=\"" + $(this).attr('DocNo') + "\">" + $(this).text() + "</option>");
+      $('#ProductCode-' + locationId + '').append("<option value=\"" + $(this).val() + "\" \n            ItemLotCode=\"" + $(this).attr('ItemLotCode') + "\" \n            ProductName=\"" + $(this).attr('ProductName') + "\"\n            Id=\"" + $(this).attr('Id') + "\"\n            DocNo=\"" + $(this).attr('DocNo') + "\" \n            CapacityOne=\"" + $(this).attr('CapacityOne') + "\">" + $(this).text() + "</option>");
     });
     $('#ProductCode-' + locationId + ' option:eq(0)').remove();
 
@@ -60,7 +58,7 @@ $(document).ready(function () {
     $('tbody > tr:first > td > [name="ChantCode[]"] option').each(function () {
       $('#ChantCode-' + locationId + '').append('<option value="' + $(this).val() + '">' + $(this).text() + '</option>');
     });
-    $('#ChantCode-' + locationId + '').val($('#ChantCode-' + locationId + ' option:eq(0)').val()).trigger('change');
+    $('#ChantCode-' + locationId + '').val($('#ChantCode-' + locationId + ' option[value="HC"]').val()).trigger('change');
 
     //Machine Code
     $('tbody > tr:first > td > [name="MachineCode[]"] option').each(function () {
@@ -78,33 +76,30 @@ $(document).ready(function () {
       var Id = element.attr("Id");
       var ItemLotCode = element.attr("ItemLotCode");
       var ProductName = element.attr("ProductName");
-      var JobQuantity = element.attr("JobQuantity");
-      var JobQuantityTT = element.attr("JobQuantityTT");
-      var QuantityCL = element.attr("QuantityCL");
       var DocNo = element.attr("DocNo");
       var CapacityOne = element.attr("CapacityOne");
       $('#CapacityOne-' + locationId + '').val(CapacityOne ? CapacityOne : 0);
-      $(this).parent().parent().find("#ProductName").html(ProductName && ItemLotCode && Id ? "" + ProductName + "\n            <input type=\"hidden\" name=\"ItemLotCode[]\" value=\"" + ItemLotCode + "\">\n            <input type=\"hidden\" name=\"Id[]\" value=\"" + Id + "\">" : '');
+      $(this).parent().parent().find("#ProductName").html(ProductName && ItemLotCode && Id ? "<input type=\"checkbox\" name=\"arrayCheckbox[]\" class=\"checkbox-delete-row\"/>" + ProductName + "\n            <input type=\"hidden\" name=\"ItemLotCode[]\" value=\"" + ItemLotCode + "\">\n            <input type=\"hidden\" name=\"Id[]\" value=\"" + Id + "\">" : '');
       $(this).parent().parent().find("#ItemLotCode").text(ItemLotCode ? ItemLotCode : '');
-      $(this).parent().parent().find("#JobQuantity").text(JobQuantity ? JobQuantity : '');
-      $(this).parent().parent().find("#JobQuantityTT").text(JobQuantityTT ? JobQuantityTT : '');
-      $(this).parent().parent().find("#QuantityCL").text(QuantityCL ? QuantityCL : '');
       $(this).parent().parent().find("#DocNo").text(DocNo ? DocNo : '');
       var valueCapacityOne = Number($('#CapacityOne-' + locationId + '').val());
-      if (valueCapacityOne !== 0) {
-        var valueQuantitySX = Number($(this).val());
+      var valueQuantitySX = Number($('#QuantitySX-' + locationId + '').val());
+      if (valueCapacityOne !== 0 && valueQuantitySX !== 0) {
         var workDay = valueQuantitySX / valueCapacityOne;
         $('#WorkDay-' + locationId + '').val(workDay.toFixed(2));
+        $(this).parent().parent().find("#Performance").text((valueQuantitySX / workDay).toFixed(2));
       } else {
         $('#WorkDay-' + locationId + '').val('');
       }
     });
     $('#QuantitySX-' + locationId + '').blur(function () {
       var valueCapacityOne = Number($('#CapacityOne-' + locationId + '').val());
-      if (valueCapacityOne !== 0) {
-        var valueQuantitySX = Number($(this).val());
+      var valueQuantitySX = Number($(this).val());
+      if (valueCapacityOne !== 0 && valueQuantitySX !== 0) {
         var workDay = valueQuantitySX / valueCapacityOne;
         $('#WorkDay-' + locationId + '').val(workDay.toFixed(2));
+        console.log(valueQuantitySX, workDay);
+        $(this).parent().parent().find("#Performance").text((valueQuantitySX / workDay).toFixed(2));
       } else {
         $('#WorkDay-' + locationId + '').val('');
       }
@@ -115,36 +110,37 @@ $(document).ready(function () {
     var Id = element.attr("Id");
     var ItemLotCode = element.attr("ItemLotCode");
     var ProductName = element.attr("ProductName");
-    var JobQuantity = element.attr("JobQuantity");
-    var JobQuantityTT = element.attr("JobQuantityTT");
-    var QuantityCL = element.attr("QuantityCL");
     var DocNo = element.attr("DocNo");
     var CapacityOne = element.attr("CapacityOne");
     $('#CapacityOne-0').val(CapacityOne);
     $(this).parent().parent().find("#ProductName").html(ProductName && ItemLotCode && Id ? "" + ProductName + "\n        <input type=\"hidden\" name=\"ItemLotCode[]\" value=\"" + ItemLotCode + "\">\n        <input type=\"hidden\" name=\"Id[]\" value=\"" + Id + "\">" : '');
     $(this).parent().parent().find("#ItemLotCode").text(ItemLotCode ? ItemLotCode : '');
-    $(this).parent().parent().find("#JobQuantity").text(JobQuantity ? JobQuantity : '');
-    $(this).parent().parent().find("#JobQuantityTT").text(JobQuantityTT ? JobQuantityTT : '');
-    $(this).parent().parent().find("#QuantityCL").text(QuantityCL ? QuantityCL : '');
     $(this).parent().parent().find("#DocNo").text(DocNo ? DocNo : '');
     var valueCapacityOne = Number($('#CapacityOne-0').val());
-    if (valueCapacityOne !== 0) {
-      var valueQuantitySX = Number($(this).val());
+    var valueQuantitySX = Number($('input[name="QuantitySX[]"]').val());
+    if (valueCapacityOne !== 0 && valueQuantitySX !== 0) {
       var workDay = valueQuantitySX / valueCapacityOne;
       $('#WorkDay-0').val(workDay.toFixed(2));
+      $(this).parent().parent().find("#Performance").text((valueQuantitySX / workDay).toFixed(2));
     } else {
       $('#WorkDay-0').val('');
     }
   });
   $('input[name="QuantitySX[]"]').blur(function () {
     var valueCapacityOne = Number($('#CapacityOne-0').val());
-    if (valueCapacityOne !== 0) {
-      var valueQuantitySX = Number($(this).val());
+    var valueQuantitySX = Number($(this).val());
+    if (valueCapacityOne !== 0 && valueQuantitySX !== 0) {
       var workDay = valueQuantitySX / valueCapacityOne;
       $('#WorkDay-0').val(workDay.toFixed(2));
+      $(this).parent().parent().find("#Performance").text((valueQuantitySX / workDay).toFixed(2));
     } else {
       $('#WorkDay-0').val('');
     }
+  });
+  $('input[name="WorkDay[]"]').blur(function () {
+    var valueQuantitySX = Number($('input[name="QuantitySX[]"]').val());
+    var workDay = Number($(this).val());
+    $(this).parent().parent().find("#Performance").text((valueQuantitySX / workDay).toFixed(2));
   });
   $(document).on('click', '#add-row', function () {
     var locationId = $('tbody tr').length;
@@ -209,9 +205,6 @@ $(document).ready(function () {
     var MachineCode = $("[name='MachineCode[]']").map(function () {
       return $(this).val();
     }).get();
-    var QuantityFail = $("input[name='QuantityFail[]']").map(function () {
-      return $(this).val();
-    }).get();
     var DeptCodetmp = $("select[name='DeptCodetmp[]']").map(function () {
       return $(this).val();
     }).get();
@@ -232,7 +225,6 @@ $(document).ready(function () {
         ProductCode: ProductCode,
         ChantCode: ChantCode,
         Id: Id,
-        QuantityFail: QuantityFail,
         MachineCode: MachineCode,
         DeptCodetmp: DeptCodetmp,
         DocDate: DocDate
@@ -240,7 +232,6 @@ $(document).ready(function () {
       success: function success(dataSuccess) {
         for (var i = 0; i < QuantitySX.length; i++) {
           $('.error-quantity-' + i).html('');
-          $('.error-quantity-fail-' + i).val('');
           $('.error-workday-' + i).html('');
           $('.error-product-code-' + i).val('');
           $('.error-employee-' + i).val('');
@@ -265,7 +256,6 @@ $(document).ready(function () {
         var errors = (_dataError$responseJS = dataError.responseJSON) === null || _dataError$responseJS === void 0 ? void 0 : _dataError$responseJS.errors;
         for (var i = 0; i < QuantitySX.length; i++) {
           errors['QuantitySX.' + i] ? $('.error-quantity-' + i).html(errors['QuantitySX.' + i][0]) : $('.error-quantity-' + i).html('');
-          errors['QuantityFail.' + i] ? $('.error-quantity-fail-' + i).html(errors['QuantityFail.' + i][0]) : $('.error-quantity-fail-' + i).html('');
           errors['WorkDay.' + i] ? $('.error-workday-' + i).html(errors['WorkDay.' + i][0]) : $('.error-workday-' + i).html('');
           errors['ProductCode.' + i] ? $('.error-product-code-' + i).html(errors['ProductCode.' + i][0]) : $('.error-product-code-' + i).html('');
           errors['Employee.' + i] ? $('.error-employee-' + i).html(errors['Employee.' + i][0]) : $('.error-employee-' + i).html('');
