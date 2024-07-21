@@ -39,7 +39,6 @@ class ProductionOrder1Request extends FormRequest
         return [
             'QuantitySX.*.numeric' => __('validation.product_order.is_number_quantity'),
             'QuantityFail.*.numeric' => __('validation.product_order.is_number_waste'),
-            'ItemLotCode.*.required' => __('validation.product_order.required_item_lot_code'),
             'WorkDay.*.numeric' => __('validation.product_order.is_number_time'),
             'ProductCode.*.required' => __('validation.product_order.select_product_code'),
         ];

@@ -56,15 +56,13 @@ class ProductionOrderRepository extends AbstractRepository
         $arrayChantCode = B20HrmShift::orderBy('Code', 'ASC')->get();
         $arrayMachineCode = B20Machine::orderBy('Code', 'ASC')->get();
         $arrayStage = B20Stage::orderBy('Code', 'ASC')->get();
-        $arrayChildStage = B20ItemWeb::where('ParentCode', $data[config('constants.number.zero')]->ProductCode)->get();
         $arrayDept = B20Dept::orderBy('Code', 'ASC')->get();
         $arrayEmployee = User::where('IsActive', config('constants.number.one'))->where('IsGroup', config('constants.number.zero'))->select('Code', 'Name')->get();
         return array(
             'data' => $data, 
             'arrayChantCode' => $arrayChantCode, 
             'arrayMachineCode' => $arrayMachineCode, 
-            'arrayStage' => $arrayStage, 
-            'arrayChildStage' => $arrayChildStage, 
+            'arrayStage' => $arrayStage,  
             'arrayDept' => $arrayDept, 
             'id' => $ParentId,
             'arrayEmployee' => $arrayEmployee

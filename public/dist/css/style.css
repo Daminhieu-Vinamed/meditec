@@ -1,5 +1,4 @@
 tbody > tr > td,th {
-  min-width: 130px;
   text-align: center;
   vertical-align:middle;
 }

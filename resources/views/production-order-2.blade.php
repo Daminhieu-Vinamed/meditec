@@ -21,7 +21,8 @@
                             <table class="table table-bordered display nowrap production-order-table-2" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Mã nhân viên</th>
+                                        <th scope="col">Chọn</th>
+                                        <th scope="col">Nhân viên</th>
                                         <th scope="col">Mã sản phẩm</th>
                                         <th scope="col">Tên sản phẩm</th>
                                         <th scope="col">Mã BTP</th>
@@ -31,17 +32,17 @@
                                         <th scope="col">Ca sản xuất</th>
                                         <th scope="col">Số giờ</th>
                                         <th scope="col">Hiệu suất</th>
-                                        @if ($arrayChildStage->isNotEmpty())
-                                            <th scope="col">Công đoạn con</th>
-                                        @endif
-                                        <th scope="col">Lô</th>
+                                        <th scope="col">Lô sản xuất</th>
                                         <th scope="col">Lệnh sản xuất</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <select name="Employee[]" multiple="multiple" id="Employee-0">
+                                            <input type="checkbox" name="arrayCheckbox[]" class="checkbox-delete-row"/>
+                                        </td>
+                                        <td>
+                                            <select name="Employee[]" multiple="multiple" id="Employee0">
                                                 @foreach ($arrayEmployee as $item)
                                                     <option value="{{ $item->Code }}">{{ $item->Code }} -
                                                         {{ $item->Name }}</option>
@@ -50,7 +51,7 @@
                                             <span class="text-danger error-employee-0"></span>
                                         </td>
                                         <td>
-                                            <select name="ProductCode[]">
+                                            <select name="ProductCode[]" id="ProductCode0">
                                                 <option value="">Trống</option>
                                                 @foreach ($data as $item)
                                                     <option value="{{ $item->ProductCode }}"
@@ -66,7 +67,7 @@
                                         </td>
                                         <td></td>
                                         <td>
-                                            <select name="StageNo[]">
+                                            <select name="StageNo[]" id="StageNo0">
                                                 <option value="">Trống</option>
                                                 @foreach ($arrayStage as $itemCode)
                                                     @if ($itemCode->IsGroup == config('constants.number.zero') && $itemCode->IsActive == config('constants.number.one'))
@@ -77,7 +78,7 @@
                                             </select>
                                         </td>
                                         <td>
-                                            <select name="MachineCode[]">
+                                            <select name="MachineCode[]" id="MachineCode0">
                                                 <option value="">Trống</option>
                                                 @foreach ($arrayMachineCode as $itemCode)
                                                     @if ($itemCode->IsGroup == config('constants.number.zero') && $itemCode->IsActive == config('constants.number.one'))
@@ -88,12 +89,11 @@
                                             </select>
                                         </td>
                                         <td>
-                                            <input class="form-control" name="QuantitySX[]" type="text" placeholder="Nhập số lượng">
-                                            <input type="hidden" id="CapacityOne-0">
+                                            <input class="form-control" name="QuantitySX[]" id="QuantitySX0" type="text" placeholder="Nhập số lượng">
                                             <span class="text-danger error-quantity-0"></span>
                                         </td>
                                         <td>
-                                            <select name="DeptCodetmp[]">
+                                            <select name="DeptCodetmp[]" id="DeptCodetmp0">
                                                 <option value="">Trống</option>
                                                 @foreach ($arrayDept as $itemCode)
                                                     @if (
@@ -107,7 +107,7 @@
                                             </select>
                                         </td>
                                         <td>
-                                            <select name="ChantCode[]">
+                                            <select name="ChantCode[]" id="ChantCode0">
                                                 @foreach ($arrayChantCode as $itemCode)
                                                     @if ($itemCode->IsGroup == config('constants.number.zero') && $itemCode->IsActive == config('constants.number.one'))
                                                         <option value="{{ $itemCode->Code }}" {{ $itemCode->Code === 'HC' ? 'selected' : '' }}>{{ $itemCode->Code }} - {{ $itemCode->Name }}</option>
@@ -116,23 +116,9 @@
                                             </select>
                                         </td>
                                         <td>
-                                            <input class="form-control" name="WorkDay[]" id="WorkDay-0" type="text" placeholder="Nhập số giờ">
+                                            <input class="form-control" name="WorkDay[]" type="text" placeholder="Nhập số giờ">
                                             <span class="text-danger error-workday-0"></span>
                                         </td>
-                                        @if ($arrayChildStage->isNotEmpty())
-                                            <td>
-                                                <select name="ChildStageNo[]">
-                                                    <option value="">Trống</option>
-                                                    @foreach ($arrayChildStage as $itemCode)
-                                                        @if ($itemCode->IsGroup == config('constants.number.zero') && $itemCode->IsActive == config('constants.number.one'))
-                                                            <option value="{{ $itemCode->ChildCode }}">
-                                                                {{ $itemCode->ChildCode }} - {{ $itemCode->ChildName }}
-                                                            </option>
-                                                        @endif
-                                                    @endforeach
-                                                </select>
-                                            </td>
-                                        @endif
                                         <td></td>
                                         <td></td>
                                         <td></td>
@@ -142,7 +128,7 @@
                         </div>
                         <div class="d-flex justify-content-center mt-3">
                             <div>
-                                <button class="btn btn-success" id="add-row">THÊM DÒNG</button>
+                                <button class="btn btn-success" id="add_row">THÊM DÒNG</button>
                             </div>
                         </div>
                     </div>
