@@ -28,17 +28,17 @@ class ProductionOrder2Request extends FormRequest
             "ProductCode.*"  => "required",
             "ItemLotCode" => "array",
             "ItemLotCode.*"  => "required",
-            "Id" => "array",
-            "Id.*"  => "required",
             "QuantitySX" => "array",
-            "QuantitySX.*"  => "nullable|numeric",
+            "QuantitySX.*"  => "required|numeric",
             "WorkDay" => "array",
-            "WorkDay.*"  => 'nullable|numeric',
+            "WorkDay.*"  => 'required|numeric',
         ];
     }
     public function messages()
     {
         return [
+            'QuantitySX.*.required' => __('validation.product_order.required_quantity'),
+            'WorkDay.*.required' => __('validation.product_order.required_workday'),
             'QuantitySX.*.numeric' => __('validation.product_order.is_number_quantity'),
             'WorkDay.*.numeric' => __('validation.product_order.is_number_time'),
             'ProductCode.*.required' => __('validation.product_order.select_product_code'),
