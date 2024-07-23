@@ -155,7 +155,7 @@ $(document).ready(function () {
         var DocDate = $("input[name='DocDate[]']")
               .map(function(){return $(this).val();}).get();
         $.ajax({
-            url: "/update-production-order-1",
+            url: "/update-production-order-v1",
             type:'POST',
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

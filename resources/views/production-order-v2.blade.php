@@ -43,7 +43,7 @@
                                         </td>
                                         <td>
                                             <select name="Employee[]" multiple="multiple" id="Employee0">
-                                                @foreach ($arrayEmployee as $item)
+                                                @foreach ($arrEmployee as $item)
                                                     <option value="{{ $item->Code }}">{{ $item->Code }} -
                                                         {{ $item->Name }}</option>
                                                 @endforeach
@@ -69,22 +69,13 @@
                                         <td>
                                             <select name="StageNo[]" id="StageNo0">
                                                 <option value="">Trống</option>
-                                                @foreach ($arrayStage as $itemCode)
-                                                    @if ($itemCode->IsGroup == config('constants.number.zero') && $itemCode->IsActive == config('constants.number.one'))
-                                                        <option value="{{ $itemCode->Code }}">{{ $itemCode->Code }} -
-                                                            {{ $itemCode->Name }}</option>
-                                                    @endif
-                                                @endforeach
                                             </select>
                                         </td>
                                         <td>
                                             <select name="MachineCode[]" id="MachineCode0">
                                                 <option value="">Trống</option>
-                                                @foreach ($arrayMachineCode as $itemCode)
-                                                    @if ($itemCode->IsGroup == config('constants.number.zero') && $itemCode->IsActive == config('constants.number.one'))
-                                                        <option value="{{ $itemCode->Code }}">{{ $itemCode->Code }} -
-                                                            {{ $itemCode->Name }}</option>
-                                                    @endif
+                                                @foreach ($arrMachineCode as $itemCode)
+                                                    <option value="{{ $itemCode->Code }}">{{ $itemCode->Code }} - {{ $itemCode->Name }}</option>
                                                 @endforeach
                                             </select>
                                         </td>
@@ -95,23 +86,15 @@
                                         <td>
                                             <select name="DeptCodetmp[]" id="DeptCodetmp0">
                                                 <option value="">Trống</option>
-                                                @foreach ($arrayDept as $itemCode)
-                                                    @if (
-                                                        $itemCode->IsGroup == config('constants.number.zero') &&
-                                                            $itemCode->IsActive == config('constants.number.one') &&
-                                                            $itemCode->Loai_Ps !== config('constants.value.null'))
-                                                        <option value="{{ $itemCode->Code }}">{{ $itemCode->Code }} -
-                                                            {{ $itemCode->Name }}</option>
-                                                    @endif
+                                                @foreach ($arrDept as $itemCode)
+                                                    <option value="{{ $itemCode->Code }}">{{ $itemCode->Code }} - {{ $itemCode->Name }}</option>
                                                 @endforeach
                                             </select>
                                         </td>
                                         <td>
                                             <select name="ChantCode[]" id="ChantCode0">
-                                                @foreach ($arrayChantCode as $itemCode)
-                                                    @if ($itemCode->IsGroup == config('constants.number.zero') && $itemCode->IsActive == config('constants.number.one'))
-                                                        <option value="{{ $itemCode->Code }}" {{ $itemCode->Code === 'HC' ? 'selected' : '' }}>{{ $itemCode->Code }} - {{ $itemCode->Name }}</option>
-                                                    @endif
+                                                @foreach ($arrChantCode as $itemCode)
+                                                    <option value="{{ $itemCode->Code }}" {{ $itemCode->Code === 'HC' ? 'selected' : '' }}>{{ $itemCode->Code }} - {{ $itemCode->Name }}</option>
                                                 @endforeach
                                             </select>
                                         </td>
@@ -138,5 +121,5 @@
     </div>
 @endsection
 @push('js')
-    <script src="{{ asset('dist/js/production-order-2.js') }}"></script>
+    <script src="{{ asset('dist/js/production-order-v2.js') }}"></script>
 @endpush

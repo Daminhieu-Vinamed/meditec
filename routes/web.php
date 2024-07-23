@@ -19,10 +19,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('checkRole')->prefix('/')->name('list.')->group(function () {
-    Route::get('edit/{id}', [ProductionOrderController::class, 'getProductionOrder1']);
-    Route::post('update-production-order-1', [ProductionOrderController::class, 'updateProductionOrder1']);
-    Route::get('production-order-2/{id}', [ProductionOrderController::class, 'getProductionOrder2']);
-    Route::post('update-production-order-2', [ProductionOrderController::class, 'updateProductionOrder2']);
+    Route::get('edit/{id}', [ProductionOrderController::class, 'getProductionOrderV1']);
+    Route::post('update-production-order-v1', [ProductionOrderController::class, 'updateProductionOrderV1']);
+    Route::get('production-order-v2/{id}', [ProductionOrderController::class, 'getProductionOrderV2']);
+    Route::post('update-production-order-v2', [ProductionOrderController::class, 'updateProductionOrderV2']);
+    Route::get('semi-finished-product-code', [ProductionOrderController::class, 'semiFinishedProductCode']);
     Route::get('additional-production-order/{id}', [ProductionOrderController::class, 'getAdditionalProductionOrder'])->name('additional-production-order');
     Route::get('get-product-code', [ProductionOrderController::class, 'getProductCode']);
     Route::get('approval-vote', [ApprovalVoteController::class, 'getViewApprovalVote'])->name('approval-vote');
