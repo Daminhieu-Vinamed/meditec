@@ -16,21 +16,21 @@ class ProductionOrderController extends Controller
         $this->productionOrderService = $productionOrderService;
     }
 
-    public function getProductionOrder1(Request $request)
+    public function getProductionOrderV1(Request $request)
     {
         try {
-            $data = $this->productionOrderService->getProductionOrder1($request);
-            return view('production-order-1', $data);
+            $data = $this->productionOrderService->getProductionOrderV1($request);
+            return view('production-order-v1', $data);
         } catch (\Exception $e) {
             return view('404');
         }
     }
 
-    public function getProductionOrder2(Request $request)
+    public function getProductionOrderV2(Request $request)
     {
         try {
-            $data = $this->productionOrderService->getProductionOrder2($request);
-            return view('production-order-2', $data);
+            $data = $this->productionOrderService->getProductionOrderV2($request);
+            return view('production-order-v2', $data);
         } catch (\Exception $e) {
             return view('404');
         }
@@ -39,7 +39,7 @@ class ProductionOrderController extends Controller
     public function getAdditionalProductionOrder(Request $request)
     {
         try {
-            $data = $this->productionOrderService->getProductionOrder1($request);
+            $data = $this->productionOrderService->getProductionOrderV1($request);
             return view('additional-production-order', $data);
         } catch (\Exception $e) {
             return view('404');
@@ -51,13 +51,17 @@ class ProductionOrderController extends Controller
         return $this->productionOrderService->getProductCode();
     }
 
-    public function updateProductionOrder1(ProductionOrder1Request $request)
+    public function updateProductionOrderV1(ProductionOrder1Request $request)
     {
-        return $this->productionOrderService->updateProductionOrder1($request);
+        return $this->productionOrderService->updateProductionOrderV1($request);
     }
 
-    public function updateProductionOrder2(ProductionOrder2Request $request)
+    public function updateProductionOrderV2(ProductionOrder2Request $request)
     {
-        return $this->productionOrderService->updateProductionOrder2($request);
+        return $this->productionOrderService->updateProductionOrderV2($request);
+    }
+
+    public function semiFinishedProductCode(Request $request) {
+        return $this->productionOrderService->semiFinishedProductCode($request->ProductCode);
     }
 }

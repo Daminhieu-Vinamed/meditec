@@ -151,5 +151,5 @@
     </div>
 @endsection
 @push('js')
-    <script src="{{ asset('dist/js/production-order-1.js') }}"></script>
+    <script src="{{ asset('dist/js/production-order-v1.js') }}"></script>
 @endpush

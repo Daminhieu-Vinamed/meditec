@@ -96,9 +96,9 @@ $(document).ready(function () {
     function workDayAndPerformanceCount(trParent, QuantitySX, CapacityOne) {
         if (CapacityOne && QuantitySX && $.isNumeric(CapacityOne) && $.isNumeric(QuantitySX)) {
             const workDay = Number(QuantitySX)/Number(CapacityOne);
-            const Performance = Number(QuantitySX)/workDay;
-            trParent.find("input[name='WorkDay[]']").val(workDay.toFixed(2));
-            trParent.find("#Performance").text(Performance.toFixed(2));
+            const Performance = Number(QuantitySX)/workDay/Number(CapacityOne);
+            trParent.find("input[name='WorkDay[]']").val(Math.floor(workDay * 100) / 100);
+            trParent.find("#Performance").text(Performance * 100);
         }else{
             trParent.find("input[name='WorkDay[]']").val(null);
             trParent.find("#Performance").text(null);
@@ -108,6 +108,7 @@ $(document).ready(function () {
     $(document).on('change', "select[name='ProductCode[]']", function () {
         var trParent = $(this).parent().parent();
         var element = $(this).children('option:selected');
+        const ProductCode = element.attr("value");
         const Id = element.attr("Id");
         const ItemLotCode = element.attr("ItemLotCode");
         const ProductName = element.attr("ProductName");
@@ -119,16 +120,47 @@ $(document).ready(function () {
         );
         trParent.find("#ItemLotCode").text(ItemLotCode ? ItemLotCode : '');
         trParent.find("#DocNo").text(DocNo ? DocNo : '');
+        trParent.find("input[name='QuantitySX[]']").val(null);
+        $.ajax({
+            url: "/semi-finished-product-code",
+            type: 'GET',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: {
+                ProductCode: ProductCode,
+            },
+            success: function(responseSuccess) {
+                var stageNoSelect = trParent.find("select[name='StageNo[]']");
+                stageNoSelect.find('option').remove();
+                stageNoSelect.append('<option value="">Trống</option>');
+                stageNoSelect.val(stageNoSelect.children('option:eq(0)').val()).trigger('change');
+                responseSuccess.arrStageNo.forEach(element => {
+                    stageNoSelect.append('<option value="'+ element.ItemCode +'" CapacityOne="'+ element.CapacityOne +'">' + element.ItemCode + '</option>');
+                });
+            },
+            error: function (responseError) {
+                Toast.fire({
+                    icon: 'error',
+                    title: 'Hệ thống đang xảy ra lỗi !'
+                })
+            }
+        });
+    });
 
+    $(document).on('change', "select[name='StageNo[]']", function () {
+        var trParent = $(this).parent().parent();
+        var element = $(this).children('option:selected');
         const CapacityOne = element.attr("CapacityOne");
         const QuantitySX = trParent.find("input[name='QuantitySX[]']").val();
         workDayAndPerformanceCount(trParent, QuantitySX, CapacityOne);
-        
-    });
+    })
 
     $(document).on('blur', "input[name='QuantitySX[]']", function () {
         var trParent = $(this).parent().parent();
-        const CapacityOne = trParent.find("select[name='ProductCode[]']").children('option:selected').attr("CapacityOne");
+        const CapacityOneProductCode = trParent.find("select[name='ProductCode[]']").children('option:selected').attr("CapacityOne");
+        const CapacityOneStageNo = trParent.find("select[name='StageNo[]']").children('option:selected').attr("CapacityOne");
+        const CapacityOne = CapacityOneStageNo ? CapacityOneStageNo : CapacityOneProductCode
         const QuantitySX = $(this).val();
         workDayAndPerformanceCount(trParent, QuantitySX, CapacityOne);
     })  
@@ -136,10 +168,13 @@ $(document).ready(function () {
     $(document).on('blur', "input[name='WorkDay[]']", function () {
         var trParent = $(this).parent().parent();
         const QuantitySX = trParent.find("input[name='QuantitySX[]']").val();
-        const workDay = Number($(this).val());
-        if (workDay && QuantitySX && $.isNumeric(workDay) && $.isNumeric(QuantitySX)) {
-            const Performance = Number(QuantitySX)/workDay;
-            trParent.find("#Performance").text(Performance.toFixed(2));
+        const CapacityOneProductCode = trParent.find("select[name='ProductCode[]']").children('option:selected').attr("CapacityOne");
+        const CapacityOneStageNo = trParent.find("select[name='StageNo[]']").children('option:selected').attr("CapacityOne");
+        const CapacityOne = CapacityOneStageNo ? CapacityOneStageNo : CapacityOneProductCode
+        if (CapacityOne  && QuantitySX && $.isNumeric(CapacityOne) && $.isNumeric(QuantitySX)) {
+            const workDay = Number(QuantitySX)/Number(CapacityOne);
+            const Performance = Number(QuantitySX)/workDay/Number(CapacityOne);
+            trParent.find("#Performance").text(Performance * 100);
         }else{
             trParent.find("#Performance").text(null);
         }
@@ -212,10 +247,10 @@ $(document).ready(function () {
               .map(function(){return $(this).val();}).get();
         var DeptCodetmp = $("select[name='DeptCodetmp[]']")
               .map(function(){return $(this).val();}).get();
-        var DocDate = $("input[name='DocDate[]']")
+        var StageNo = $("select[name='StageNo[]']")
               .map(function(){return $(this).val();}).get();
         $.ajax({
-            url: "/update-production-order-2",
+            url: "/update-production-order-v2",
             type:'POST',
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -230,7 +265,7 @@ $(document).ready(function () {
                 Id: Id,
                 MachineCode: MachineCode,
                 DeptCodetmp: DeptCodetmp,
-                DocDate: DocDate
+                StageNo: StageNo,
             },
             success: function(dataSuccess) {
                 for (let i = 0; i < QuantitySX.length; i++) {
@@ -239,13 +274,13 @@ $(document).ready(function () {
                     $('.error-product-code-' + i).val('')
                     $('.error-employee-' + i).val('')
                 }
-                if (dataSuccess.error_incorrect) {
+                if (dataSuccess.error) {
                     ToastErrorCenter.fire({
-                        text: dataSuccess.error_incorrect,
+                        text: dataSuccess.error,
                     })
                 }else{
                     ToastSuccessCenterTime.fire({
-                        title: dataSuccess.error_correct,
+                        title: dataSuccess.success,
                     }).then((result) => {
                         if (result.dismiss === Swal.DismissReason.timer) {
                             sessionStorage.clear();

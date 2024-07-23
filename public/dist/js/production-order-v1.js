@@ -1,8 +1,8 @@
 /******/ (() => { // webpackBootstrap
 var __webpack_exports__ = {};
-/*!********************************************!*\
-  !*** ./resources/js/production-order-1.js ***!
-  \********************************************/
+/*!*********************************************!*\
+  !*** ./resources/js/production-order-v1.js ***!
+  \*********************************************/
 $(document).ready(function () {
   var productionOrderTable = $('.production-order-table').DataTable({
     rowReorder: true,
@@ -144,7 +144,7 @@ $(document).ready(function () {
       return $(this).val();
     }).get();
     $.ajax({
-      url: "/update-production-order-1",
+      url: "/update-production-order-v1",
       type: 'POST',
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

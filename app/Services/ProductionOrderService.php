@@ -13,15 +13,15 @@ class ProductionOrderService extends ProductionOrderRepository
         $this->productionOrderRepository = $productionOrderRepository;
     }
 
-    public function getProductionOrder1($request)
+    public function getProductionOrderV1($request)
     {
-        $dataList = $this->productionOrderRepository->getProductionOrder1($request->id);
+        $dataList = $this->productionOrderRepository->getProductionOrderV1($request->id);
         return $dataList;
     }
     
-    public function getProductionOrder2($request)
+    public function getProductionOrderV2($request)
     {
-        $dataList = $this->productionOrderRepository->getProductionOrder2($request->id);
+        $dataList = $this->productionOrderRepository->getProductionOrderV2($request->id);
         return $dataList;
     }
 
@@ -29,8 +29,13 @@ class ProductionOrderService extends ProductionOrderRepository
     {
         return $this->productionOrderRepository->getProductCode();
     }
+    
+    public function semiFinishedProductCode($ProductCode)
+    {
+        return $this->productionOrderRepository->semiFinishedProductCode($ProductCode);
+    }
 
-    public function updateProductionOrder1($request)
+    public function updateProductionOrderV1($request)
     {
         DB::beginTransaction();
         try {
@@ -87,18 +92,20 @@ class ProductionOrderService extends ProductionOrderRepository
         }
     }
     
-    public function updateProductionOrder2($request)
+    public function updateProductionOrderV2($request)
     {
         DB::beginTransaction();
         try {
             foreach ($request->Employee as $item => $ArrEmployee) {
                 foreach ($ArrEmployee as $key => $employee) {
                     $productCode = $request->ProductCode[$item];
+                    $stageNo = $request->StageNo[$item];
+                    $product = empty($stageNo) ? $productCode : $stageNo;
                     $quantitySx = $request->QuantitySX[$item];
                     $chantCode = $request->ChantCode[$item];
                     $workDay = $request->WorkDay[$item];
                     $Id = isset($request->Id[$item]) ? $request->Id[$item] : config('constants.value.string-empty');
-                    $machineCode = $request->MachineCode[$item] === config('constants.value.null') ? config('constants.value.string-empty') : $request->MachineCode[$item];
+                    $machineCode = empty($request->MachineCode[$item]) ? config('constants.value.string-empty') : $request->MachineCode[$item];
                     $itemLotCode = $request->ItemLotCode[$item];
                     $DeptCodetmp = $request->DeptCodetmp[$item];
                     settype($Id, "integer");
@@ -108,7 +115,7 @@ class ProductionOrderService extends ProductionOrderRepository
                             $Id,
                             $quantitySx,
                             $itemLotCode,
-                            $productCode,
+                            $product,
                             $workDay,
                             $chantCode,
                             $employee
@@ -120,27 +127,28 @@ class ProductionOrderService extends ProductionOrderRepository
                             $employee,
                             $quantitySx,
                             $itemLotCode,
-                            $productCode,
+                            $product,
                             $Id,
                             $chantCode,
                             $workDay,
+                            config('constants.value.null'),
                             $machineCode,
                             $DeptCodetmp,
-                            isset($request->DocDate[$item]) ? $request->DocDate[$item] : config('constants.value.null')
+                            config('constants.value.null')
                         ]
                     );
                 }
             }
             DB::commit();
-            return response()->json(['error_correct' => $request->DocDate === config('constants.value.null') ? __('messages.product_order.success') : __('messages.product_order.additional')]);
+            return response()->json(['success' => __('messages.product_order.success')]);
         } catch (\Exception $e) {
             DB::rollBack();
             $message = $e->getMessage();
             $contains = str_contains($message, __('messages.product_order.wrong_time'));
             if ($contains) {
-                return response()->json(['error_incorrect' => __('messages.product_order.too_regulated_time')]);
+                return response()->json(['error' => __('messages.product_order.too_regulated_time')]);
             } else {
-                return response()->json(['error_incorrect' => $message]);
+                return response()->json(['error' => $message]);
             }
         }
     }

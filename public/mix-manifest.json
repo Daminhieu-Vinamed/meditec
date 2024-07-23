@@ -1,7 +1,7 @@
 {
     "/dist/js/login.js": "/dist/js/login.js",
-    "/dist/js/production-order-1.js": "/dist/js/production-order-1.js",
-    "/dist/js/production-order-2.js": "/dist/js/production-order-2.js",
+    "/dist/js/production-order-v1.js": "/dist/js/production-order-v1.js",
+    "/dist/js/production-order-v2.js": "/dist/js/production-order-v2.js",
     "/dist/js/approval-vote.js": "/dist/js/approval-vote.js",
     "/dist/js/approval-vote-detail.js": "/dist/js/approval-vote-detail.js",
     "/dist/js/scan-qr-code.js": "/dist/js/scan-qr-code.js"
