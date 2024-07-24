@@ -2,9 +2,10 @@ $(document).ready(function () {
     var productionOrderTable = $('.production-order-table-2').DataTable({
         rowReorder: true,
         paginate: false,
+        bFilter: false,
+        ordering: false,
         language: {
             emptyTable: 'Danh sách hiện tại đang trống',
-            search: "Tìm kiếm sản phẩm có dữ liệu _INPUT_",
             info: "Tổng có _TOTAL_ sản phẩm",
             zeroRecords: "Không có sản phẩm nào có dữ liệu bạn tìm kiếm"
         },
@@ -24,7 +25,7 @@ $(document).ready(function () {
         },
     });
     $('.dataTables_info').appendTo('.infoInTable');
-    $('.dataTables_filter').appendTo('.searchInTable');
+    // $('.dataTables_filter').appendTo('.searchInTable');
 
     function addRow(locationId) {
         arrayColumn = [
