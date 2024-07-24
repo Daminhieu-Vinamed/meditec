@@ -15,7 +15,6 @@
                     <div class="card-body p-3">
                         <div class="d-sm-flex align-items-center justify-content-between">
                             <div class="infoInTable"></div>
-                            <div class="searchInTable"></div>
                         </div>
                         <div class="table-responsive text-nowrap">
                             <table class="table table-bordered display nowrap production-order-table-2" style="width:100%">
