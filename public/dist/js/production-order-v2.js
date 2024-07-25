@@ -32,8 +32,6 @@ $(document).ready(function () {
     }
   });
   $('.dataTables_info').appendTo('.infoInTable');
-  // $('.dataTables_filter').appendTo('.searchInTable');
-
   function addRow(locationId) {
     arrayColumn = ['<input type="checkbox" name="arrayCheckbox[]" class="checkbox-delete-row"/>', "<select name=\"Employee[]\" id=\"Employee" + locationId + "\" multiple=\"multiple\"></select><br>\n            <span class=\"text-danger error-employee-" + locationId + "\"></span>", "<select name=\"ProductCode[]\" id=\"ProductCode" + locationId + "\">\n                <option value=\"\">Tr\u1ED1ng</option>\n            </select><br>\n            <span class=\"text-danger error-product-code-" + locationId + "\"></span>", '', "<select name=\"StageNo[]\" id=\"StageNo" + locationId + "\"></select>", "<select name=\"MachineCode[]\" id=\"MachineCode" + locationId + "\"></select>", "<input class=\"form-control\" name=\"QuantitySX[]\" id=\"QuantitySX" + locationId + "\" placeholder=\"Nh\u1EADp s\u1ED1 l\u01B0\u1EE3ng\"/>\n            <span class=\"text-danger error-quantity-" + locationId + "\"></span>", "<select name=\"DeptCodetmp[]\" id=\"DeptCodetmp" + locationId + "\"></select>", "<select name=\"ChantCode[]\" id=\"ChantCode" + locationId + "\"></select>", "<input class=\"form-control\" name=\"WorkDay[]\" type=\"text\" placeholder=\"Nh\u1EADp s\u1ED1 gi\u1EDD\">\n            <span class=\"text-danger error-workday-" + locationId + "\"></span>", '', '', ''];
     productionOrderTable.row.add(arrayColumn).draw(false);
@@ -79,7 +77,7 @@ $(document).ready(function () {
       var workDay = Number(QuantitySX) / Number(CapacityOne);
       var Performance = Number(QuantitySX) / workDay / Number(CapacityOne);
       trParent.find("input[name='WorkDay[]']").val(Math.floor(workDay * 100) / 100);
-      trParent.find("#Performance").text(Performance * 100);
+      trParent.find("#Performance").text(Performance * 100 + '%');
     } else {
       trParent.find("input[name='WorkDay[]']").val(null);
       trParent.find("#Performance").text(null);
@@ -147,7 +145,7 @@ $(document).ready(function () {
     if (CapacityOne && QuantitySX && $.isNumeric(CapacityOne) && $.isNumeric(QuantitySX)) {
       var workDay = Number(QuantitySX) / Number(CapacityOne);
       var Performance = Number(QuantitySX) / workDay / Number(CapacityOne);
-      trParent.find("#Performance").text(Performance * 100);
+      trParent.find("#Performance").text(Performance * 100 + '%');
     } else {
       trParent.find("#Performance").text(null);
     }

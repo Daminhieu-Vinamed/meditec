@@ -25,7 +25,6 @@ $(document).ready(function () {
         },
     });
     $('.dataTables_info').appendTo('.infoInTable');
-    // $('.dataTables_filter').appendTo('.searchInTable');
 
     function addRow(locationId) {
         arrayColumn = [
@@ -99,7 +98,7 @@ $(document).ready(function () {
             const workDay = Number(QuantitySX)/Number(CapacityOne);
             const Performance = Number(QuantitySX)/workDay/Number(CapacityOne);
             trParent.find("input[name='WorkDay[]']").val(Math.floor(workDay * 100) / 100);
-            trParent.find("#Performance").text(Performance * 100);
+            trParent.find("#Performance").text(Performance * 100 + '%');
         }else{
             trParent.find("input[name='WorkDay[]']").val(null);
             trParent.find("#Performance").text(null);
@@ -175,7 +174,7 @@ $(document).ready(function () {
         if (CapacityOne  && QuantitySX && $.isNumeric(CapacityOne) && $.isNumeric(QuantitySX)) {
             const workDay = Number(QuantitySX)/Number(CapacityOne);
             const Performance = Number(QuantitySX)/workDay/Number(CapacityOne);
-            trParent.find("#Performance").text(Performance * 100);
+            trParent.find("#Performance").text(Performance * 100  + '%');
         }else{
             trParent.find("#Performance").text(null);
         }
