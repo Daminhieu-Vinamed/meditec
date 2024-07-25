@@ -77,7 +77,7 @@ $(document).ready(function () {
       var workDay = Number(QuantitySX) / Number(CapacityOne);
       var Performance = Number(QuantitySX) / workDay / Number(CapacityOne);
       trParent.find("input[name='WorkDay[]']").val(Math.floor(workDay * 100) / 100);
-      trParent.find("#Performance").text(Performance * 100 + '%');
+      trParent.find("#Performance").text(Math.ceil(Performance * 100) + '%');
     } else {
       trParent.find("input[name='WorkDay[]']").val(null);
       trParent.find("#Performance").text(null);
@@ -130,7 +130,7 @@ $(document).ready(function () {
     var QuantitySX = trParent.find("input[name='QuantitySX[]']").val();
     workDayAndPerformanceCount(trParent, QuantitySX, CapacityOne);
   });
-  $(document).on('blur', "input[name='QuantitySX[]']", function () {
+  $(document).on('change keyup paste', "input[name='QuantitySX[]']", function () {
     var trParent = $(this).parent().parent();
     var CapacityOneProductCode = trParent.find("select[name='ProductCode[]']").children('option:selected').attr("CapacityOne");
     var CapacityOneStageNo = trParent.find("select[name='StageNo[]']").children('option:selected').attr("CapacityOne");
@@ -138,16 +138,16 @@ $(document).ready(function () {
     var QuantitySX = $(this).val();
     workDayAndPerformanceCount(trParent, QuantitySX, CapacityOne);
   });
-  $(document).on('blur', "input[name='WorkDay[]']", function () {
+  $(document).on('change keyup paste', "input[name='WorkDay[]']", function () {
     var trParent = $(this).parent().parent();
+    var workDay = $(this).val();
     var QuantitySX = trParent.find("input[name='QuantitySX[]']").val();
     var CapacityOneProductCode = trParent.find("select[name='ProductCode[]']").children('option:selected').attr("CapacityOne");
     var CapacityOneStageNo = trParent.find("select[name='StageNo[]']").children('option:selected').attr("CapacityOne");
     var CapacityOne = CapacityOneStageNo ? CapacityOneStageNo : CapacityOneProductCode;
-    if (CapacityOne && QuantitySX && $.isNumeric(CapacityOne) && $.isNumeric(QuantitySX)) {
-      var workDay = Number(QuantitySX) / Number(CapacityOne);
+    if (workDay && CapacityOne && QuantitySX && $.isNumeric(workDay) && $.isNumeric(CapacityOne) && $.isNumeric(QuantitySX)) {
       var Performance = Number(QuantitySX) / workDay / Number(CapacityOne);
-      trParent.find("#Performance").text(Performance * 100 + '%');
+      trParent.find("#Performance").text(Math.ceil(Performance * 100) + '%');
     } else {
       trParent.find("#Performance").text(null);
     }
