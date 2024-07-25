@@ -124,7 +124,9 @@ $(document).ready(function () {
   $(document).on('change', "select[name='StageNo[]']", function () {
     var trParent = $(this).parent().parent();
     var element = $(this).children('option:selected');
-    var CapacityOne = element.attr("CapacityOne");
+    var CapacityOneProductCode = trParent.find("select[name='ProductCode[]']").children('option:selected').attr("CapacityOne");
+    var CapacityOneStageNo = element.attr("CapacityOne");
+    var CapacityOne = CapacityOneStageNo ? CapacityOneStageNo : CapacityOneProductCode;
     var QuantitySX = trParent.find("input[name='QuantitySX[]']").val();
     workDayAndPerformanceCount(trParent, QuantitySX, CapacityOne);
   });
