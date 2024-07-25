@@ -57,7 +57,7 @@ class ProductionOrderRepository extends AbstractRepository
         $arrayChantCode = B20HrmShift::where('IsActive', config('constants.number.one'))->where('IsGroup', config('constants.number.zero'))->orderBy('Code', 'ASC')->get();
         $arrayMachineCode = B20Machine::where('IsActive', config('constants.number.one'))->where('IsGroup', config('constants.number.zero'))->orderBy('Code', 'ASC')->get();
         $arrayDept = B20Dept::where('IsActive', config('constants.number.one'))->where('IsGroup', config('constants.number.zero'))->where('Loai_Ps', '<>', config('constants.value.null'))->orderBy('Code', 'ASC')->get();
-        $arrayEmployee = User::where('IsActive', config('constants.number.one'))->where('IsGroup', config('constants.number.zero'))->select('Code', 'Name')->get();
+        $arrayEmployee = User::where('IsActive', config('constants.number.one'))->where('IsGroup', config('constants.number.zero'))->whereIn('DeptCode', ['351', '352', '353'])->select('Code', 'Name')->get();
         return array(
             'data' => $data, 
             'arrChantCode' => $arrayChantCode, 
