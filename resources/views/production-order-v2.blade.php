@@ -52,6 +52,10 @@
                                         <td>
                                             <select name="ProductCode[]" id="ProductCode0">
                                                 <option value="">Trống</option>
+                                                @foreach ($dataAdd as $item)
+                                                    <option value="{{ $item->ProductCode }}"
+                                                        ProductName="{{ $item->Name }}">{{ $item->ProductCode }} - {{ $item->Name }}</option>
+                                                @endforeach
                                                 @foreach ($data as $item)
                                                     <option value="{{ $item->ProductCode }}"
                                                         ItemLotCode="{{ $item->ItemLotCode }}"
