@@ -106,7 +106,7 @@ class ProductionOrderService extends ProductionOrderRepository
                     $workDay = $request->WorkDay[$item];
                     $Id = isset($request->Id[$item]) ? $request->Id[$item] : config('constants.value.string-empty');
                     $machineCode = empty($request->MachineCode[$item]) ? config('constants.value.string-empty') : $request->MachineCode[$item];
-                    $itemLotCode = $request->ItemLotCode[$item];
+                    $itemLotCode = isset($request->ItemLotCode[$item]) ? $request->ItemLotCode[$item] : config('constants.value.string-empty');
                     $DeptCodetmp = $request->DeptCodetmp[$item];
                     settype($Id, "integer");
                     DB::update(

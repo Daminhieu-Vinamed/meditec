@@ -54,12 +54,14 @@ class ProductionOrderRepository extends AbstractRepository
             'vB20HrmProductUnitCost_Web.CapacityOne'
         )->join('vB20HrmProductUnitCost_Web', 'vB20HrmProductUnitCost_Web.ProductCode', '=', 'vB20ProductionorderQuan_Web.ProductCode')
         ->where('vB20ProductionorderQuan_Web.ParentId', $ParentId)->get();
+        $dataAdd = vB20Item_Web::whereIn('ProductCode', ['161493', '140361', '162944'])->select('*')->get();
         $arrayChantCode = B20HrmShift::where('IsActive', config('constants.number.one'))->where('IsGroup', config('constants.number.zero'))->orderBy('Code', 'ASC')->get();
         $arrayMachineCode = B20Machine::where('IsActive', config('constants.number.one'))->where('IsGroup', config('constants.number.zero'))->orderBy('Code', 'ASC')->get();
         $arrayDept = B20Dept::where('IsActive', config('constants.number.one'))->where('IsGroup', config('constants.number.zero'))->where('Loai_Ps', '<>', config('constants.value.null'))->orderBy('Code', 'ASC')->get();
         $arrayEmployee = User::where('IsActive', config('constants.number.one'))->where('IsGroup', config('constants.number.zero'))->whereIn('DeptCode', ['351', '352', '353'])->select('Code', 'Name')->get();
         return array(
             'data' => $data, 
+            'dataAdd' => $dataAdd,
             'arrChantCode' => $arrayChantCode, 
             'arrMachineCode' => $arrayMachineCode, 
             'arrDept' => $arrayDept, 

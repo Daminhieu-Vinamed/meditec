@@ -79,7 +79,11 @@ $(document).ready(function () {
       trParent.find("input[name='WorkDay[]']").val(Math.floor(workDay * 100) / 100);
       trParent.find("#Performance").text(Math.ceil(Performance * 100) + '%');
     } else {
-      trParent.find("input[name='WorkDay[]']").val(null);
+      if (QuantitySX && $.isNumeric(QuantitySX)) {
+        trParent.find("input[name='WorkDay[]']").val(QuantitySX);
+      } else {
+        trParent.find("input[name='WorkDay[]']").val(null);
+      }
       trParent.find("#Performance").text(null);
     }
   }
@@ -91,7 +95,11 @@ $(document).ready(function () {
     var ItemLotCode = element.attr("ItemLotCode");
     var ProductName = element.attr("ProductName");
     var DocNo = element.attr("DocNo");
-    trParent.find("#ProductName").html(ProductName && ItemLotCode && Id ? ProductName + "<input type=\"hidden\" name=\"ItemLotCode[]\" value=\"" + ItemLotCode + "\">\n            <input type=\"hidden\" name=\"Id[]\" value=\"" + Id + "\">" : '');
+    var ProductNameHTML = ProductName ? ProductName : '';
+    if (ItemLotCode && Id) {
+      ProductNameHTML = ProductNameHTML + "<input type=\"hidden\" name=\"ItemLotCode[]\" value=\"" + ItemLotCode + "\">\n            <input type=\"hidden\" name=\"Id[]\" value=\"" + Id + "\">";
+    }
+    trParent.find("#ProductName").html(ProductNameHTML);
     trParent.find("#ItemLotCode").text(ItemLotCode ? ItemLotCode : '');
     trParent.find("#DocNo").text(DocNo ? DocNo : '');
     trParent.find("input[name='QuantitySX[]']").val(null);
