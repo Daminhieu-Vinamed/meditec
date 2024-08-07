@@ -36,11 +36,21 @@ class ProductionOrderController extends Controller
         }
     }
 
-    public function getAdditionalProductionOrder(Request $request)
+    public function getAdditionalProductionOrderV1(Request $request)
     {
         try {
             $data = $this->productionOrderService->getProductionOrderV1($request);
-            return view('additional-production-order', $data);
+            return view('additional-production-order-v1', $data);
+        } catch (\Exception $e) {
+            return view('404');
+        }
+    }
+    
+    public function getAdditionalProductionOrderV2(Request $request)
+    {
+        try {
+            $data = $this->productionOrderService->getProductionOrderV2($request);
+            return view('additional-production-order-v2', $data);
         } catch (\Exception $e) {
             return view('404');
         }

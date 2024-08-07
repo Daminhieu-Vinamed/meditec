@@ -24,7 +24,8 @@ Route::middleware('checkRole')->prefix('/')->name('list.')->group(function () {
     Route::get('production-order-v2/{id}', [ProductionOrderController::class, 'getProductionOrderV2']);
     Route::post('update-production-order-v2', [ProductionOrderController::class, 'updateProductionOrderV2']);
     Route::get('semi-finished-product-code', [ProductionOrderController::class, 'semiFinishedProductCode']);
-    Route::get('additional-production-order/{id}', [ProductionOrderController::class, 'getAdditionalProductionOrder'])->name('additional-production-order');
+    Route::get('additional-production-order-v1/{id}', [ProductionOrderController::class, 'getAdditionalProductionOrderV1'])->name('additional-production-order-v1');
+    Route::get('additional-production-order-v2/{id}', [ProductionOrderController::class, 'getAdditionalProductionOrderV2'])->name('additional-production-order-v2');
     Route::get('get-product-code', [ProductionOrderController::class, 'getProductCode']);
     Route::get('approval-vote', [ApprovalVoteController::class, 'getViewApprovalVote'])->name('approval-vote');
     Route::get('get-data', [ApprovalVoteController::class, 'getDataApprovalVote']);

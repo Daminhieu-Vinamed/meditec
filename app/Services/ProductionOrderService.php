@@ -134,7 +134,7 @@ class ProductionOrderService extends ProductionOrderRepository
                             config('constants.value.null'),
                             $machineCode,
                             $DeptCodetmp,
-                            config('constants.value.null')
+                            isset($request->DocDate[$item]) ? $request->DocDate[$item] : config('constants.value.null')
                         ]
                     );
                 }
