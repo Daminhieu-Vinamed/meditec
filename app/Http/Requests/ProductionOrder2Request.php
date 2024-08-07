@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Carbon\Carbon;
 
 class ProductionOrder2Request extends FormRequest
 {
@@ -21,7 +22,7 @@ class ProductionOrder2Request extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        $arrValid = [
             "Employee" => "array",
             "Employee.*"  => "required",
             "ProductCode" => "array",
@@ -33,6 +34,20 @@ class ProductionOrder2Request extends FormRequest
             "WorkDay" => "array",
             "WorkDay.*"  => 'required|numeric',
         ];
+        if (isset($this->DocDate)) {
+            $arrValid["DocDate"] = "array";
+            $arrValid["DocDate.*"] = [
+                "required",
+                function ($attribute, $value, $fail) {
+                    $ThePresentTime = Carbon::now();
+                    $diffInDays = Carbon::parse($value)->diffInDays($ThePresentTime);
+                    if ($diffInDays > config('constants.number.one')) {
+                        $fail(__('validation.product_order.doc_date_check'));
+                    }
+                },
+            ];
+        }
+        return $arrValid;
     }
     public function messages()
     {
@@ -43,6 +58,7 @@ class ProductionOrder2Request extends FormRequest
             'WorkDay.*.numeric' => __('validation.product_order.is_number_time'),
             'ProductCode.*.required' => __('validation.product_order.select_product_code'),
             'Employee.*.required' => __('validation.product_order.select_user_code'),
+            'DocDate.*.required' => __('validation.product_order.doc_date_required'),
         ];
     }
 }

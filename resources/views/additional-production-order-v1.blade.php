@@ -1,14 +1,14 @@
 @extends('layout.master')
-@section('title', 'Additional production order')
+@section('title', 'Additional Production Order v1')
 @section('content')
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
                 <div class="card shadow">
                     <div class="card-header bg-grey-light py-3 d-sm-flex align-items-center justify-content-between">
-                        <h5 class="m-0 font-bold text-info">BỔ XUNG LỆNH SẢN XUẤT</h5>
+                        <h5 class="m-0 font-bold text-info">BỔ SUNG LỆNH SẢN XUẤT</h5>
                         <div>
-                            <button type="button" class="btn btn-info submit-update-production-order">BỔ XUNG</button>
+                            <button type="button" class="btn btn-info submit-update-production-order">BỔ SUNG</button>
                             <a href="{{ url()->previous() }}" class="btn btn-danger">QUAY LẠI</a>
                         </div>
                     </div>
@@ -21,7 +21,7 @@
                             <table class="table table-bordered display nowrap production-order-table" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Thời gian bổ xung</th>
+                                        <th scope="col">Thời gian bổ sung</th>
                                         <th scope="col">Mã sản phẩm</th>
                                         <th scope="col">Tên sản phẩm</th>
                                         <th scope="col">Số lượng sản xuất hôm nay</th>
@@ -69,6 +69,7 @@
                                             @if (!empty($arrayDept))
                                                 <td>
                                                     <select name="DeptCodetmp[]">
+                                                        <option value="">Trống</option>
                                                         @foreach ($arrayDept as $itemCode)
                                                             @if (
                                                                 $itemCode->IsGroup == config('constants.number.zero') &&
@@ -161,5 +162,5 @@
     </div>
 @endsection
 @push('js')
-    <script src="{{ asset('dist/js/production-order-1.js') }}"></script>
+    <script src="{{ asset('dist/js/production-order-v1.js') }}"></script>
 @endpush

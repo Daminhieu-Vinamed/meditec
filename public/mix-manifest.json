@@ -4,5 +4,6 @@
     "/dist/js/production-order-v2.js": "/dist/js/production-order-v2.js",
     "/dist/js/approval-vote.js": "/dist/js/approval-vote.js",
     "/dist/js/approval-vote-detail.js": "/dist/js/approval-vote-detail.js",
+    "/dist/js/additional-production-order-v2.js": "/dist/js/additional-production-order-v2.js",
     "/dist/js/scan-qr-code.js": "/dist/js/scan-qr-code.js"
 }

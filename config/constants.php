@@ -5,6 +5,7 @@ return [
         'string-empty' => "",
     ],
     'number' => [
+        'negative_one' => -1,
         'zero' => 0,
         'one' => 1,
         'two' => 2,

@@ -9,7 +9,7 @@
                         <h5 class="m-0 font-bold text-info">CẬP NHẬT LỆNH SẢN XUẤT</h5>
                         <div>
                             <button type="button" class="btn btn-info submit-update-production-order">CẬP NHẬT</button>
-                            <a href="{{ route('list.additional-production-order', ['id' => $id]) }}" class="btn btn-info">BỔ SUNG</a>
+                            <a href="{{ route('list.additional-production-order-v1', ['id' => $id]) }}" class="btn btn-info">BỔ SUNG</a>
                         </div>
                     </div>
                     <div class="card-body p-3">

@@ -1,15 +1,15 @@
 @extends('layout.master')
-@section('title', 'Production Order v2')
+@section('title', 'Additional Production Order v2')
 @section('content')
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
                 <div class="card shadow">
                     <div class="card-header bg-grey-light py-3 d-sm-flex align-items-center justify-content-between">
-                        <h5 class="m-0 font-bold text-info">CẬP NHẬT LỆNH SẢN XUẤT</h5>
+                        <h5 class="m-0 font-bold text-info">BỔ SUNG LỆNH SẢN XUẤT</h5>
                         <div>
-                            <button type="button" class="btn btn-info submit-update-production-order">CẬP NHẬT</button>
-                            <a href="{{ route('list.additional-production-order-v2', ['id' => $id]) }}" class="btn btn-info">BỔ SUNG</a>
+                            <button type="button" class="btn btn-info submit-update-production-order">BỔ SUNG</button>
+                            <a href="{{ url()->previous() }}" class="btn btn-danger">QUAY LẠI</a>
                         </div>
                     </div>
                     <div class="card-body p-3">
@@ -21,6 +21,7 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">Chọn</th>
+                                        <th scope="col">Thời gian bổ sung</th>
                                         <th scope="col">Nhân viên</th>
                                         <th scope="col">Mã sản phẩm</th>
                                         <th scope="col">Tên sản phẩm</th>
@@ -39,6 +40,10 @@
                                     <tr>
                                         <td>
                                             <input type="checkbox" name="arrayCheckbox[]" class="checkbox-delete-row"/>
+                                        </td>
+                                        <td>
+                                            <input class="form-control" name="DocDate[]" type="date">
+                                            <span class="text-danger error-doc-date-0"></span>
                                         </td>
                                         <td>
                                             <select name="Employee[]" multiple="multiple" id="Employee0">
@@ -124,5 +129,5 @@
     </div>
 @endsection
 @push('js')
-    <script src="{{ asset('dist/js/production-order-v2.js') }}"></script>
+    <script src="{{ asset('dist/js/additional-production-order-v2.js') }}"></script>
 @endpush
